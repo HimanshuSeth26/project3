@@ -14,7 +14,7 @@ mongoose.connect("mongodb://localhost:27017/MyDb",
 
 
 require("./model/user"); // require user.js (model)
-require("./model/user1"); // require user1.js (model)
+require("./model/newEmployee"); // require newEmployee.js (model)
 
 
 
@@ -29,10 +29,10 @@ app.use(bodyParser.json());
 
 app.use(cors());
 app.use("/user", require("./route/posts")) // require route
-app.use("/user1", require("./route/posts1")) // require route
+app.use("/user1", require("./route/newEmployee")) // require route
 
 
- // not necessary in operation 
+ // not necessary in operation
 
 app.get('/', function (req, res) {
 

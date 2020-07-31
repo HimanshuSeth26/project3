@@ -1,0 +1,102 @@
+
+<h1> Table</h1>
+
+<table style="border: 1px solid black">
+  <tr style="border: 1px solid black">
+    <th>Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Topic</th>
+    <th>Score</th>
+    <th>TimePreference</th>
+    <th>Subscribe</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.name}}</td>
+    <td>{{user.email}}</td>
+    <td> {{user.phone}}</td>
+    <td>{{user.topic}}</td>
+    <td>{{user.score}}</td>
+    <td>{{user.timePreference}}</td>
+    <td>{{user.subscribe}}</td>
+    <td>
+      <button (click)="delete(user._id)">delete</button>
+
+      <button (click)="put(user._id)">edit</button>
+     <!-- <button (click)="getElementById(user._id)">getElementById</button>-->
+    </td>
+  </tr>
+
+</table>
+
+
+<!-- Default -->
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div class="container-fluid">
+          <h1>Enrollment Form</h1>
+          <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+
+
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" class="form-control" #name="ngModel"name ="userName"[(ngModel)]="userModel.name">
+            </div>
+
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="userModel.email">
+            </div>
+
+            <div class="form-group">
+              <label>Phone
+              </label>
+              <input type="tel" class="form-control" #phone="ngModel" name="phone" [(ngModel)]="userModel.phone">
+            </div>
+
+            <div class ="form-group">
+              <select class="customer-select" #topic="ngModel" name="topic" [(ngModel)]="userModel.topic">
+
+                <option value ="">I am interested in</option>
+                <option *ngFor="let topic of topics">{{ topic }}</option>
+              </select>
+            </div>
+
+
+            <div class="form-group">
+              <label>Score</label>
+              <input type="score" class="form-control" #score="ngModel" name="score" [(ngModel)]="userModel.score">
+            </div>
+
+
+            <div class="mb-3">
+              <label>Time Preference</label>
+              <div class="form-check">
+                <input class="form-check-input"  [(ngModel)]="userModel.timePreference" type="radio" #timePreference="ngModel" name="timePreference" value="morning">
+                <label class="form-check-label">Morning (9AM - 12 PM)</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" [(ngModel)]="userModel.timePreference" type="radio" #timePreference="ngModel" name="timePreference"value="evening">
+                <label class="form-check-label">Evening (5PM - 8PM)</label>
+              </div>
+            </div>
+            <div class="form-check mb-3">
+              <input class="form-check-input" #subscribe="ngModel"  name="subscribe" [(ngModel)]="userModel.subscribe" type="checkbox">
+              <label class="form-check-label">
+                Send me promotional offers
+              </label>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

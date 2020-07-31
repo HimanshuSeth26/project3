@@ -1,0 +1,21 @@
+<div class="content__inner">
+  <header class="content__title">
+    <h1>{{ pageTitle }}</h1>
+    <small>{{ pageSubTitle }}</small>
+  </header>
+
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Basic Example</h4>
+      <h6 class="card-subtitle">Basic DataTable with some of the least options used</h6>
+
+      <table datatable class="table table-bordered" [dtOptions]="options">
+        <thead>
+          <tr>
+            <th *ngFor="let column of columns">{{ column.title }}</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div>

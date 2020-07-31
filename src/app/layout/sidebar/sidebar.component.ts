@@ -6,6 +6,7 @@ import {AppService} from '../../app.service';
     selector: 'app-sidebar',
     templateUrl: 'sidebar.component.html',
     styleUrls: ['sidebar.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
     host: {
         'class': 'sidebar'
     },
@@ -35,21 +36,27 @@ export class SidebarComponent implements OnInit {
 
      */
     mainMenu: Array<any> = [
-        {
-            title: 'Home',
-            icon: 'home',
-            route: '/home'
-        },
-        {
-            title: 'Typography',
-            icon: 'format-underlined',
-            route: '/typography'
-        },
+        // {
+        //     title: 'Home',
+        //     icon: 'home',
+        //     route: '/home'
+        // },
+        // {
+        //     title: 'Typography',
+        //     icon: 'format-underlined',
+        //     route: '/typography'
+        // },
       {
 
         title: 'Registration',
         icon: 'format-underlined',
         route: '/registration'
+      },
+      {
+
+        title: 'Tasks',
+        icon: 'format-underlined',
+        route: '/tasks'
       },
       {
         title: 'Credentials',
@@ -277,89 +284,89 @@ export class SidebarComponent implements OnInit {
         //     visibility: 'inactive',
         //     route: '/photo-gallery'
         // },
-        {
-            title: 'Sample Pages',
-            icon: 'collection-item',
-            sub: [
-                {
-                    title: 'Profile',
-                    route: '/sample-pages/profile'
-                },
-                {
-                    title: 'Messages',
-                    route: '/sample-pages/messages'
-                },
-                {
-                    title: 'Contacts',
-                    route: '/sample-pages/contacts'
-                },
-                {
-                    title: 'New Contact',
-                    route: '/sample-pages/new-contact'
-                },
-                {
-                    title: 'Groups',
-                    route: '/sample-pages/groups'
-                },
-                {
-                    title: 'Pricing Tables',
-                    route: '/sample-pages/pricing-tables'
-                },
-                {
-                    title: 'Invoice',
-                    route: '/sample-pages/invoice'
-                },
-                {
-                    title: 'Todo Lists',
-                    route: '/sample-pages/todo-lists'
-                },
-                {
-                    title: 'Notes',
-                    route: '/sample-pages/notes'
-                },
-                {
-                    title: 'Search Results',
-                    route: '/sample-pages/search-results'
-                },
-                {
-                    title: 'Issue Tracker',
-                    route: '/sample-pages/issue-tracker'
-                },
-                {
-                    title: 'FAQ',
-                    route: '/sample-pages/faq'
-                },
-                {
-                    title: 'Team',
-                    route: '/sample-pages/team'
-                },
-                {
-                    title: 'Blog',
-                    route: '/sample-pages/blog'
-                },
-                {
-                    title: 'Blog Details',
-                    route: '/sample-pages/blog-details'
-                },
-                {
-                    title: 'Login & SignUp',
-                    route: '/sample-pages/login'
-                },
-                {
-                    title: 'Lockscreen',
-                    route: '/sample-pages/lockscreen'
-                },
-                {
-                    title: '404',
-                    route: '/sample-pages/404'
-                },
-                {
-                    title: 'Empty Page',
-                    route: '/sample-pages/empty-page'
-                }
-            ],
-            visibility: 'inactive'
-        },
+        // {
+        //     title: 'Sample Pages',
+        //     icon: 'collection-item',
+        //     sub: [
+        //         {
+        //             title: 'Profile',
+        //             route: '/sample-pages/profile'
+        //         },
+        //         {
+        //             title: 'Messages',
+        //             route: '/sample-pages/messages'
+        //         },
+        //         {
+        //             title: 'Contacts',
+        //             route: '/sample-pages/contacts'
+        //         },
+        //         {
+        //             title: 'New Contact',
+        //             route: '/sample-pages/new-contact'
+        //         },
+        //         {
+        //             title: 'Groups',
+        //             route: '/sample-pages/groups'
+        //         },
+        //         {
+        //             title: 'Pricing Tables',
+        //             route: '/sample-pages/pricing-tables'
+        //         },
+        //         {
+        //             title: 'Invoice',
+        //             route: '/sample-pages/invoice'
+        //         },
+        //         {
+        //             title: 'Todo Lists',
+        //             route: '/sample-pages/todo-lists'
+        //         },
+        //         {
+        //             title: 'Notes',
+        //             route: '/sample-pages/notes'
+        //         },
+        //         {
+        //             title: 'Search Results',
+        //             route: '/sample-pages/search-results'
+        //         },
+        //         {
+        //             title: 'Issue Tracker',
+        //             route: '/sample-pages/issue-tracker'
+        //         },
+        //         {
+        //             title: 'FAQ',
+        //             route: '/sample-pages/faq'
+        //         },
+        //         {
+        //             title: 'Team',
+        //             route: '/sample-pages/team'
+        //         },
+        //         {
+        //             title: 'Blog',
+        //             route: '/sample-pages/blog'
+        //         },
+        //         {
+        //             title: 'Blog Details',
+        //             route: '/sample-pages/blog-details'
+        //         },
+        //         {
+        //             title: 'Login & SignUp',
+        //             route: '/sample-pages/login'
+        //         },
+        //         {
+        //             title: 'Lockscreen',
+        //             route: '/sample-pages/lockscreen'
+        //         },
+        //         {
+        //             title: '404',
+        //             route: '/sample-pages/404'
+        //         },
+        //         {
+        //             title: 'Empty Page',
+        //             route: '/sample-pages/empty-page'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
     ];
 
     // Toggle sub menu

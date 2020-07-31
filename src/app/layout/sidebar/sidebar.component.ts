@@ -49,7 +49,7 @@ export class SidebarComponent implements OnInit {
       {
 
         title: 'Add Tasks',
-        icon: 'format-underlined',
+        icon: 'widgets',
         route: '/tasks'
       },
       // {
@@ -59,24 +59,15 @@ export class SidebarComponent implements OnInit {
       //   route: '/registration'
       // },
 
-      {
-        title: 'Register',
-        icon: 'format-underlined',
-        route: '/register'
-      },
       // {
       //   title: 'viewregistration',
       //   icon: 'format-underlined',
       //   route: '/viewregistration'
       // },
-      {
-        title: 'View Employees',
-        icon: 'format-underlined',
-        route: '/viewcredentials'
-      },
+
       {
         title: 'report',
-        icon: 'format-underlined',
+        icon: 'assignment-o',
         route: '/report'
       },
       // {
@@ -90,6 +81,24 @@ export class SidebarComponent implements OnInit {
         //     icon: 'widgets',
         //     route: '/widgets'
         // },
+      {
+          title: 'Employee',
+          icon: 'view-list',
+          sub: [
+
+            {
+              title: 'Register Employee',
+              icon: 'format-underlined',
+              route: '/register'
+            },
+            {
+              title: 'View Employees',
+              icon: 'format-underlined',
+              route: '/viewcredentials'
+            },
+          ],
+          visibility: 'inactive'
+      },
         // {
         //     title: 'Tables',
         //     icon: 'view-list',

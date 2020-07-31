@@ -1,6 +1,6 @@
-const express = require("express");                         // 
+const express = require("express");                         //
 const router = express.Router();                           //   same
-const User1 = require("../model/user1");     // require model of user1 and User1 is a class 
+const User1 = require("../model/user1");     // require model of user1 and User1 is a class
 
 
 // Post operation (require in server.js)
@@ -8,8 +8,8 @@ const User1 = require("../model/user1");     // require model of user1 and User1
 router.post("/", async (req, res) => {
 
     const user1 = new User1();  // creating an object of an class User1
-    user1.username = req.body.username
-    user1.password = req.body.password;
+    user1.employeename = req.body.employeename;
+    user1.email = req.body.email;
     await user1.save();
     res.send(user1);
 });
@@ -30,7 +30,7 @@ router.get("/", async (req, res) => {
 
 
 // Delete Operation
- 
+
 router.delete("/:user1Id", async (req, res) => {
 
     const user1 = await User1.findByIdAndRemove({
@@ -40,7 +40,7 @@ router.delete("/:user1Id", async (req, res) => {
 
 })
 
-//GetElementById 
+//GetElementById
 
 router.get("/:user1Id", async (req, res) => {
 
@@ -61,7 +61,7 @@ router.put("/:user1Id", async (req, res) => {
 
     res.send(user1)
 }
- 
+
 
 );
 

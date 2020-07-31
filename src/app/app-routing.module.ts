@@ -42,7 +42,10 @@ const routes: Routes = [
             path: "report",
             loadChildren: "./pages/report/report.module#ReportModule"
           },
-
+          {
+            path: "employee",
+            loadChildren: "./pages/employee/employee.module#EmployeeModule"
+          },
             {
                 path: "profile",
                 loadChildren: "./pages/profile/profile.module#ProfileModule"

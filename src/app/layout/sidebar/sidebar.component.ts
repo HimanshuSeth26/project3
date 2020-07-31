@@ -69,7 +69,7 @@ export class SidebarComponent implements OnInit {
       {
         title: 'report',
         icon: 'format-underlined',
-        route:'/report'
+        route: '/report'
       },
         // {
         //     title: 'Widgets',

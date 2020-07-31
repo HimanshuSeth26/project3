@@ -71,212 +71,212 @@ export class SidebarComponent implements OnInit {
         icon: 'format-underlined',
         route:'/report'
       },
-        {
-            title: 'Widgets',
-            icon: 'widgets',
-            route: '/widgets'
-        },
-        {
-            title: 'Tables',
-            icon: 'view-list',
-            sub: [
-                {
-                    title: 'HTML Table',
-                    route: '/tables/html-table'
-                },
-                {
-                    title: 'Data Table',
-                    route: '/tables/data-table'
-                },
-                {
-                    title: 'Paginated Data Table',
-                    route: '/tables/data-table-paginated'
-                }
-            ],
-            visibility: 'inactive'
-        },
-        {
-            title: 'Forms',
-            icon: 'collection-text',
-            sub: [
-                {
-                    title: 'Basic Form Elements',
-                    route: '/forms/form-elements'
-                },
-                {
-                    title: 'Form Components',
-                    route: '/forms/form-components'
-                },
-                {
-                    title: 'Form Layouts',
-                    route: '/forms/form-layouts'
-                },
-                {
-                    title: 'Form Validation',
-                    route: '/forms/form-validation'
-                }
-            ],
-            visibility: 'inactive'
-        },
-        {
-            title: 'User Interface',
-            icon: 'swap-alt',
-            sub: [
-                {
-                    title: 'Colors',
-                    route: '/user-interface/colors'
-                },
-                {
-                    title: 'CSS Animations',
-                    route: '/user-interface/css-animations'
-                },
-                {
-                    title: 'Buttons',
-                    route: '/user-interface/buttons'
-                },
-                {
-                    title: 'Icons',
-                    route: '/user-interface/icons'
-                },
-                {
-                    title: 'Listviews',
-                    route: '/user-interface/listviews'
-                },
-                {
-                    title: 'Toolbars',
-                    route: '/user-interface/toolbars'
-                },
-                {
-                    title: 'Cards',
-                    route: '/user-interface/cards'
-                },
-                {
-                    title: 'Alerts',
-                    route: '/user-interface/alerts'
-                },
-                {
-                    title: 'Badges',
-                    route: '/user-interface/badges'
-                },
-                {
-                    title: 'Bredcrumbs',
-                    route: '/user-interface/bredcrumbs'
-                },
-                {
-                    title: 'Jumbotron',
-                    route: '/user-interface/jumbotron'
-                },
-                {
-                    title: 'Navs',
-                    route: '/user-interface/navs'
-                },
-                {
-                    title: 'Pagination',
-                    route: '/user-interface/pagination'
-                },
-                {
-                    title: 'Progress',
-                    route: '/user-interface/progress'
-                }
-            ],
-            visibility: 'inactive'
-        },
-        {
-            title: 'Bootstrap Components',
-            icon: 'group-work',
-            sub: [
-                {
-                    title: 'Accordions',
-                    route: '/bootstrap-components/accordions'
-                },
-                {
-                    title: 'Alerts',
-                    route: '/bootstrap-components/alerts'
-                },
-                {
-                    title: 'Buttons',
-                    route: '/bootstrap-components/buttons'
-                },
-                {
-                    title: 'Carousel',
-                    route: '/bootstrap-components/carousel'
-                },
-                {
-                    title: 'Collapse',
-                    route: '/bootstrap-components/collapse'
-                },
-                {
-                    title: 'Datepicker',
-                    route: '/bootstrap-components/datepicker'
-                },
-                {
-                    title: 'Dropdowns',
-                    route: '/bootstrap-components/dropdowns'
-                },
-                {
-                    title: 'Modals',
-                    route: '/bootstrap-components/modals'
-                },
-                {
-                    title: 'Pagination',
-                    route: '/bootstrap-components/pagination'
-                },
-                {
-                    title: 'Popover',
-                    route: '/bootstrap-components/popover'
-                },
-                {
-                    title: 'Progressbar',
-                    route: '/bootstrap-components/progressbar'
-                },
-                {
-                    title: 'Rating',
-                    route: '/bootstrap-components/rating'
-                },
-                {
-                    title: 'Sortable',
-                    route: '/bootstrap-components/sortable'
-                },
-                {
-                    title: 'Tabs',
-                    route: '/bootstrap-components/tabs'
-                },
-                {
-                    title: 'Timepicker',
-                    route: '/bootstrap-components/timepicker'
-                },
-                {
-                    title: 'Tooltips',
-                    route: '/bootstrap-components/tooltips'
-                },
-                {
-                    title: 'Typeahead',
-                    route: '/bootstrap-components/typeahead'
-                }
-            ],
-            visibility: 'inactive'
-        },
-        {
-            title: 'Charts and Maps',
-            icon: 'trending-up',
-            sub: [
-                {
-                    title: 'Charts',
-                    route: '/charts-maps/charts'
-                },
-                {
-                    title: 'Maps',
-                    route: '/charts-maps/maps'
-                }
-            ],
-            visibility: 'inactive'
-        },
-        {
-            title: 'Photo Gallery',
-            icon: 'image',
-            visibility: 'inactive',
-            route: '/photo-gallery'
-        },
+        // {
+        //     title: 'Widgets',
+        //     icon: 'widgets',
+        //     route: '/widgets'
+        // },
+        // {
+        //     title: 'Tables',
+        //     icon: 'view-list',
+        //     sub: [
+        //         {
+        //             title: 'HTML Table',
+        //             route: '/tables/html-table'
+        //         },
+        //         {
+        //             title: 'Data Table',
+        //             route: '/tables/data-table'
+        //         },
+        //         {
+        //             title: 'Paginated Data Table',
+        //             route: '/tables/data-table-paginated'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
+        // {
+        //     title: 'Forms',
+        //     icon: 'collection-text',
+        //     sub: [
+        //         {
+        //             title: 'Basic Form Elements',
+        //             route: '/forms/form-elements'
+        //         },
+        //         {
+        //             title: 'Form Components',
+        //             route: '/forms/form-components'
+        //         },
+        //         {
+        //             title: 'Form Layouts',
+        //             route: '/forms/form-layouts'
+        //         },
+        //         {
+        //             title: 'Form Validation',
+        //             route: '/forms/form-validation'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
+        // {
+        //     title: 'User Interface',
+        //     icon: 'swap-alt',
+        //     sub: [
+        //         {
+        //             title: 'Colors',
+        //             route: '/user-interface/colors'
+        //         },
+        //         {
+        //             title: 'CSS Animations',
+        //             route: '/user-interface/css-animations'
+        //         },
+        //         {
+        //             title: 'Buttons',
+        //             route: '/user-interface/buttons'
+        //         },
+        //         {
+        //             title: 'Icons',
+        //             route: '/user-interface/icons'
+        //         },
+        //         {
+        //             title: 'Listviews',
+        //             route: '/user-interface/listviews'
+        //         },
+        //         {
+        //             title: 'Toolbars',
+        //             route: '/user-interface/toolbars'
+        //         },
+        //         {
+        //             title: 'Cards',
+        //             route: '/user-interface/cards'
+        //         },
+        //         {
+        //             title: 'Alerts',
+        //             route: '/user-interface/alerts'
+        //         },
+        //         {
+        //             title: 'Badges',
+        //             route: '/user-interface/badges'
+        //         },
+        //         {
+        //             title: 'Bredcrumbs',
+        //             route: '/user-interface/bredcrumbs'
+        //         },
+        //         {
+        //             title: 'Jumbotron',
+        //             route: '/user-interface/jumbotron'
+        //         },
+        //         {
+        //             title: 'Navs',
+        //             route: '/user-interface/navs'
+        //         },
+        //         {
+        //             title: 'Pagination',
+        //             route: '/user-interface/pagination'
+        //         },
+        //         {
+        //             title: 'Progress',
+        //             route: '/user-interface/progress'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
+        // {
+        //     title: 'Bootstrap Components',
+        //     icon: 'group-work',
+        //     sub: [
+        //         {
+        //             title: 'Accordions',
+        //             route: '/bootstrap-components/accordions'
+        //         },
+        //         {
+        //             title: 'Alerts',
+        //             route: '/bootstrap-components/alerts'
+        //         },
+        //         {
+        //             title: 'Buttons',
+        //             route: '/bootstrap-components/buttons'
+        //         },
+        //         {
+        //             title: 'Carousel',
+        //             route: '/bootstrap-components/carousel'
+        //         },
+        //         {
+        //             title: 'Collapse',
+        //             route: '/bootstrap-components/collapse'
+        //         },
+        //         {
+        //             title: 'Datepicker',
+        //             route: '/bootstrap-components/datepicker'
+        //         },
+        //         {
+        //             title: 'Dropdowns',
+        //             route: '/bootstrap-components/dropdowns'
+        //         },
+        //         {
+        //             title: 'Modals',
+        //             route: '/bootstrap-components/modals'
+        //         },
+        //         {
+        //             title: 'Pagination',
+        //             route: '/bootstrap-components/pagination'
+        //         },
+        //         {
+        //             title: 'Popover',
+        //             route: '/bootstrap-components/popover'
+        //         },
+        //         {
+        //             title: 'Progressbar',
+        //             route: '/bootstrap-components/progressbar'
+        //         },
+        //         {
+        //             title: 'Rating',
+        //             route: '/bootstrap-components/rating'
+        //         },
+        //         {
+        //             title: 'Sortable',
+        //             route: '/bootstrap-components/sortable'
+        //         },
+        //         {
+        //             title: 'Tabs',
+        //             route: '/bootstrap-components/tabs'
+        //         },
+        //         {
+        //             title: 'Timepicker',
+        //             route: '/bootstrap-components/timepicker'
+        //         },
+        //         {
+        //             title: 'Tooltips',
+        //             route: '/bootstrap-components/tooltips'
+        //         },
+        //         {
+        //             title: 'Typeahead',
+        //             route: '/bootstrap-components/typeahead'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
+        // {
+        //     title: 'Charts and Maps',
+        //     icon: 'trending-up',
+        //     sub: [
+        //         {
+        //             title: 'Charts',
+        //             route: '/charts-maps/charts'
+        //         },
+        //         {
+        //             title: 'Maps',
+        //             route: '/charts-maps/maps'
+        //         }
+        //     ],
+        //     visibility: 'inactive'
+        // },
+        // {
+        //     title: 'Photo Gallery',
+        //     icon: 'image',
+        //     visibility: 'inactive',
+        //     route: '/photo-gallery'
+        // },
         {
             title: 'Sample Pages',
             icon: 'collection-item',

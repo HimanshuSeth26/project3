@@ -13,4 +13,4 @@ const post1_schema = new mongoose.Schema({
         required: "Content is Required"
     }
 });
-module.exports = mongoose.model("User1", post1_schema)
+module.exports = mongoose.model("NewEmployee", post1_schema)

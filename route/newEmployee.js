@@ -1,6 +1,6 @@
 const express = require("express");                         //
 const router = express.Router();                           //   same
-const User1 = require("../model/user1");     // require model of user1 and User1 is a class
+const User1 = require("../model/newEmployee");     // require model of user1 and User1 is a class
 
 
 // Post operation (require in server.js)

@@ -71,6 +71,12 @@ export class SidebarComponent implements OnInit {
         icon: 'format-underlined',
         route: '/report'
       },
+      {
+        title: 'employee',
+        icon: 'format-underlined',
+        route:'/employee'
+      },
+
         // {
         //     title: 'Widgets',
         //     icon: 'widgets',
@@ -277,6 +283,7 @@ export class SidebarComponent implements OnInit {
         //     visibility: 'inactive',
         //     route: '/photo-gallery'
         // },
+
         {
             title: 'Sample Pages',
             icon: 'collection-item',

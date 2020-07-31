@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 
-// Creating a Schema  
+// Creating a Schema
 
 const post1_schema = new mongoose.Schema({
-    username: {
+    employeename: {
         type: String,
         required: "Title is Required"
 
     },
-    password: {
+    email: {
         type: String,
         required: "Content is Required"
     }

@@ -30,7 +30,7 @@ const routes: Routes = [
         loadChildren: './pages/registration/registration.module#RegistrationModule'
       },
       {
-        path: 'credentials',
+        path: 'register',
         loadChildren: './pages/credentials/credentials.module#CredentialsModule'
       },
       {

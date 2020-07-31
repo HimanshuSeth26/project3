@@ -48,28 +48,29 @@ export class SidebarComponent implements OnInit {
         // },
       {
 
-        title: 'Registration',
-        icon: 'format-underlined',
-        route: '/registration'
-      },
-      {
-
-        title: 'Tasks',
+        title: 'Add Tasks',
         icon: 'format-underlined',
         route: '/tasks'
       },
+      // {
+      //
+      //   title: 'Registration',
+      //   icon: 'format-underlined',
+      //   route: '/registration'
+      // },
+
       {
-        title: 'Credentials',
+        title: 'Register',
         icon: 'format-underlined',
-        route: '/credentials'
+        route: '/register'
       },
+      // {
+      //   title: 'viewregistration',
+      //   icon: 'format-underlined',
+      //   route: '/viewregistration'
+      // },
       {
-        title: 'viewregistration',
-        icon: 'format-underlined',
-        route: '/viewregistration'
-      },
-      {
-        title: 'viewcredentials',
+        title: 'View Employees',
         icon: 'format-underlined',
         route: '/viewcredentials'
       },
@@ -78,11 +79,11 @@ export class SidebarComponent implements OnInit {
         icon: 'format-underlined',
         route: '/report'
       },
-      {
-        title: 'employee',
-        icon: 'format-underlined',
-        route:'/employee'
-      },
+      // {
+      //   title: 'employee',
+      //   icon: 'format-underlined',
+      //   route:'/employee'
+      // },
 
         // {
         //     title: 'Widgets',

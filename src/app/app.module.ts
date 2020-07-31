@@ -40,9 +40,7 @@ import {AppRoutingModule} from './app-routing.module';
         LogoComponent,
         NavigationTriggerComponent,
         UserComponent,
-        PageLoaderComponent,
-
-
+        PageLoaderComponent
     ],
     imports: [
         BrowserModule,

@@ -60,8 +60,6 @@ const routes: Routes = [
         path: 'typography',
         loadChildren: './pages/typography/typography.module#TypographyModule'
       },
-
-
       // Widgets
       {
         path: 'widgets',

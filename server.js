@@ -14,6 +14,7 @@ require("./model/user"); // require user.js (model)
 require("./model/newEmployee"); // require newEmployee.js (model)
 require("./model/task"); // require newEmployee.js (model)
 require("./model/assigntask");
+require("./model/employee");
 
 
 
@@ -31,6 +32,7 @@ app.use("/user", require("./route/posts")) // require route
 app.use("/user1", require("./route/newEmployee")) // require route
 app.use("/tasks", require("./route/tasks")) // require route
 app.use("/assign",require("./route/tasks"))
+app.use("/employee",require("./route/employee"))
 
 
  // not necessary in operation

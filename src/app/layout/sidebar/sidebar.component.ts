@@ -48,7 +48,7 @@ export class SidebarComponent implements OnInit {
         // },
       {
 
-        title: 'Add Tasks',
+        title: 'Managers portal',
         icon: 'widgets',
         route: '/tasks'
       },
@@ -66,20 +66,16 @@ export class SidebarComponent implements OnInit {
       // },
 
       {
-        title: 'Battlefield',
+        title: 'Employees Battlefield',
         icon: 'trending-up',
         route: '/report'
       },
       {
         title: 'Projects',
-        icon: 'view-list',
+        icon: 'format-underlined',
         route: '/projects'
       },
-      {
-        title: 'tasks',
-        icon: 'format-underlined',
-        route: '/tasks'
-      },
+
       // {
       //   title: 'employee',
       //   icon: 'format-underlined',
@@ -93,7 +89,7 @@ export class SidebarComponent implements OnInit {
         // },
 
       {
-          title: 'Employee',
+          title: 'Registration Portal',
           icon: 'view-list',
           sub: [
 
@@ -106,6 +102,10 @@ export class SidebarComponent implements OnInit {
               title: 'View Employees',
               icon: 'format-underlined',
               route: '/viewcredentials'
+            }, {
+              title: 'Register Project',
+              icon: 'format-underlined',
+              route: '/projectsRegister'
             },
           ],
           visibility: 'inactive'

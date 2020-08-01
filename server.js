@@ -4,21 +4,10 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require("morgan");
 
-mongoose.connect("mongodb+srv://Himanshu:<password>@cluster0.m16uz.mongodb.net/<dbname>?retryWrites=true&w=majority",
-  { useNewUrlParser: true,useUnifiedTopology: true }).then(()=>{
-  console.log('mongodb connected')
-});
-
-
-
-
-
-//database connection
-/*
 mongoose.connect("mongodb://localhost:27017/MyDb",
   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
   console.log('mongodb connected')
-});*/
+});
 
 
 require("./model/user"); // require user.js (model)

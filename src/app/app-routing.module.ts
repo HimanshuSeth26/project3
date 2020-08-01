@@ -38,8 +38,12 @@ const routes: Routes = [
         loadChildren: './pages/viewregistration/viewregistration.module#ViewregistrationModule'
       },
       {
-        path: 'projects',
+        path: 'projectsRegister',
         loadChildren: './pages/projects/projects.module#ProjectsModule'
+      },
+      {
+        path: 'projects',
+        loadChildren: './pages/projectreview/projectreview.module#ProjectreviewModule'
       },
       {
         path: 'viewcredentials',

@@ -30,8 +30,18 @@ export class ProjectsComponent implements OnInit {
 
         }
       );
-
   }
+
+    onSubmit() {
+      this._projectsService.get()
+        .subscribe(
+          data => {
+            console.log('Success', data);
+          },
+          error => console.error('Error', error));
+    }
+
+
 
   onChangeName(event) {
     console.log(event);

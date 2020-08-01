@@ -49,6 +49,10 @@ const routes: Routes = [
         path: 'report',
         loadChildren: './pages/report/report.module#ReportModule'
       },
+      {
+        path: 'tasks',
+        loadChildren: './pages/tasks/tasks.module#TasksModule'
+      },
 
       {
         path: 'profile',

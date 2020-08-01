@@ -7,7 +7,7 @@ import {User} from "./user";
   providedIn: 'root'
 })
 export class TaskService{
-  url = 'http://localhost:4001/tasks';
+  url = 'http://localhost:4002/tasks';
   constructor(private http: HttpClient) { }
   enroll(user:User){
     return this.http.post<any>(this.url,user);
@@ -15,6 +15,7 @@ export class TaskService{
   get(){
     return this.http.get<any>(this.url);
   }
+ 
   delete(userId)
   {
     return this.http.delete<any>(this.url+'/'+userId) ;
@@ -23,4 +24,8 @@ export class TaskService{
   assignTo(userModel: User, id: any) {
 
   }
+  geti(userId){
+    return this.http.get<any>(this.url+'/'+userId);}
+  
+  
 }

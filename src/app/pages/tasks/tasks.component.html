@@ -15,6 +15,9 @@
 </div>
 
 
+<!-- Default -->
+  
+
 
 
 
@@ -53,7 +56,7 @@
         <td>{{ user.task}}
 
         </td>
-        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="assign(user._id)">
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="getI(user._id)">
           <i class="zmdi zmdi-edit"></i> Assign 
         </button></td>
         
@@ -65,5 +68,14 @@
       </tr>
       </tbody>
     </table>
+  </div>
+</div>
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Data Annotation</h4>
+      </div>
+    </div>
   </div>
 </div>

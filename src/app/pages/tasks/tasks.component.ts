@@ -5,6 +5,8 @@ import {User} from "./user";
 import {Subject} from 'rxjs';
 
 
+
+
 @Component({
   selector: 'app-tasks',
   templateUrl: './tasks.component.html',
@@ -26,11 +28,11 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
 
   constructor(private _taskService: TaskService) { }
   onSubmit(){
-    this._taskService.enroll(this.userModel)
+   this._taskService.enroll(this.userModel)
     .subscribe(
       data=>console.log('success!',data),
       error=>console.error('Error!',error)
-    )
+    ) 
     
   };
   columns: Array<any> = [
@@ -85,6 +87,16 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
       this.dtTrigger.next();
     });
   }
+  getI(userId){
+    
+    
+    this.modal.show();
+    
+     
+    
+    
+     
+     }
 
 
 

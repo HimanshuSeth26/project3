@@ -23,11 +23,6 @@ import {ButtonsModule} from 'ngx-bootstrap/buttons';
 import {NgScrollbarModule} from 'ngx-scrollbar';
 import {AppRoutingModule} from './app-routing.module';
 
-
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -40,7 +35,7 @@ import {AppRoutingModule} from './app-routing.module';
         LogoComponent,
         NavigationTriggerComponent,
         UserComponent,
-        PageLoaderComponent
+        PageLoaderComponent,
     ],
     imports: [
         BrowserModule,

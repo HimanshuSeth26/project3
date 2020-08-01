@@ -37,7 +37,10 @@ const routes: Routes = [
         path: 'viewregistration',
         loadChildren: './pages/viewregistration/viewregistration.module#ViewregistrationModule'
       },
-
+      {
+        path: 'projects',
+        loadChildren: './pages/projects/projects.module#ProjectsModule'
+      },
       {
         path: 'viewcredentials',
         loadChildren: './pages/viewcredentials/viewcredentials.module#ViewcredentialsModule'

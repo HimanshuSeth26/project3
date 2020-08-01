@@ -70,6 +70,11 @@ export class SidebarComponent implements OnInit {
         icon: 'trending-up',
         route: '/report'
       },
+      {
+        title: 'Projects',
+        icon: 'view-list',
+        route: '/projects'
+      },
       // {
       //   title: 'employee',
       //   icon: 'format-underlined',
@@ -81,6 +86,7 @@ export class SidebarComponent implements OnInit {
         //     icon: 'widgets',
         //     route: '/widgets'
         // },
+
       {
           title: 'Employee',
           icon: 'view-list',

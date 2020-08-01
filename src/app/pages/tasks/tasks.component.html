@@ -3,3 +3,24 @@
   <textarea style="border: #00BCD4 1px solid" class="form-control" rows="5" id="comment"></textarea>
 </div>
 <button type="button" class="btn btn-primary btn-block">Submit</button>
+
+<h1> Employee Table</h1>
+
+<table style="border: 1px solid black">
+  <tr style="border: 1px solid black">
+    <th>Employeename</th>
+    <th>Email</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>{{user.employeename}}</td>
+    <td>{{user.email}}</td>
+    <td>
+      <button (click)="delete(user._id)">delete</button>
+
+      <button (click)="assignTo(user._id)">edit</button>
+      <!-- <button (click)="getElementById(user._id)">getElementById</button>-->
+    </td>
+  </tr>
+
+</table>
+

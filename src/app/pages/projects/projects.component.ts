@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../registration/user";
+import {ViewcredentialsService} from "../viewcredentials/viewcredentials.service";
+import {Projects} from "@angular/cli/lib/config/schema";
+import {ProjectsService} from "./projects.service";
 
 @Component({
   selector: 'app-projects',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor() { }
+  //employee = [{name: 'Alex'}, {name: 'Martin'}];
 
-  ngOnInit() {
+  users: Array<any> = [];
+
+
+
+  constructor(private _projectsService: ProjectsService) {
   }
 
+  ngOnInit() {
+
+    this._projectsService.get()
+      .subscribe(
+        data => {
+          this.users = data;
+
+
+        }
+      );
+
+  }
+
+  onChangeName(event) {
+    console.log(event);
+  }
 }
+

@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ReportService {
-  url = 'http://localhost:4001/user/graph/result';
+  url = 'http://localhost:4001/user1/graph/result';
 
   constructor(private http: HttpClient) {
   }
-  get(){
+  get() {
     return this.http.get<any>(this.url);
   }
 

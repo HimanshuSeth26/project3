@@ -66,8 +66,8 @@ export class SidebarComponent implements OnInit {
       // },
 
       {
-        title: 'report',
-        icon: 'assignment-o',
+        title: 'Battlefield',
+        icon: 'trending-up',
         route: '/report'
       },
       // {

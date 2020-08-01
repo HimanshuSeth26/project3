@@ -1,9 +1,8 @@
-import { Component, OnInit, NgZone } from '@angular/core';
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import { Component, OnInit, NgZone, AfterViewInit, OnDestroy } from '@angular/core';
 import { ReportService} from './report.service';
-
+import * as am4core from '@amcharts/amcharts4/core';
+import * as am4charts from '@amcharts/amcharts4/charts';
+import am4themes_animated from '@amcharts/amcharts4/themes/animated';
 
 am4core.useTheme(am4themes_animated);
 @Component({
@@ -11,82 +10,54 @@ am4core.useTheme(am4themes_animated);
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss']
 })
-export class ReportComponent implements OnInit {
-
-  private chart: am4charts.XYChart;
-
-
-  //users: Array<any> = [];
-  private a: Array<any>=[];
+export class ReportComponent implements   OnInit, OnDestroy  {
   constructor(private zone: NgZone, private _reportService: ReportService) {}
-
+  private chart: am4charts.XYChart;
+  employee = [ {name: 'Alex'}, {name: 'Martin'}];
+  tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
   report(data) {
     this.zone.runOutsideAngular(() => {
-      let chart = am4core.create("chartdiv", am4charts.XYChart);
-      chart.hiddenState.properties.opacity = 0; // this creates initial fade-in
+      const chart = am4core.create('chartdiv', am4charts.XYChart);
+      chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
+
+      chart.paddingRight = 20;
+
 
       chart.data = data;
 
-      let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+      const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxis.renderer.grid.template.location = 0;
-      categoryAxis.dataFields.category = "name";
+      categoryAxis.dataFields.category = 'country';
       categoryAxis.renderer.minGridDistance = 40;
-      categoryAxis.fontSize = 11;
 
-      let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-      valueAxis.min = 0;
-      valueAxis.max = 300;
-      valueAxis.strictMinMax = true;
-      valueAxis.renderer.minGridDistance = 30;
-// axis break
-      let axisBreak = valueAxis.axisBreaks.create();
-      axisBreak.startValue = 2100;
-      axisBreak.endValue = 22900;
-//axisBreak.breakSize = 0.005;
+      const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
-// fixed axis break
-      let d = (axisBreak.endValue - axisBreak.startValue) / (valueAxis.max - valueAxis.min);
-      axisBreak.breakSize = 0.05 * (1 - d) / d; // 0.05 means that the break will take 5% of the total value axis height
-
-// make break expand on hover
-      let hoverState = axisBreak.states.create("hover");
-      hoverState.properties.breakSize = 1;
-      hoverState.properties.opacity = 0.1;
-      hoverState.transitionDuration = 1500;
-
-      axisBreak.defaultState.transitionDuration = 1000;
-      /*
-      // this is exactly the same, but with events
-      axisBreak.events.on("over", function() {
-        axisBreak.animate(
-          [{ property: "breakSize", to: 1 }, { property: "opacity", to: 0.1 }],
-          1500,
-          am4core.ease.sinOut
-        );
-      });
-      axisBreak.events.on("out", function() {
-        axisBreak.animate(
-          [{ property: "breakSize", to: 0.005 }, { property: "opacity", to: 1 }],
-          1000,
-          am4core.ease.quadOut
-        );
-      });*/
-
-      let series = chart.series.push(new am4charts.ColumnSeries());
-      series.dataFields.categoryX = "name";
-      series.dataFields.valueY = "score";
-      series.columns.template.tooltipText = "{valueY.value}";
-      series.columns.template.tooltipY = 0;
+      const series = chart.series.push(new am4charts.CurvedColumnSeries());
+      series.dataFields.categoryX = 'country';
+      series.dataFields.valueY = 'value';
+      series.tooltipText = '{valueY.value}';
       series.columns.template.strokeOpacity = 0;
+      series.columns.template.tension = 1;
 
-// as by default columns of the same series are of the same color, we add adapter which takes colors from chart.colors color set
-      series.columns.template.adapter.add("fill", function(fill, target) {
+      series.columns.template.fillOpacity = 0.75;
+
+      const hoverState = series.columns.template.states.create('hover');
+      hoverState.properties.fillOpacity = 1;
+      hoverState.properties.tension = 0.8;
+
+      chart.cursor = new am4charts.XYCursor();
+
+// Add distinctive colors for each column using adapter
+      series.columns.template.adapter.add('fill', function(fill, target) {
         return chart.colors.getIndex(target.dataItem.index);
       });
 
+      chart.scrollbarX = new am4core.Scrollbar();
+      chart.scrollbarY = new am4core.Scrollbar();
+
+      this.chart = chart;
     });
   }
-
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
@@ -94,12 +65,15 @@ export class ReportComponent implements OnInit {
       }
     });
   }
+  onChangeName(event) {
+    console.log(event);
+  }
   ngOnInit() {
     this._reportService.get()
       .subscribe(
         data => {
-         this.report(data)
+         this.report(data);
         }
-      )
+      );
   }
 }

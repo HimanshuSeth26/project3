@@ -6,7 +6,7 @@ const User = require("../model/user");
 router.post("/", async (req, res) => {
 
     console.log(req.body)
-    
+
     const user = new User();  // creating an object of an class User
     user.name = req.body.name
     user.email = req.body.email
@@ -27,42 +27,6 @@ router.get("/", async (req, res) => {
     res.send(user)
 
 });
-
-     
-         
-router.get("/graph/result", async (req, res) => {
-    try {
-        const post = await User.find({})
-        console.log(post);
-        let arr = [];
-        post.forEach(item => {
-            let obj = { name: item.name, score: item.score }
-            arr.push(obj);
-        })
-        res.send(arr);
-    }
-    catch (error) {
-        res.send(500);
-    }
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 router.delete("/:userId", async (req, res) => {
 

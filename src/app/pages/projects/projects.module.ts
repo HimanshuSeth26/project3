@@ -8,6 +8,7 @@ const Projects_ROUTE = [{path: '', component: ProjectsComponent}];
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {AngularMultiSelectModule} from "angular2-multiselect-dropdown";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {NgSelectModule} from '@ng-select/ng-select';
         CommonModule,
         FormsModule,
         ModalModule.forRoot(),
-        NgSelectModule
+        NgSelectModule,
+        AngularMultiSelectModule
     ]
 })
 export class ProjectsModule {

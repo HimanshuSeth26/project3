@@ -22,9 +22,9 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
   @ViewChild('modal', {static: false})
   modal: any;
   users: Array<any> = [];
-  columns: Array<any> = [
+ columns: Array<any> = [
     {
-      title: 'Employee Name',
+      title: 'Employ ee Name',
     },
     {
       title: ' Email Id',

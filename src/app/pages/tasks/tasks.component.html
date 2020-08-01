@@ -1,26 +1,69 @@
-<div class="form-group">
-  <label for="comment"><h5>Add a New Task:</h5></label>
-  <textarea style="border: #00BCD4 1px solid" class="form-control" rows="5" id="comment"></textarea>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Write Task</h4>
+
+  <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+
+
+    <div class="form-group">
+      <label for="comment"><h5>Add a New Task:</h5></label>
+      <textarea style="border: #00BCD4 1px solid" class="form-control" rows="5" id="comment" #task="ngModel" name="task" [(ngModel)]="userModel.task"></textarea>
+      
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+  </form>
 </div>
-<button type="button" class="btn btn-primary btn-block">Submit</button>
 
-<h1> Employee Table</h1>
 
+
+
+
+<h1> TASK ASSIGN</h1>
+<!--
 <table style="border: 1px solid black">
   <tr style="border: 1px solid black">
-    <th>Employeename</th>
-    <th>Email</th>
+    
+    <th>Task</th>
   </tr>
   <tr *ngFor="let user of users">
-    <td>{{user.employeename}}</td>
-    <td>{{user.email}}</td>
+    <td>{{user.task}}</td>
+   
     <td>
       <button (click)="delete(user._id)">delete</button>
 
       <button (click)="assignTo(user._id)">edit</button>
-      <!-- <button (click)="getElementById(user._id)">getElementById</button>-->
+      < <button (click)="getElementById(user._id)">getElementById</button>>
     </td>
   </tr>
 
-</table>
+</table>-->
 
+</div>
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Task Table</h4>
+    <table datatable class="table table-bordered" [dtTrigger]="dtTrigger" [dtOptions]="options">
+      <thead>
+        <tr>
+          <th *ngFor="let column of columns">{{ column.title }}</th>
+        </tr>
+        </thead>
+      <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.task}}
+
+        </td>
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="assign(user._id)">
+          <i class="zmdi zmdi-edit"></i> Assign 
+        </button></td>
+        
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
+          <i class="zmdi zmdi-delete"></i> Delete
+        </button></td>
+        
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

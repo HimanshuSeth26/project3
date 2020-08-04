@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class ProjectreviewComponent implements OnInit {
 
   constructor() { }
-
+  projects=[{name:'Predictive Maintainance'},{name: 'Qa logbook'}, {name: 'eSOP Phase 2'}]
+  tasks=['irisk yet to be done', 'diagram discussion of PM done', ' working on Heat map algorithm']
   ngOnInit() {
   }
 

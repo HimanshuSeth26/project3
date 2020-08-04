@@ -1,11 +1,12 @@
 <div class="card">
   <div class="card-body">
-    <h2 class="card-title">Select Project</h2>
+    <h2 class="card-title">Project Review</h2>
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <ng-select [items]="employee" bindLabel="name"  [clearable]=false
-                     placeholder="Project name" (change)="onChangeName($event)">
+          <label>Select Project</label>
+          <ng-select [items]="projects" bindLabel="name"  [clearable]=false
+                    (change)="onChangeName($event)">
           </ng-select>
         </div>
       </div>
@@ -13,34 +14,63 @@
     <div class="row">
       <table class="col-md-12">
         <tr>
-          <td>
-            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2" ></textarea>
+          <td style="width: 800px">
+
+            <div class="form-group" >
+              <label>Enter Ongoing/Completed tasks</label>
+              <input type="text" class="form-control"name ="employeeName" >
+              <i class="form-group__bar"></i>
+            </div>
           </td>
-
-        </tr>
-        <tr>   <td>
-          <button type="submit" class="btn btn-success">
-            Complete
-          </button>
-          <button type="submit" class="btn btn-success">
-            WIP
-          </button>
-          <button type="submit" class="btn btn-success">
-            Delete
-          </button>
-        </td>
-        </tr>
-        <tr *ngFor="let row of tasks">
-
-          <td class="list-group-item list-group-item-primary">{{ row.task }}</td>
-          <td>
+          <td style="width: 50px">
             <button type="submit" class="btn btn-success">
-              Start
+              Completed
             </button>
           </td>
+          <td style="width: 50px">
+            <button type="submit" class="btn btn-success">
+              WIP
+            </button>
+          </td>
+        </tr>
+        <tr>
         </tr>
       </table>
     </div>
 
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Summary</h2>
+    <tr>
+
+      <td class="list-group-item list-group-item-danger"style="width: 800px">working on Goa irisk</td>
+      <td style="width: 100px">
+        <button type="submit" class="btn btn-success">
+          Completed
+        </button>
+      </td>
+      <td>
+        <button type="submit" class="btn btn-success"style="width: 100px">
+          Delete
+        </button>
+      </td>
+    </tr>
+    <tr>
+
+      <td class="list-group-item list-group-item-success"style="width: 800px">Pm diagram Submitted</td>
+      <td>
+        <button type="submit" disabled class="btn btn-success">
+          Completed
+        </button>
+      </td>
+      <td>
+        <button type="submit" class="btn btn-success"style="width: 100px">
+          Delete
+        </button>
+      </td>
+    </tr>
   </div>
 </div>

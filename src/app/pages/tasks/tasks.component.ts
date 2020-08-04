@@ -15,6 +15,10 @@ import {Subject} from 'rxjs';
 
 export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   users: Array<any> = [];
+  tasks:Array<any> = [];
+  works:Array<any> = [];
+  dta=[]
+  obj={}
   userModel = new User(' ');
   @ViewChild('modal', {static: false})
   modal: any;
@@ -50,10 +54,10 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
 
 
   ngOnInit() {
-    this. _taskService.get()
+    this. _taskService.geti()
     .subscribe(
       data =>{
-        this.users=data
+        this.tasks=data
         this.rerender();
        }
     )
@@ -88,17 +92,26 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
     });
   }
   getI(userId){
-    
-    
+    this.dta=userId
+    console.log("taskid "+this.dta)
     this.modal.show();
-    
+    this._taskService.getEmp()
+    .subscribe(
+      data=>{this.users=data}
+    )
+  }
+  work(userId){
+    console.log("empid "+userId)
+   this.obj={"employeename":userId,"task":this.dta}
+    console.log(this.obj)
+     this._taskService.wrkgeti(this.obj)
+     .subscribe(
+      data=>{console.log('data sucsess ');this.modal.hide();},
+      error=>console.error('Error!',error)
+     
+     ) 
      
     
-    
-     
-     }
-
-
-
-
+   
+  }
 }

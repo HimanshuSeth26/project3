@@ -6,5 +6,10 @@ const schema = new mongoose.Schema({
         type: String,
         required: "task is Required"
 
-    },})
+    },
+    assign:{
+        type:Boolean,
+        
+    }
+})
 module.exports = mongoose.model("task", schema)

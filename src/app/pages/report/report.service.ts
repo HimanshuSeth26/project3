@@ -11,6 +11,10 @@ export class ReportService {
 
   constructor(private http: HttpClient) {
   }
+
+
+
+
   get() {
     return this.http.get<any>(this.url);
   }

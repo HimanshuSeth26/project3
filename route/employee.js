@@ -17,19 +17,6 @@ router.post("/", async (req, res) => {
   await user1.save();
   res.send(user1);
 });
-/*router.post("/tasks", async (req, res) => {
-  try {
-    const post = new Emp();
-    post.employeename = req.body.employeename;
-
-    await post.save();
-    res.send(post)
-  } catch (error) {
-    res.status(500)
-  }
-
-});*/
-// Get operation (require Schema in server.js)
 
 router.get("/", async (req, res) => {
   const user1 = await Emp.find({}).populate('employeeName').exec();

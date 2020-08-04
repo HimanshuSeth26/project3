@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const New = require("../model/task");
 const Assign=require("../model/assigntask");
 const { ObjectId } = require('mongodb');
+const task = require("../model/task");
 router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
@@ -43,13 +44,16 @@ router.delete("/:newId", async (req, res) => {
     res.send(post)
   });
   router.post("/task", async (req, res) => {
-    try {
+    try {console.log("kdfvgjdngnjvg")
         const post = new Assign();
         post.employeename = req.body.employeename;
         post.task = req.body.task;
-        
+        if(post.Assign==true){
         await post.save();
-        res.send(post)
+        res.send(post)}
+        else{
+            console.log("task is already assine")
+        }
     } catch (error) {
         res.status(500)
     }

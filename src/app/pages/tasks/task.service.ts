@@ -8,12 +8,15 @@ import {User} from "./user";
 })
 export class TaskService{
   url = 'http://localhost:4002/tasks';
+  emp='http://localhost:4002/user1';
+  wrk='http://localhost:4002/assign/task';
   constructor(private http: HttpClient) { }
+  
   enroll(user:User){
     return this.http.post<any>(this.url,user);
   }
-  get(){
-    return this.http.get<any>(this.url);
+  getEmp(){
+    return this.http.get<any>(this.emp);
   }
  
   delete(userId)
@@ -24,8 +27,13 @@ export class TaskService{
   assignTo(userModel: User, id: any) {
 
   }
-  geti(userId){
-    return this.http.get<any>(this.url+'/'+userId);}
+  geti(){
+    return this.http.get<any>(this.url);}
   
   
+
+wrkgeti(obj){
+  
+  return this.http.get<any>(this.wrk,obj);}
+
 }

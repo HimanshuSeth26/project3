@@ -9,7 +9,7 @@ import { CredentialsService} from './credentials.service';
 })
 export class CredentialsComponent {
 
-  userModel = new User('', '');
+  userModel = new User('');
 
 
   users: Array<any> = [];
@@ -23,7 +23,7 @@ export class CredentialsComponent {
     this._credentialsService.credit(this.userModel)
       .subscribe(
         data => {
-          console.log('Success', data);  this.userModel = new User('', '');
+          console.log('Success', data);  this.userModel = new User('');
 
         },
         error => console.error('Error', error));

@@ -9,7 +9,6 @@ router.post("/", async (req, res) => {
 
     const user1 = new User1();  // creating an object of an class User1
     user1.employeename = req.body.employeename;
-    user1.email = req.body.email;
     await user1.save();
     res.send(user1);
 });

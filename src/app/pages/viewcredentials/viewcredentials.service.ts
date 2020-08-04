@@ -7,7 +7,7 @@ import {User} from "./user";
   providedIn: 'root'
 })
 export class ViewcredentialsService{
-  url = 'http://localhost:4001/user1';
+  url = 'http://localhost:4002/user1';
   constructor(private http: HttpClient) { }
 
   get(){

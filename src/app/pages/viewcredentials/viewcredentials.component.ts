@@ -27,11 +27,8 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
       title: 'Employ ee Name',
     },
     {
-      title: ' Email Id',
-    },
-    {
       title: ' Delete',
-    },{
+    }, {
       title: ' Edit',
     },
 

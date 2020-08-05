@@ -34,6 +34,7 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
 
   ];
 
+
   value = [];
   id = {};
 

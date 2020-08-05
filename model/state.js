@@ -18,4 +18,4 @@ const state_schema = new mongoose.Schema({
     required: "state is Required"
   }
 });
-module.exports = mongoose.model("project", employee_schema)
+module.exports = mongoose.model("state", state_schema)

@@ -10,7 +10,20 @@ import {Subject} from 'rxjs';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
+<<<<<<< Updated upstream
 export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
+=======
+export class ProjectsComponent implements OnInit {
+
+  //employee = [{name: 'Alex'}, {name: 'Martin'}];
+  userModel=new User('','');
+  users: Array<any> = [];
+
+
+
+
+
+>>>>>>> Stashed changes
   constructor(private _projectsService: ProjectsService) {
   }
 

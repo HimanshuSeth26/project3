@@ -6,7 +6,6 @@ import { FormsModule } from "@angular/forms";
 import {CommonModule} from "@angular/common";
 const CREDENTIALS_ROUTE = [{path: "", component: CredentialsComponent}];
 import { DataTablesModule } from 'angular-datatables';
-import {ModalModule} from 'ngx-bootstrap/modal';
 
 
 
@@ -14,7 +13,7 @@ import {ModalModule} from 'ngx-bootstrap/modal';
 @NgModule({
   declarations: [CredentialsComponent],
   imports: [
-    ModalModule,
+
     HttpClientModule,
     RouterModule.forChild(CREDENTIALS_ROUTE),
     CommonModule,

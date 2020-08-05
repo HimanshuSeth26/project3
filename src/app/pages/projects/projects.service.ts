@@ -8,10 +8,8 @@ import {User} from "./user";
 })
 export class ProjectsService{
   url = 'http://localhost:4002/user1';
-<<<<<<< Updated upstream
   url1 = 'http://localhost:4002/employee'
-=======
->>>>>>> Stashed changes
+
   constructor(private http: HttpClient) { }
   enroll(user:User){
     return this.http.post<any>(this.url1,user)

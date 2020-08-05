@@ -29,12 +29,7 @@ export class ProjectreviewComponent implements OnInit {
           this.projects = data;
         });
   }
-
-<<<<<<< Updated upstream
   onChangeName($event: any) {
-=======
-  onChangeName() {
->>>>>>> Stashed changes
 
   }
 }

@@ -97,7 +97,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
     this.modal.show();
     this._taskService.getEmp()
     .subscribe(
-      data=>{this.users=data}
+      data=>{this.users=data;this.ngOnInit();}
     )
   }
   work(userId){

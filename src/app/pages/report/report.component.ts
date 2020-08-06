@@ -14,6 +14,7 @@ export class ReportComponent implements   OnInit, OnDestroy  {
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
+  user=[]
   tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
   report(data) {
     this.zone.runOutsideAngular(() => {
@@ -58,6 +59,16 @@ export class ReportComponent implements   OnInit, OnDestroy  {
       this.chart = chart;
     });
   }
+  tasklist(event) {
+    console.log(event._id)
+    this._reportService.tList(event._id)
+       .subscribe(
+        data => {
+         this.tasks=data;
+        }
+       );
+       
+  }
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {
@@ -70,10 +81,20 @@ export class ReportComponent implements   OnInit, OnDestroy  {
   }
   ngOnInit() {
     this._reportService.get()
-      .subscribe(
+       .subscribe(
         data => {
          this.report(data);
         }
-      );
-  }
-}
+       );
+    this. _reportService.geti()
+       .subscribe(
+         data =>{
+           this.employee=data
+
+        //   this.tasklist(userId);
+          }
+       )
+       
+    //  this.tasklist(event) page load hone pe employe select nhi hoga isliye event nhi chle ga or error dega
+   }
+ }

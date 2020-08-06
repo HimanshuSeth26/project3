@@ -66,5 +66,14 @@ router.delete("/:newId", async (req, res) => {
     }
 
     });
+    router.get("/task/:empId", async (req, res) => {
+        try {console.log(req.body.employeename)
+            const post = await Assign.find({employeename:req.params.empId }).populate(' task'
+            ).exec();
+            res.send(post)
+        } catch (error) {
+            res.status(500);
+        }
+    });
   
   module.exports = router;

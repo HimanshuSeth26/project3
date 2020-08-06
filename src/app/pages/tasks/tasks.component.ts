@@ -34,7 +34,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   onSubmit(){
    this._taskService.enroll(this.userModel)
     .subscribe(
-      data=>console.log('success!',data),
+      data=>{console.log('success!',data);this.ngOnInit();},
       error=>console.error('Error!',error)
     ) 
     
@@ -97,7 +97,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
     this.modal.show();
     this._taskService.getEmp()
     .subscribe(
-      data=>{this.users=data}
+      data=>{this.users=data;this.ngOnInit();}
     )
   }
   work(userId){

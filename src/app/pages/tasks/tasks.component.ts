@@ -26,7 +26,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   dtElement: DataTableDirective;
   options: any = {};
   dtTrigger: Subject<any> = new Subject();
-  
+
   id = {};
 
 
@@ -34,10 +34,10 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   onSubmit(){
    this._taskService.enroll(this.userModel)
     .subscribe(
-      data=>console.log('success!',data),
+      data =>{console.log('success!',data);this.ngOnInit()},
       error=>console.error('Error!',error)
-    ) 
-    
+    )
+
   };
   columns: Array<any> = [
     {
@@ -108,10 +108,10 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
      .subscribe(
       data=>{console.log('data sucsess ');this.modal.hide();},
       error=>console.error('Error!',error)
-     
-     ) 
-     
-    
-   
+
+     )
+
+
+
   }
 }

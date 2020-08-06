@@ -14,6 +14,15 @@ const assignschema = new mongoose.Schema({
         ref:"task",
         
 
+    },
+    created :{
+     type: Date,
+     //required: "task is Required"
+
+    },
+    updated:{
+        type:Date,
+        
     }
 })
 module.exports = mongoose.model("assign", assignschema)

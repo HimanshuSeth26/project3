@@ -34,6 +34,6 @@ export class TaskService{
 
 wrkgeti(obj){
   
-  return this.http.get<any>(this.wrk,obj);}
+  return this.http.post<any>(this.wrk,obj);}
 
 }

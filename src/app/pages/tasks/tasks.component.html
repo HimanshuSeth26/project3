@@ -33,10 +33,12 @@
           <td>{{ user.task}}
 
           </td>
-          <td> <button class="btn btn-primary btn-sm btn--icon-text" (click)="getI(user._id)">
-              <i class="zmdi zmdi-edit"></i> Assign
-            </button></td>
-
+           
+            <td > <button class="btn btn-primary btn-sm btn--icon-text" [disabled]="user.assign" (click)="getI(user._id)">
+                <i class="zmdi zmdi-edit"></i> Assign
+              </button></td>
+          
+          
           <td> <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
               <i class="zmdi zmdi-delete"></i> Delete
             </button></td>
@@ -56,30 +58,30 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title">Employee List</h4>
-          
+
           <table class="table table-dark">
             <thead>
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Employee</th>
-                
+
               </tr>
             </thead>
             <tbody>
-              
-                
-                <tr *ngFor="let user of users">
-                  <th scope="row">==========></th>
-                  <td (click)="work(user._id)">{{user.employeename}}</td>
-                  <!-- <td> <button class="btn btn-primary btn-sm btn--icon-text" (click)="work(user._id)">
+
+
+              <tr *ngFor="let user of users">
+                <th scope="row">==========></th>
+                <td (click)="work(user._id)">{{user.employeename}}</td>
+                <!-- <td> <button class="btn btn-primary btn-sm btn--icon-text" (click)="work(user._id)">
                     <i class="zmdi zmdi-edit"></i> takeWork
                   </button></td> -->
               </tr>
             </tbody>
           </table>
-       
+
+        </div>
       </div>
-      </div>
-          </div>
+    </div>
   </div>
 </div>

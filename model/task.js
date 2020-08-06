@@ -8,8 +8,8 @@ const schema = new mongoose.Schema({
 
     },
     assign:{
-        type:Boolean,
-        
+        type:Boolean
+
     }
 })
 module.exports = mongoose.model("task", schema)

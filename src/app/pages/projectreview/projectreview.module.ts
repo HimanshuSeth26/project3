@@ -8,19 +8,21 @@ const Projectreview_ROUTE = [{path: '', component: ProjectreviewComponent}];
 
 import { ModalModule } from 'ngx-bootstrap/modal';
 import {NgSelectModule} from '@ng-select/ng-select';
+import {DataTablesModule} from "angular-datatables";
 
 
 @NgModule({
     declarations: [ProjectreviewComponent],
-    imports: [
+  imports: [
 
-        HttpClientModule,
-        RouterModule.forChild(Projectreview_ROUTE),
-        CommonModule,
-        FormsModule,
-        ModalModule.forRoot(),
-        NgSelectModule
-    ]
+    HttpClientModule,
+    RouterModule.forChild(Projectreview_ROUTE),
+    CommonModule,
+    FormsModule,
+    ModalModule.forRoot(),
+    NgSelectModule,
+    DataTablesModule
+  ]
 })
 export class ProjectreviewModule {
 }

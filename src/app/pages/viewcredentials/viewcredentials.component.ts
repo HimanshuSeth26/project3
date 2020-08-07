@@ -24,7 +24,7 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
   users: Array<any> = [];
  columns: Array<any> = [
     {
-      title: 'Employ ee Name',
+      title: 'Employee Name',
     },
     {
       title: ' Delete',

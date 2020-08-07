@@ -4,8 +4,8 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <ng-select [items]="employee" bindLabel="employeename"  [clearable]=false (change)="tasklist($event)"
-                     placeholder="Select your name" >
+          <ng-select [items]="employee" bindLabel="employeename" [clearable]=false (change)="tasklist($event)"
+            placeholder="Select your name">
           </ng-select>
         </div>
       </div>
@@ -14,7 +14,7 @@
       <table class="col-md-12">
         <tr>
           <td>
-            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2" ></textarea>
+            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"></textarea>
           </td>
           <td>
             <button type="submit" class="btn btn-success">
@@ -32,12 +32,16 @@
         </tr>
         <tr *ngFor="let row of tasks">
 
-          <td class="list-group-item list-group-item-primary"bindLabel="task">{{ row.task.task }}</td>
-          <td>
-            <button type="submit" class="btn btn-success">
+          <td class="list-group-item list-group-item-primary" bindLabel="task">{{ row.task.task }}</td>
+          <td *ngIf="row.task.status"><button type="submit" class="btn btn-danger">
+              Ongoing
+            </button></td>
+          <td *ngIf="!row.task.status">
+            <button type="submit" class="btn btn-success" (click)=task(row.task._id)>
               Start
             </button>
           </td>
+
         </tr>
       </table>
     </div>

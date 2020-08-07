@@ -10,8 +10,8 @@ const state_schema = new mongoose.Schema({
 
   },
   task: {
-    type :mongoose.Schema.Types.ObjectId,
-      ref:"task"
+    type :String,
+    required:"task is Required"
 },
   state: {
     type: String,

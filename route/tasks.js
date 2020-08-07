@@ -3,14 +3,14 @@ const mongoose = require("mongoose");
 const New = require("../model/task");
 const Assign=require("../model/assigntask");
 const { ObjectId } = require('mongodb');
-  const post = new Assign(); 
+  const post = new Assign();
   router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
-        
-        
+
+
         res.send(post)
-        
+
     } catch (error) {
         res.status(500)
     }
@@ -19,7 +19,7 @@ router.post("/", async (req, res) => {
     try {console.log(req.body)
         const post = new New();
         post.task = req.body.task;
-        
+
         await post.save();
         res.send(post)
     } catch (error) {
@@ -33,7 +33,7 @@ router.delete("/:newId", async (req, res) => {
             _id: req.params.newId
         });
         res.send(post)
-  
+
     } catch (error) {
         res.send(500)
     }
@@ -46,7 +46,7 @@ router.delete("/:newId", async (req, res) => {
   router.post("/task", async (req, res) => {
     try {console.log(req.body)
 
-      
+
      const user = await New.findByIdAndUpdate({
             _id: req.body.task
         }, {assign:true}, {
@@ -54,13 +54,13 @@ router.delete("/:newId", async (req, res) => {
             runValidators: true
         });
     console.log("ghssfdagd"+user)
-      const post = new Assign(); 
+      const post = new Assign();
         post.employeename = req.body.employeename;
         post.task = req.body.task;
-        
+
         await post.save();
         res.send(post)
-       
+
     } catch (error) {
         res.status(500)
     }
@@ -75,5 +75,5 @@ router.delete("/:newId", async (req, res) => {
             res.status(500);
         }
     });
-  
+
   module.exports = router;

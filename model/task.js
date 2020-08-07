@@ -7,9 +7,21 @@ const schema = new mongoose.Schema({
         required: "task is Required"
 
     },
-    assign:{
-        type:Boolean
+    assign: {
+        type: Boolean
 
+    },
+    start: {
+        type: Date,
+        //required: "task is Required"
+
+    },
+    finish: {
+        type: Date,
+
+    },
+    status: {
+        type: Boolean,
     }
 })
 module.exports = mongoose.model("task", schema)

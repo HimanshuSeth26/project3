@@ -8,16 +8,19 @@ const { ObjectId } = require('mongodb');
 
 
 router.post("/", async (req, res) => {
-  const user1 = new Emp();  // creating an object of an class User1
-  user1.project = req.body.project;
-  user1.task = req.body.task;
-  user1.state= req.body.state;
+console.log("hii")
+  const user1 = new Emp();// creating an object of an class User1
+  user1.project = req.body.project._id;
+  user1.task = req.body.tasks;
+  user1.state= req.body.status;
   await user1.save();
   res.send(user1);
 });
 
 router.get("/", async (req, res) => {
-  const user1 = await Emp.find({}).populate('project task').exec();
+  //console.log("hii get")
+
+  const user1 = await Emp.find({}).populate('project').exec();
 
   res.send(user1)
 
@@ -31,6 +34,16 @@ router.delete("/:user1Id", async (req, res) => {
   res.send(user1)
 
 })
+
+
+//getElementById
+router.get("/:user1Id", async (req, res) => {
+
+  const user1 = await Emp.find({ project: req.params.user1Id })
+  res.send(user1)
+});
+
+
 
 router.put("/:user1Id", async (req, res) => {
 

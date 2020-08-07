@@ -32,6 +32,9 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   ];
 
+  value = [];
+  id = {};
+
   ngOnInit() {
     this._projectsService.get()
       .subscribe(

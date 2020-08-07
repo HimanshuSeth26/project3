@@ -3,6 +3,7 @@
     <h2 class="card-title">Project Review</h2>
 
     <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+<!--      {{userForm.value|json}}-->
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
@@ -10,7 +11,7 @@
           <label>Select Project</label>
           <ng-select [items]="projects" bindLabel="projectname"  [clearable]=false
                      #project="ngModel" name="project"[(ngModel)]="userModel.project"
-                    
+
           (change)="onChangeName($event)">
           </ng-select>
         </div>
@@ -35,53 +36,17 @@
               <i class="form-group__bar"></i>
             </div>
           </td>
-
-
         </tr>
         <tr>
         </tr>
       </table>
     </div>
-    </form>
-    <td style="width: 50px">
-      <button type="submit" class="btn btn-success">
-        Submit
-      </button>
-    </td>
-  </div>
-</div>
-
-<div class="card">
-  <div class="card-body">
-    <h2 class="card-title">Summary</h2>
-    <tr>
-
-      <td class="list-group-item list-group-item-danger"style="width: 800px">working on Goa irisk</td>
-      <td style="width: 100px">
+      <td style="width: 50px">
         <button type="submit" class="btn btn-success">
-          Completed
+          Submit
         </button>
       </td>
-      <td>
-        <button type="submit" class="btn btn-success"style="width: 100px">
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-
-      <td class="list-group-item list-group-item-success"style="width: 800px">Pm diagram Submitted</td>
-      <td>
-        <button type="submit" disabled class="btn btn-success">
-          Completed
-        </button>
-      </td>
-      <td>
-        <button type="submit" class="btn btn-success"style="width: 100px">
-          Delete
-        </button>
-      </td>
-    </tr>
+    </form>
   </div>
 </div>
 
@@ -98,24 +63,20 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let row of users">
-        <td>{{ row.task }}</td>
-        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(row._id)">
+      <tr *ngFor="let user of user">
+        <td>{{ user.task}}
+
+        </td>
+        <td>{{user.state}}</td>
+
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
           <i class="zmdi zmdi-delete"></i> Delete
         </button></td>
         <td>
-          <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(row._id)">
+          <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
             <i class="zmdi zmdi-edit"></i> Edit
           </button>
         </td>
-
-        <td>
-          <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(row._id)">
-            <i class="zmdi zmdi-status"></i> Status
-          </button>
-        </td>
-
-
       </tr>
       </tbody>
     </table>

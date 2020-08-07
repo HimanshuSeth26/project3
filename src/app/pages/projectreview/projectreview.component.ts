@@ -6,7 +6,6 @@ import {DataTableDirective} from "angular-datatables";
 import {Subject} from "rxjs";
 
 
-
 @Component({
   selector: 'app-projectreview',
   templateUrl: './projectreview.component.html',
@@ -24,6 +23,8 @@ export class ProjectreviewComponent implements OnInit {
 
   emp: Array<any> = [];
   userModel=new User('','','');
+  user=[]
+ //console.log(userModel)
   count = [{a: 1, b: 2}, {a: 3, b: 4}, {a: 6, b: 9}];
   @ViewChild('modal', {static: false})
   modal: any;
@@ -48,7 +49,6 @@ export class ProjectreviewComponent implements OnInit {
 
 
 
-
   projects = [{name: 'Predictive Maintainance'}, {name: 'Qa logbook'}, {name: 'eSOP Phase 2'}]
   tasks = ['irisk yet to be done', 'diagram discussion of PM done', ' working on Heat map algorithm']
 
@@ -61,21 +61,33 @@ export class ProjectreviewComponent implements OnInit {
           this.projects = data;
           this.rerender();
         });
+  }
+  onChangeName($event) {
+    //console.log($event._id)
+    this._projectService.getElementById($event._id)
+      .subscribe(
+        data=> {
+         this.user=data
+          //console.log('success!', data)
+          this.rerender();
+
+
+        }
+      )
 
   }
-  onChangeName($event: any) {
 
-  }
   onSubmit() {
-    console.log();
+    console.log(this.userModel);
 
     this._projectService.post(this.userModel)
 
       .subscribe(
         data=> {
           console.log('success!', data)
-          this.userModel=new User('','','');
+          this.userModel=new User(this.userModel.project,'','');
           this.ngOnInit()
+
         },
         error=>console.error('Error!',error)
 

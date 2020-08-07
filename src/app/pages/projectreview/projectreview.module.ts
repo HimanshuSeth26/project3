@@ -21,7 +21,8 @@ import {DataTablesModule} from "angular-datatables";
     FormsModule,
     ModalModule.forRoot(),
     NgSelectModule,
-    DataTablesModule
+    DataTablesModule,
+
   ]
 })
 export class ProjectreviewModule {

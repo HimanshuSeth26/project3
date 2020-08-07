@@ -28,7 +28,6 @@
   <div class="card-body">
     <h4 class="card-title">Assign Task Table</h4>
     <table datatable class="table table-bordered" [dtTrigger]="dtTrigger" [dtOptions]="options">
-
       <thead>
       <tr>
         <th *ngFor="let column of columns">{{ column.title }}</th>
@@ -36,15 +35,10 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of emp">
-
         <td>{{user.projectname}}</td>
         <td>{{user.employeeName.employeename}}</td>
       </tr>
-
       </tbody>
-
-
-
 </table>
   </div>
 </div>

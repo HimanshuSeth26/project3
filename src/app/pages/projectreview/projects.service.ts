@@ -26,16 +26,23 @@ get1(){
   return this.http.get<any>(this.url1);
 }
 
-
-
   delete(userId)
   {
     return this.http.delete<any>(this.url+'/'+userId) ;
   }
+
   getElementById(userId)
   {
-    return this.http.get<any>(this.url+'/'+userId) ;
+    return this.http.get<any>(this.url2+'/'+userId) ;
   }
+
+
+
+
+
+
+
+
   edit(user: User,userId) {
     return this.http.put<any>(this.url+'/'+userId,user);
   }

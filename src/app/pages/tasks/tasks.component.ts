@@ -106,7 +106,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
     console.log(this.obj)
      this._taskService.wrkgeti(this.obj)
      .subscribe(
-      data=>{console.log('data sucsess ');this.modal.hide();},
+      data=>{console.log('data sucsess ');this.modal.hide();this.ngOnInit();},
       error=>console.error('Error!',error)
 
      )

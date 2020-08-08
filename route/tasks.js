@@ -83,15 +83,13 @@ router.get("/:postId", async (req, res) => {
     try {
         let obj= { "start": new Date(), status:true};
         console.log(new Date())
-        console.log("dhgghfghfhfhfhfghjh");
-
         const post = await New.findByIdAndUpdate({
             _id: req.params.postId
         }, obj, {
             new: true,
             runValidators: true
         });
-        
+
         await update.save();
 
         res.post(post)

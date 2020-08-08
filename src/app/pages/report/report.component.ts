@@ -11,7 +11,7 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
-  
+
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
@@ -64,11 +64,11 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   task(taskid){
    // this.toggle();
     console.log(this.user)
-    this._reportService.task(taskid,this.user)
+    this._reportService.task(taskid, this.user)
     .subscribe(
-      data => {console.log('data is updated')}
+      data => {console.log('data is updated');this.ngOnInit()}
     )
-    
+
   }
   tasklist(event) {
     this.user=event._id
@@ -80,7 +80,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
         // this.user=this.task
         this.users=data}
        );
-      
+
   }
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
@@ -107,7 +107,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
         //   this.tasklist(userId);
           }
        )
-       
+
     //  this.tasklist(event) page load hone pe employe select nhi hoga isliye event nhi chle ga or error dega
    }
  }

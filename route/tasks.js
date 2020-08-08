@@ -17,7 +17,7 @@ router.get("/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
     try {
-        console.log(req.body)
+    //    console.log(req.body)
         const post = new New();
         post.task = req.body.task;
 
@@ -46,7 +46,7 @@ router.get("/task", async (req, res) => {
 });
 router.post("/task", async (req, res) => {
     try {
-        console.log(req.body)
+     //   console.log(req.body)
 
 
         const user = await New.findByIdAndUpdate({
@@ -55,7 +55,7 @@ router.post("/task", async (req, res) => {
             new: true,
             runValidators: true
         });
-        console.log("ghssfdagd" + user)
+       // console.log("ghssfdagd" + user)
         const post = new Assign();
         post.employeename = req.body.employeename;
         post.task = req.body.task;
@@ -70,7 +70,7 @@ router.post("/task", async (req, res) => {
 });
 router.get("/task/:empId", async (req, res) => {
     try {
-        console.log(req.body)
+      //  console.log(req.body)
         const post = await Assign.find({ employeename: req.params.empId }).populate(' task'
         ).exec();
         res.send(post)
@@ -78,22 +78,34 @@ router.get("/task/:empId", async (req, res) => {
         res.status(500);
     }
 });
-router.get("/:postId", async (req, res) => {
-    try {
-        let obj= { "start": new Date(), status:true};
-        console.log(new Date())
-        console.log("dhgghfghfhfhfhfghjh");
+router.get("/:postId", async (req, res) => {let obj={}
+    try { console.log(req.query.empId);
+        console.log("uifhyusyfudsf")
+        console.log(req.query)
+        //if(req.query.empId)
+        const post= await Assign.find({ empId: req.params.postId }).populate(' task'
+        ).exec();
+      //  req.send(posts)
+        //console.log(posts)
+        //  obj= { "start": new Date(), status:true};
 
-        const post = await New.findByIdAndUpdate({
-            _id: req.params.postId
-        }, obj, {
-            new: true,
-            runValidators: true
-        });
+        // // console.log(new Date())
+        // // console.log(req.body);
+
+        // const post = await New.findByIdAndUpdate({
+        //     _id: req.params.postId
+        // }, obj, {
+        //     new: true,
+        //     runValidators: true
+        // });
         
-        await update.save();
+        // console.log(req.body);
 
+        await post.save();
+      
+        console.log("before post")
         res.post(post)
+        console.log(" post sucssesful")
 
     } catch (error) {
         res.send(500)

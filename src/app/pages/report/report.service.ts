@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ReportService {
+export class ReportService {obj={}
   url = 'http://localhost:4002/user1/graph/result';
   emp='http://localhost:4002/user1';
   tsks='http://localhost:4002/assign/task';
@@ -17,9 +17,10 @@ export class ReportService {
   tList(userId){
         return this.http.get<any>(this.tsks+'/'+userId);}
 
-  task(taskid){
-    console.log(taskid)
-    return this.http.get<any>(this.tsk+'/'+taskid);
+  task(taskid,userId){
+    let params=new HttpParams().set('empId',userId)
+    console.log(params)
+    return this.http.get<any>(this.tsk+'/'+taskid,{params});
   }
 
   geti(){

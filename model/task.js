@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const schema = new mongoose.Schema({
     task: {
         type: String,
-        required: "task is Required"
+        
 
     },
     assign: {

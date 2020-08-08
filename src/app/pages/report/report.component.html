@@ -14,17 +14,17 @@
       <table class="col-md-12">
         <tr>
           <td>
-            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"></textarea>
+            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"#name="ngModel"name ="task"[(ngModel)]="userModel.task"></textarea>
           </td>
           <td>
-            <button type="submit" class="btn btn-success">
+            <button type="submit" class="btn btn-success"(click)=oWntask()>
               Start
             </button>
           </td>
         </tr>
 
         <tr *ngFor="let row of tasks">
-
+            
           <td *ngIf="!(row.task==null)"class="list-group-item list-group-item-primary" bindLabel="task">{{ row.task.task }}</td>
 
           <td *ngIf="row.task.status"><button type="submit" class="btn btn-danger">

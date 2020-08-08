@@ -3,6 +3,7 @@ import { ReportService} from './report.service';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import {User} from "./user";
 
 am4core.useTheme(am4themes_animated);
 @Component({
@@ -15,6 +16,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
+  userModel=new User('');
   user=[]
   users=[]
   tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
@@ -82,6 +84,15 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
        );
 
   }
+  oWntask() {
+   // this.user=event._id
+   console.log(this.user)
+  this._reportService.oWnt(this.user,this.userModel)
+   .subscribe(
+     
+      data => {console.log('data is updated');this.ngOnInit()}
+        )}
+
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {

@@ -1,5 +1,6 @@
 export class User {
   constructor(
-    public task: string
+    public employeename:string,
+    public _id: string
   ) {}
 }

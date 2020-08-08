@@ -13,7 +13,9 @@
     <div class="row">
       <table class="col-md-12">
         <tr>
+          <div class="form-group">
           <td>
+          
             <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"#name="ngModel"name ="task"[(ngModel)]="userModel.task"></textarea>
           </td>
           <td>
@@ -21,6 +23,7 @@
               Start
             </button>
           </td>
+        </div>
         </tr>
 
         <tr *ngFor="let row of tasks">

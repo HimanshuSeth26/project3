@@ -17,11 +17,12 @@ export class ReportService {obj={}
   }
   tList(userId){
         return this.http.get<any>(this.tsks+'/'+userId);}
-  oWnt(userId,user:User){
+  oWnt(user:User){
 //    return this.http.post<any>(this.th,user);
-console.log(userId)
+//let params=new HttpParams().set('empId',userId)
+//console.log("user"+userId)
 console.log(user)
-    return this.http.put<any>(this.tsks+'/'+userId,user);
+    return this.http.post<any>(this.tsk,user);
   }
 
   task(taskid,userId){

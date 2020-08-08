@@ -17,11 +17,35 @@ router.get("/", async (req, res) => {
 });
 router.post("/", async (req, res) => {
     try {
+       //console.log(req.body)
+        const post = new New();
+        obj= { "task":req.body.task,"start": new Date(), status:true};
+        post.task = obj.task;
+        post.start=obj.start;
+        post.status=obj.status;
+        await post.save();
+        res.send(post)
+        const pst = await New.find({})
+        // console.log(pst[pst.length-1]._id)    
+        const assign= new Assign();
+        //console.log(req.body.employeename)
+        assign.employeename=req.body.employeename,
+        assign.task=pst[pst.length-1]._id
+        await assign.save();
+        req.send(assign)
+    } catch (error) {
+        res.status(500)
+    }
+
+})
+router.post("/:postId", async (req, res) => {
+    try {
     //    console.log(req.body)
         const post = new New();
         post.task = req.body.task;
 
         await post.save();
+     
         res.send(post)
     } catch (error) {
         res.status(500)

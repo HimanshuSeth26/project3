@@ -70,8 +70,6 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
           this.ngOnInit();
         }
       )
-
-
   }
 
   assignTo(userId) {}

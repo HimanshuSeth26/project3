@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -25,9 +23,7 @@ export class ReportService {
   geti(){
     return this.http.get<any>(this.emp);}
 
-
    get() {
      return this.http.get<any>(this.url);
    }
-
 }

@@ -1,6 +1,6 @@
 import {AfterViewInit,Component, OnInit, OnDestroy,  ViewChild } from '@angular/core';
 import {ViewcredentialsService} from "../viewcredentials/viewcredentials.service";
-import { ProjectsService} from './projects.service';
+import { ProjectService} from './project.service';
 import {User} from "./user";
 import {DataTableDirective} from "angular-datatables";
 import {Subject} from "rxjs";
@@ -13,14 +13,14 @@ import {Subject} from "rxjs";
 })
 export class ProjectreviewComponent implements OnInit {
 
-  constructor(private _projectService: ProjectsService) {
+  constructor(private _projectService: ProjectService) {
   }
 
   @ViewChild(DataTableDirective, { static: false })
   dtElement: DataTableDirective;
   options: any = {};
   dtTrigger: Subject<any> = new Subject();
-
+  Boolean=true
   emp: Array<any> = [];
   userModel=new User('','','');
   user=[]
@@ -29,18 +29,20 @@ export class ProjectreviewComponent implements OnInit {
   @ViewChild('modal', {static: false})
   modal: any;
   users: Array<any> = [];
-   id: Array<any>=[];
+
+  event: {}
+
   columns: Array<any> = [
     {
       title: 'Task',
     },
     {
-      title: ' Delete',
+      title: ' Status',
     }, {
       title: ' Edit',
     },
     {
-      title: 'Status'
+      title: 'Delete'
     }
 
   ];
@@ -64,6 +66,7 @@ export class ProjectreviewComponent implements OnInit {
   }
   onChangeName($event) {
     //console.log($event._id)
+    this.event=$event
     this._projectService.getElementById($event._id)
       .subscribe(
         data=> {
@@ -86,7 +89,8 @@ export class ProjectreviewComponent implements OnInit {
         data=> {
           console.log('success!', data)
           this.userModel=new User(this.userModel.project,'','');
-          this.ngOnInit()
+          this.onChangeName(this.event);
+          this.toggle();
 
         },
         error=>console.error('Error!',error)
@@ -94,31 +98,39 @@ export class ProjectreviewComponent implements OnInit {
       )
   }
 
-  delete(userId) {
-    this._projectService.delete(userId)
+  delete(user1Id) {
+    this._projectService.delete(user1Id)
       .subscribe(
         data => {
           console.log('data deleted ');
-          this.ngOnInit();
+          this.onChangeName(this.event);
+
         }
       );
-
-
-
   }
+   value=[];
+  id={}
 
-  put(userId) {
+
+  put(user1Id) {
     this.modal.show();
-    this.id = userId;
-    this._projectService.getElementById(userId).subscribe(data => {
+    this.id = user1Id;
+    this._projectService.getElementById(user1Id).subscribe(data => {
       this.userModel = data
     });
+  }
+
+  AddTask(){
+
 
   }
+
+
+
+
   ngAfterViewInit() {
     this.dtTrigger.next();
   }
-
   ngOnDestroy() {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
@@ -134,6 +146,10 @@ export class ProjectreviewComponent implements OnInit {
 
   getData($event) {
 
+  }
+
+  toggle() {
+   this.Boolean=!this.Boolean;
   }
 }
 

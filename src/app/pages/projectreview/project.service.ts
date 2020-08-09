@@ -7,7 +7,7 @@ import {User} from "./user";
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectsService{
+export class ProjectService{
   url = 'http://localhost:4002/user1'
   url1= 'http://localhost:4002/employee';
   url2 = 'http://localhost:4002/state';
@@ -26,25 +26,18 @@ get1(){
   return this.http.get<any>(this.url1);
 }
 
-  delete(userId)
+  delete(user1Id)
   {
-    return this.http.delete<any>(this.url+'/'+userId) ;
+    return this.http.delete<any>(this.url2+'/'+user1Id) ;
   }
 
-  getElementById(userId)
+  getElementById(user1Id)
   {
-    return this.http.get<any>(this.url2+'/'+userId) ;
+    return this.http.get<any>(this.url2+'/'+user1Id) ;
   }
 
-
-
-
-
-
-
-
-  edit(user: User,userId) {
-    return this.http.put<any>(this.url+'/'+userId,user);
+  edit(user: User,user1Id) {
+    return this.http.put<any>(this.url2+'/'+user1Id,user);
   }
 
 

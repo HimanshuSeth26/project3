@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 
-// Creating a Schema  
+// Creating a Schema
 
 const assignschema = new mongoose.Schema({
     employeename:{
@@ -12,9 +12,7 @@ const assignschema = new mongoose.Schema({
     task: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"task",
-        
-
     },
-  
+
 })
 module.exports = mongoose.model("assign", assignschema)

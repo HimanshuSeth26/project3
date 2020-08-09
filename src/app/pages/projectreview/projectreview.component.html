@@ -10,19 +10,33 @@
 
           <label>Select Project</label>
           <ng-select [items]="projects" bindLabel="projectname"  [clearable]=false
-                     #project="ngModel" name="project"[(ngModel)]="userModel.project"
+                     #project="ngModel" name="project" [(ngModel)]="userModel.project"
 
           (change)="onChangeName($event)">
-          </ng-select>
+
+          </ng-select >
+        </div>
+          <div *ngIf="Boolean">
+
+          <td style="width: 100px">
+            <button type="AddTask" class="btn btn-success"(click)="toggle()">
+              AddTask
+            </button>
+          </td>
+
         </div>
       </div>
-    </div>
+        </div>
+
+
+      <div *ngIf="!Boolean">
     <div class="row">
       <table class="col-md-12">
         <tr>
           <td style="width: 800px">
 
             <div class="form-group" >
+
               <label>Enter Ongoing/Completed tasks</label>
               <input type="text" class="form-control"#tasks="ngModel"name ="tasks" [(ngModel)]="userModel.tasks">
               <i class="form-group__bar"></i>
@@ -46,6 +60,7 @@
           Submit
         </button>
       </td>
+      </div>
     </form>
   </div>
 </div>
@@ -65,18 +80,15 @@
       <tbody>
       <tr *ngFor="let user of user">
         <td>{{ user.task}}
-
         </td>
         <td>{{user.state}}</td>
 
+        <td>   <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
+          <i class="zmdi zmdi-edit"></i> Edit
+        </button></td>
         <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
           <i class="zmdi zmdi-delete"></i> Delete
         </button></td>
-        <td>
-          <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
-            <i class="zmdi zmdi-edit"></i> Edit
-          </button>
-        </td>
       </tr>
       </tbody>
     </table>

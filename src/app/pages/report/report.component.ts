@@ -3,6 +3,7 @@ import { ReportService} from './report.service';
 import * as am4core from '@amcharts/amcharts4/core';
 import * as am4charts from '@amcharts/amcharts4/charts';
 import am4themes_animated from '@amcharts/amcharts4/themes/animated';
+import {User} from "./user";
 
 am4core.useTheme(am4themes_animated);
 @Component({
@@ -11,9 +12,11 @@ am4core.useTheme(am4themes_animated);
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
+
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
+  userModel=new User('','');
   user=[]
   users=[]
   tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
@@ -54,15 +57,16 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   }
   task(taskid){
    // this.toggle();
-    console.log(taskid)
-    this._reportService.task(taskid)
+    console.log(this.user)
+    this._reportService.task(taskid, this.user)
     .subscribe(
-      data => {console.log('data is updated')}
+      data => {console.log('data is updated');this.ngOnInit()}
     )
-    console.log(this.task)
+
   }
   tasklist(event) {
-   // console.log(event._id)
+    this.userModel.employeename=event._id
+   console.log(event._id)
     this._reportService.tList(event._id)
        .subscribe(
         data => {
@@ -70,8 +74,16 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
         // this.user=this.task
         this.users=data}
        );
-   console.log(this.users)
   }
+  oWntask() {
+   // this.user=event._id
+   
+  this._reportService.oWnt(this.userModel)
+   .subscribe(
+     
+      data => {console.log('data is updated');this.ngOnInit()}
+        )}
+
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
       if (this.chart) {

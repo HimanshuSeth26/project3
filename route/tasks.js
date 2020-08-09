@@ -3,8 +3,9 @@ const mongoose = require("mongoose");
 const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { ObjectId } = require('mongodb');
-const post = new Assign();
-router.get("/", async (req, res) => {
+
+  const post = new Assign();
+  router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
 
@@ -72,15 +73,16 @@ router.post("/task", async (req, res) => {
     try {
      //   console.log(req.body)
 
-
-        const user = await New.findByIdAndUpdate({
+     const user = await New.findByIdAndUpdate({
             _id: req.body.task
         }, { assign: true }, {
             new: true,
             runValidators: true
         });
+
        // console.log("ghssfdagd" + user)
         const post = new Assign();
+
         post.employeename = req.body.employeename;
         post.task = req.body.task;
 
@@ -104,6 +106,7 @@ router.get("/task/:empId", async (req, res) => {
 });
 router.get("/:taskId", async (req, res) => {let obj={}
     try {
+
         // console.log(req.query.empId);
         // console.log(req.params.taskId);
         const post= await Assign.find({ employeename: req.query.empId }).populate(' task'
@@ -125,11 +128,14 @@ router.get("/:taskId", async (req, res) => {let obj={}
          obj= { "start": new Date(), status:true};
         const update = await New.findByIdAndUpdate({
             _id: req.params.taskId
+
         }, obj, {
             new: true,
             runValidators: true
         });
+
       res.send({result:"next task started"})
+
     } catch (error) {
         res.send(500)
     }

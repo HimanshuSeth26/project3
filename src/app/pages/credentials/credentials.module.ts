@@ -5,6 +5,7 @@ import {CredentialsComponent} from "./credentials.component";
 import { FormsModule } from "@angular/forms";
 import {CommonModule} from "@angular/common";
 const CREDENTIALS_ROUTE = [{path: "", component: CredentialsComponent}];
+import { DataTablesModule } from 'angular-datatables';
 
 
 
@@ -16,7 +17,7 @@ const CREDENTIALS_ROUTE = [{path: "", component: CredentialsComponent}];
     HttpClientModule,
     RouterModule.forChild(CREDENTIALS_ROUTE),
     CommonModule,
-
+    DataTablesModule,
     FormsModule,
   ]
 })

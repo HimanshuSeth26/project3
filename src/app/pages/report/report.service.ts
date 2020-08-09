@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpParams } from '@angular/common/http';
 import {User} from "./user";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -34,9 +32,7 @@ console.log(user)
   geti(){
     return this.http.get<any>(this.emp);}
 
-
    get() {
      return this.http.get<any>(this.url);
    }
-
 }

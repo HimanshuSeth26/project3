@@ -13,7 +13,7 @@ export class TaskService{
   constructor(private http: HttpClient) { }
   
   enroll(user:User){
-    return this.http.post<any>(this.url,user);
+    return this.http.post<any>(this.url+'/newTask',user);
   }
   getEmp(){
     return this.http.get<any>(this.emp);

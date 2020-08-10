@@ -22,7 +22,7 @@ export class ReportService {obj={}
 //let params=new HttpParams().set('empId',userId)
 //console.log("user"+userId)
 console.log(user)
-    return this.http.post<any>(this.tsk,user);
+    return this.http.post<any>(this.tsk+'/selfAssign',user)
   }
 
   task(taskid,userId){

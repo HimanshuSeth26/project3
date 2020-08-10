@@ -17,6 +17,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
   userModel=new User('','');
+  taskList=[]
   user=[]
   users=[]
   tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
@@ -73,6 +74,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
 
   }
   tasklist(event) {
+    this.taskList=event
     this.userModel.employeename=event._id
    console.log(event._id)
     this._reportService.tList(event._id)
@@ -90,8 +92,12 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   this._reportService.oWnt(this.userModel)
    .subscribe(
      
-      data => {console.log('data is updated');this.ngOnInit()}
-        )}
+      data => {console.log('data is updated');this.modal.hide();this.tasklist(this.taskList)}
+      
+ )
+//this.ngOnInit()
+ 
+    }
 
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
@@ -115,7 +121,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
          data =>{
            this.employee=data
 
-        //   this.tasklist(userId);
+        //this.tasklist(this.taskList);
           }
        )
 

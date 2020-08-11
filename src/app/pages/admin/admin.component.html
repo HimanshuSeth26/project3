@@ -1,0 +1,21 @@
+
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Employee Table</h4>
+          <table datatable class="table table-bordered" [dtTrigger]="dtTrigger" [dtOptions]="options">
+            <thead>
+            <tr>
+              <th *ngFor="let column of columns">{{ column.title }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of user">
+              <td>{{ user.task}}
+              </td>
+              <td>{{user.state}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+

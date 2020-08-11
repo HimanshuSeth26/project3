@@ -20,6 +20,10 @@ const routes: Routes = [
         loadChildren: './pages/home/home.module#HomeModule'
       },
       {
+        path: 'admin',
+        loadChildren: './pages/admin/admin.module#AdminModule'
+      },
+      {
         path: 'tasks',
         loadChildren: './pages/tasks/tasks.module#TasksModule'
       },

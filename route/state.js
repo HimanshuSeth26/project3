@@ -7,6 +7,8 @@ const Emp = require("../model/state");
 const { ObjectId } = require('mongodb');
 
 
+
+
 router.post("/", async (req, res) => {
 
   const user1 = new Emp();// creating an object of an class User1
@@ -37,19 +39,37 @@ router.delete("/:user1Id", async (req, res) => {
 
 
 //getElementById
-router.get("/:user1Id", async (req, res) => {
+router.get("/:userId", async (req, res) => {
 
-  const user1 = await Emp.find({ project: req.params.user1Id })
+  const user1 = await Emp.find({project: req.params.userId})
+  res.send(user1)
+});
+
+/*let task = decodeURIComponent(req.params.task);
+console.log(task)*/
+
+
+
+router.get("/id/:user1Id/:task", async (req, res) => {
+
+  let task = decodeURIComponent(req.params.task);
+  console.log(task)
+  const user1 = await Emp.find({ project: req.params.user1Id,task:task})
   res.send(user1)
 });
 
 
 
-router.put("/:user1Id", async (req, res) => {
 
+
+router.put("/:id", async (req, res) => {
+
+ // console.log(req.params.id)
+  //console.log(req.body)
+  let obj={task:req.body.tasks,state:req.body.status}
     const user1 = await Emp.findByIdAndUpdate({
-      _id: req.params.user1Id
-    }, req.body, {
+      _id: req.params.id
+    }, obj, {
       new: true,
       runValidators: true
     });

@@ -31,12 +31,21 @@ get1(){
     return this.http.delete<any>(this.url2+'/'+user1Id) ;
   }
 
-  getElementById(user1Id)
+  getElementByTask(user1Id,task)
   {
-    return this.http.get<any>(this.url2+'/'+user1Id) ;
+    console.log("user1Id"+user1Id)
+    return this.http.get<any>(this.url2+'/id/'+user1Id+'/'+task) ;
   }
 
-  edit(user: User,user1Id) {
+
+  getElementById(userId)
+  {
+    console.log("user1Id"+userId)
+    return this.http.get<any>(this.url2+'/'+userId) ;
+  }
+
+
+  edit(user1Id,user: User) {
     return this.http.put<any>(this.url2+'/'+user1Id,user);
   }
 

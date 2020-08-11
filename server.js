@@ -27,7 +27,7 @@ app.use(cors());
 app.use("/user", require("./route/posts")) // require route
 app.use("/user1", require("./route/newEmployee")) // require route
 app.use("/tasks", require("./route/tasks")) // require route
-app.use("/assign",require("./route/tasks"))
+// app.use("/assign",require("./route/tasks"))
 app.use("/employee",require("./route/employee"))
 app.use("/state",require("./route/state"))
 

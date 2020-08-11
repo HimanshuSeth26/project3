@@ -23,7 +23,11 @@ export class ProjectreviewComponent implements OnInit {
   Boolean=true
   emp: Array<any> = [];
   userModel=new User('','','');
+  userModelPut=new User('','','');
+  result=[]
   user=[]
+  projectId={}
+  final =[]
  //console.log(userModel)
   count = [{a: 1, b: 2}, {a: 3, b: 4}, {a: 6, b: 9}];
   @ViewChild('modal', {static: false})
@@ -67,6 +71,7 @@ export class ProjectreviewComponent implements OnInit {
   onChangeName($event) {
     //console.log($event._id)
     this.event=$event
+    this.projectId=$event._id
     this._projectService.getElementById($event._id)
       .subscribe(
         data=> {
@@ -81,22 +86,34 @@ export class ProjectreviewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.userModel);
-
     this._projectService.post(this.userModel)
-
       .subscribe(
         data=> {
           console.log('success!', data)
           this.userModel=new User(this.userModel.project,'','');
           this.onChangeName(this.event);
           this.toggle();
-
         },
         error=>console.error('Error!',error)
-
       )
   }
+
+  onEdit(){
+    //console.log(this.taskId)
+   // console.log(this.userModelPut)
+    this._projectService.edit(this.taskId,this.userModelPut)
+      .subscribe(
+        data=>{
+          console.log('success!', data);
+          this.onChangeName(this.event);
+          this.modal.hide();
+
+        }
+      )
+
+  }
+
+
 
   delete(user1Id) {
     this._projectService.delete(user1Id)
@@ -105,18 +122,24 @@ export class ProjectreviewComponent implements OnInit {
           console.log('data deleted ');
           this.onChangeName(this.event);
 
+
         }
       );
   }
    value=[];
   id={}
+  taskId={};
 
 
-  put(user1Id) {
+  put(task) {
     this.modal.show();
-    this.id = user1Id;
-    this._projectService.getElementById(user1Id).subscribe(data => {
-      this.userModel = data
+
+
+    this._projectService.getElementByTask(this.projectId,task).subscribe(data => {
+      this.result = data
+      console.log(this.result)
+      this.taskId=this.result[0]._id
+      this.userModelPut=new User(this.result[0].project,this.result[0].state,this.result[0].task)
     });
   }
 

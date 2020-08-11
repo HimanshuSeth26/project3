@@ -67,13 +67,18 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
           this.ngOnInit();
         }
       );
+
+
+
   }
+
   put(userId) {
     this.modal.show();
     this.id = userId;
     this._viewcredentialsService.getElementById(userId).subscribe(data => {
       this.userModel = data
     });
+
   }
   ngAfterViewInit() {
     this.dtTrigger.next();
@@ -91,7 +96,3 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
     });
   }
 }
-
-
-
-

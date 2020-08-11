@@ -46,6 +46,18 @@ export class SidebarComponent implements OnInit {
         //     icon: 'format-underlined',
         //     route: '/typography'
         // },
+
+
+
+      {
+
+        title: 'Admin',
+        icon: 'widgets',
+        route: '/admin'
+      },
+
+
+
       {
 
         title: 'Managers portal',

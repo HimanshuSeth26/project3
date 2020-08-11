@@ -83,7 +83,7 @@
         </td>
         <td>{{user.state}}</td>
 
-        <td>   <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
+        <td>   <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user.task)">
           <i class="zmdi zmdi-edit"></i> Edit
         </button></td>
         <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
@@ -94,6 +94,56 @@
     </table>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Details</h4>
+      </div>
+      <form #userForm="ngForm"  (ngSubmit)="onEdit()" novalidate>
+        {{userForm.value|json}}
+        <div class="modal-body">
+          <div class="content__inner">
+            <div class="form-group">
+                    <label>Enter Ongoing/Completed tasks</label>
+                    <input type="text" class="form-control"#tasks="ngModel"name ="tasks" [(ngModel)]="userModelPut.tasks">
+                    <i class="form-group__bar"></i>
+                  </div>
+
+                  <div class="form-group" >
+                    <label>Status</label>
+                    <input type="text" class="form-control"#status="ngModel"name ="status" [(ngModel)]="userModelPut.status">
+                    <i class="form-group__bar"></i>
+                  </div>
+              <i class="form-group__bar"></i>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-link" >Save changes</button>
+
+        </div>
+
+
+      </form>
+    </div>
+
+
+
+
+
 
 
 

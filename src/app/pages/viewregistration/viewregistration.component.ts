@@ -43,8 +43,6 @@ export class ViewregistrationComponent implements OnInit {
           this.ngOnInit();
         }
       )
-
-
   }
 
   value = [];

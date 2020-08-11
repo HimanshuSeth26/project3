@@ -16,7 +16,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
-  userModel=new User('','');
+  userModel=new User('', '');
   user=[]
   users=[]
   tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
@@ -77,10 +77,10 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   }
   oWntask() {
    // this.user=event._id
-   
+
   this._reportService.oWnt(this.userModel)
    .subscribe(
-     
+
       data => {console.log('data is updated');this.ngOnInit()}
         )}
 

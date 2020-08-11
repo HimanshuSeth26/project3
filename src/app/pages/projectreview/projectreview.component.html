@@ -1,76 +1,108 @@
 <div class="card">
   <div class="card-body">
     <h2 class="card-title">Project Review</h2>
+
+    <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+<!--      {{userForm.value|json}}-->
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
+
           <label>Select Project</label>
-          <ng-select [items]="projects" bindLabel="name"  [clearable]=false
-                    (change)="onChangeName($event)">
-          </ng-select>
+          <ng-select [items]="projects" bindLabel="projectname"  [clearable]=false
+                     #project="ngModel" name="project" [(ngModel)]="userModel.project"
+
+          (change)="onChangeName($event)">
+
+          </ng-select >
+        </div>
+          <div *ngIf="Boolean">
+
+          <td style="width: 100px">
+            <button type="AddTask" class="btn btn-success"(click)="toggle()">
+              AddTask
+            </button>
+          </td>
+
         </div>
       </div>
-    </div>
+        </div>
+
+
+      <div *ngIf="!Boolean">
     <div class="row">
       <table class="col-md-12">
         <tr>
           <td style="width: 800px">
 
             <div class="form-group" >
+
               <label>Enter Ongoing/Completed tasks</label>
-              <input type="text" class="form-control"name ="employeeName" >
+              <input type="text" class="form-control"#tasks="ngModel"name ="tasks" [(ngModel)]="userModel.tasks">
               <i class="form-group__bar"></i>
             </div>
-          </td>
-          <td style="width: 50px">
-            <button type="submit" class="btn btn-success">
-              Completed
-            </button>
-          </td>
-          <td style="width: 50px">
-            <button type="submit" class="btn btn-success">
-              WIP
-            </button>
+
+
+
+            <div class="form-group" >
+              <label>Status</label>
+              <input type="text" class="form-control"#status="ngModel"name ="status" [(ngModel)]="userModel.status">
+              <i class="form-group__bar"></i>
+            </div>
           </td>
         </tr>
         <tr>
         </tr>
       </table>
     </div>
-
+      <td style="width: 50px">
+        <button type="submit" class="btn btn-success">
+          Submit
+        </button>
+      </td>
+      </div>
+    </form>
   </div>
 </div>
+
+
+
 
 <div class="card">
   <div class="card-body">
-    <h2 class="card-title">Summary</h2>
-    <tr>
+    <h4 class="card-title">Project Review Table</h4>
+    <table datatable class="table table-bordered" [dtTrigger]="dtTrigger" [dtOptions]="options">
+      <thead>
+      <tr>
+        <th *ngFor="let column of columns">{{ column.title }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let user of user">
+        <td>{{ user.task}}
+        </td>
+        <td>{{user.state}}</td>
 
-      <td class="list-group-item list-group-item-danger"style="width: 800px">working on Goa irisk</td>
-      <td style="width: 100px">
-        <button type="submit" class="btn btn-success">
-          Completed
-        </button>
-      </td>
-      <td>
-        <button type="submit" class="btn btn-success"style="width: 100px">
-          Delete
-        </button>
-      </td>
-    </tr>
-    <tr>
-
-      <td class="list-group-item list-group-item-success"style="width: 800px">Pm diagram Submitted</td>
-      <td>
-        <button type="submit" disabled class="btn btn-success">
-          Completed
-        </button>
-      </td>
-      <td>
-        <button type="submit" class="btn btn-success"style="width: 100px">
-          Delete
-        </button>
-      </td>
-    </tr>
+        <td>   <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
+          <i class="zmdi zmdi-edit"></i> Edit
+        </button></td>
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
+          <i class="zmdi zmdi-delete"></i> Delete
+        </button></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+

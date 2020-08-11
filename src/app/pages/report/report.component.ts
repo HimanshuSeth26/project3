@@ -69,7 +69,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
     console.log(this.user)
     this._reportService.task(taskid, this.user)
     .subscribe(
-      data => {console.log('data is updated');this.ngOnInit()}
+      data => {console.log('data is updated');this.tasklist(this.taskList)}
     )
 
   }
@@ -77,6 +77,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
     this.taskList=event
     this.userModel.employeename=event._id
    console.log(event._id)
+   this.user=event._id
     this._reportService.tList(event._id)
        .subscribe(
         data => {
@@ -92,11 +93,11 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   this._reportService.oWnt(this.userModel)
    .subscribe(
      
-      data => {console.log('data is updated');this.modal.hide();this.tasklist(this.taskList)}
+      data => {console.log('data is updated');this.tasklist(this.taskList)}
       
  )
 //this.ngOnInit()
- 
+
     }
 
   ngOnDestroy() {

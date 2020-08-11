@@ -24,7 +24,7 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
   users: Array<any> = [];
  columns: Array<any> = [
     {
-      title: 'Employ ee Name',
+      title: 'Employee Name',
     },
     {
       title: ' Delete',
@@ -33,6 +33,7 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
     },
 
   ];
+
 
   value = [];
   id = {};
@@ -66,18 +67,13 @@ export class ViewcredentialsComponent implements OnInit, OnDestroy, AfterViewIni
           this.ngOnInit();
         }
       );
-
-
-
   }
-
   put(userId) {
     this.modal.show();
     this.id = userId;
     this._viewcredentialsService.getElementById(userId).subscribe(data => {
       this.userModel = data
     });
-
   }
   ngAfterViewInit() {
     this.dtTrigger.next();

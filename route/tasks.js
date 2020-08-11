@@ -3,8 +3,23 @@ const mongoose = require("mongoose");
 const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { ObjectId } = require('mongodb');
-const post = new Assign();
-router.get("/", async (req, res) => {
+const { registerOutsideClick } = require("ngx-bootstrap");
+
+  const post = new Assign();
+  router.get("/taskOngoing", async (req, res) => {
+    try {
+        const post = await New.find({})
+      console.log("post")
+      let a = post.filter(item => (
+        item.status === true
+    ))
+    console.log(a)
+        res.send(a)
+
+    } catch (error) {
+        res.status(500)
+    }})
+  router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
 
@@ -97,8 +112,7 @@ router.post("/task", async (req, res) => {
     try {
         //   console.log(req.body)
 
-
-        const user = await New.findByIdAndUpdate({
+     const user = await New.findByIdAndUpdate({
             _id: req.body.task
         }, { assign: true }, {
             new: true,
@@ -106,6 +120,7 @@ router.post("/task", async (req, res) => {
         });
         // console.log("ghssfdagd" + user)
         const post = new Assign();
+
         post.employeename = req.body.employeename;
         post.task = req.body.task;
 
@@ -130,6 +145,7 @@ router.get("/task/:empId", async (req, res) => {
 router.get("/:taskId", async (req, res) => {
     let obj = {}
     try {
+
         // console.log(req.query.empId);
         // console.log(req.params.taskId);
         const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
@@ -151,6 +167,7 @@ router.get("/:taskId", async (req, res) => {
         obj = { "start": new Date(), status: true };
         const update = await New.findByIdAndUpdate({
             _id: req.params.taskId
+
         }, obj, {
             new: true,
             runValidators: true

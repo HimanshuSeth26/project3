@@ -3,6 +3,10 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require("morgan");
+
+const path = require('path');
+
+
 //
 // mongoose.connect("mongodb://localhost:27017/MyDb",
 //   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -46,13 +50,14 @@ require("./model/state");
 
 const PORT = process.env.PORT || 4002;
 const app = express();
+app.use(express.static(path.join(__dirname, './dist/material-admin')));
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api/user", require("./route/posts")) // require route
 app.use("/api/user1", require("./route/newEmployee")) // require route
-app.use("/api/tasks", require("./route/tasks")) // require route
-app.use("/api/employee",require("./route/employee"))
-app.use("/api/state",require("./route/state"))
+// app.use("/api/tasks", require("./route/tasks")) // require route
+// app.use("/api/employee",require("./route/employee"))
+// app.use("/api/state",require("./route/state"))
 
 app.get('/', function (req, res) {
     res.send('Hello from server');

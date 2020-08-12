@@ -4,7 +4,21 @@ const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { ObjectId } = require('mongodb');
 
+
   const post = new Assign();
+  router.get("/taskOngoing", async (req, res) => {
+    try {
+        const post = await New.find({})
+      console.log("post")
+      let a = post.filter(item => (
+        item.status === true
+    ))
+    console.log(a)
+        res.send(a)
+
+    } catch (error) {
+        res.status(500)
+    }})
   router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
@@ -16,22 +30,47 @@ const { ObjectId } = require('mongodb');
         res.status(500)
     }
 });
-router.post("/", async (req, res) => {
+router.post("/newTask", async (req, res) => {
     try {
-       //console.log(req.body)
+        console.log(req.body)
         const post = new New();
-        obj= { "task":req.body.task,"start": new Date(), status:true};
-        post.task = obj.task;
-        post.start=obj.start;
-        post.status=obj.status;
+        post.task = req.body.task;
         await post.save();
         res.send(post)
+    } catch (error) {
+        res.status(500)
+    }
+})
+
+router.post("/selfAssign", async (req, res) => {
+    try {
+        //console.log(req.body)
+        const post = new New();
+        obj = { "task": req.body.task, "start": new Date(), status: true };
+        post.task = obj.task;
+        post.start = obj.start;
+        post.status = obj.status;
+        await post.save();
         const pst = await New.find({})
-        // console.log(pst[pst.length-1]._id)    
-        const assign= new Assign();
+       //  console.log(pst)    
+      
+            b = pst.filter(item => (
+                item.status === true
+            ))
+        console.log(b)
+        if (b.length > 0) {
+            objOld = { "finish": new Date(), status: false };
+            const updateOld = await New.findByIdAndUpdate({
+                _id: b[0]._id
+            }, objOld, {
+                new: true,
+                runValidators: true
+            });
+        }
+        const assign = new Assign();
         //console.log(req.body.employeename)
-        assign.employeename=req.body.employeename,
-        assign.task=pst[pst.length-1]._id
+        assign.employeename = req.body.employeename;
+        assign.task = pst[pst.length - 1]._id
         await assign.save();
         req.send(assign)
     } catch (error) {
@@ -39,20 +78,20 @@ router.post("/", async (req, res) => {
     }
 
 })
-router.post("/:postId", async (req, res) => {
-    try {
-    //    console.log(req.body)
-        const post = new New();
-        post.task = req.body.task;
+// router.post("/:postId", async (req, res) => {
+//     try {
+//         //    console.log(req.body)
+//         const post = new New();
+//         post.task = req.body.task;
 
-        await post.save();
-     
-        res.send(post)
-    } catch (error) {
-        res.status(500)
-    }
+//         await post.save();
 
-})
+//         res.send(post)
+//     } catch (error) {
+//         res.status(500)
+//     }
+
+// })
 router.delete("/:newId", async (req, res) => {
     try {
         const post = await New.findByIdAndRemove({
@@ -71,7 +110,7 @@ router.get("/task", async (req, res) => {
 });
 router.post("/task", async (req, res) => {
     try {
-     //   console.log(req.body)
+        //   console.log(req.body)
 
      const user = await New.findByIdAndUpdate({
             _id: req.body.task
@@ -79,8 +118,7 @@ router.post("/task", async (req, res) => {
             new: true,
             runValidators: true
         });
-
-       // console.log("ghssfdagd" + user)
+        // console.log("ghssfdagd" + user)
         const post = new Assign();
 
         post.employeename = req.body.employeename;
@@ -96,7 +134,7 @@ router.post("/task", async (req, res) => {
 });
 router.get("/task/:empId", async (req, res) => {
     try {
-      //  console.log(req.body)
+        //  console.log(req.body)
         const post = await Assign.find({ employeename: req.params.empId }).populate(' task'
         ).exec();
         res.send(post)
@@ -104,28 +142,29 @@ router.get("/task/:empId", async (req, res) => {
         res.status(500);
     }
 });
-router.get("/:taskId", async (req, res) => {let obj={}
+router.get("/:taskId", async (req, res) => {
+    let obj = {}
     try {
 
         // console.log(req.query.empId);
         // console.log(req.params.taskId);
-        const post= await Assign.find({ employeename: req.query.empId }).populate(' task'
-                  ).exec();
+        const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
+        ).exec();
         // console.log(post)
-       let a=post.filter(item=>(
-         item.task.status===true
-       ))
-      if(a.length>0){
-          objOld= { "finish": new Date(), status:false};
-          const updateOld = await New.findByIdAndUpdate({
-            _id: a[0].task._id
-        }, objOld, {
-            new: true,
-            runValidators: true
-        });
-      }
+        let a = post.filter(item => (
+            item.task.status === true
+        ))
+        if (a.length > 0) {
+            objOld = { "finish": new Date(), status: false };
+            const updateOld = await New.findByIdAndUpdate({
+                _id: a[0].task._id
+            }, objOld, {
+                new: true,
+                runValidators: true
+            });
+        }
         // console.log(post)
-         obj= { "start": new Date(), status:true};
+        obj = { "start": new Date(), status: true };
         const update = await New.findByIdAndUpdate({
             _id: req.params.taskId
 
@@ -133,9 +172,7 @@ router.get("/:taskId", async (req, res) => {let obj={}
             new: true,
             runValidators: true
         });
-
-      res.send({result:"next task started"})
-
+        res.send({ result: "next task started" })
     } catch (error) {
         res.send(500)
     }

@@ -8,33 +8,34 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class TaskService{
-  url = environment.baseUrl + '/tasks';
-  emp = environment.baseUrl + '/user1';
-
+    url = environment.baseUrl + '/tasks';
+     emp = environment.baseUrl + '/user1';
+  em='http://localhost:4002/api/user1'   
+  ur = 'http://localhost:4002/api/tasks';
   constructor(private http: HttpClient) { }
 
   enroll(user:User){
-    return this.http.post<any>(this.url, user);
+    return this.http.post<any>(this.ur+'/newTask', user);
   }
   getEmp(){
-    return this.http.get<any>(this.emp);
+    return this.http.get<any>(this.em);
   }
 
   delete(userId)
   {
-    return this.http.delete<any>(this.url+'/'+userId) ;
+    return this.http.delete<any>(this.ur+'/'+userId) ;
   }
 
   assignTo(userModel: User, id: any) {
 
   }
   geti(){
-    return this.http.get<any>(this.url);}
+    return this.http.get<any>(this.ur);}
 
 
 
 wrkgeti(obj){
 
-  return this.http.post<any>(this.url,obj);}
+  return this.http.post<any>(this.ur,obj);}
 
 }

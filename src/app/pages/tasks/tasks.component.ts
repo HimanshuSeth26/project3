@@ -34,8 +34,9 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   onSubmit(){
    this._taskService.enroll(this.userModel)
     .subscribe(
-      data =>{console.log('success!',data);this.ngOnInit()},
-      error=>console.error('Error!',error)
+      data =>{console.log('success!', data);  this.userModel = new User(' ');
+        this.ngOnInit()},
+      error => console.error('Error!', error)
     )
 
   };

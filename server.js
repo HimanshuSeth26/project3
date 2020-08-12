@@ -4,12 +4,11 @@ const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require("morgan");
 
-// mongoose.connect("mongodb://localhost:27017/MyDb",
-//   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-//   console.log('mongodb connected')
-// });
+mongoose.connect("mongodb://localhost:27017/MyDb",
+  { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+  console.log('mongodb connected')
+});
 //MONGO_DATABASE=mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority/PM
-const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
 // const databaseUrl='mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority';
 
 // mongoose.connect(url,
@@ -21,22 +20,23 @@ const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.n
 //   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
 //   console.log('mongodb connected');
 // })
-mongoose.set('useCreateIndex', true);
-
-mongoose.connect(databaseUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
-});
-
-mongoose.connection.on('connected', () => {
-  console.log('Connected to Database')
-});
-mongoose.connection.on('error', (err) => {
-  if (err) {
-    console.log('err', err);
-  }
-});
+// const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
+// mongoose.set('useCreateIndex', true);
+//
+// mongoose.connect(databaseUrl, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
+//
+// mongoose.connection.on('connected', () => {
+//   console.log('Connected to Database')
+// });
+// mongoose.connection.on('error', (err) => {
+//   if (err) {
+//     console.log('err', err);
+//   }
+// });
 require("./model/user"); // require user.js (model)
 require("./model/newEmployee"); // require newEmployee.js (model)
 require("./model/task"); // require newEmployee.js (model)
@@ -48,12 +48,11 @@ const PORT = process.env.PORT || 4002;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
-app.use("/user", require("./route/posts")) // require route
-app.use("/user1", require("./route/newEmployee")) // require route
-// app.use("/tasks", require("./route/tasks")) // require route
-app.use("/assign",require("./route/tasks"))
-app.use("/employee",require("./route/employee"))
-app.use("/state",require("./route/state"))
+app.use("/api/user", require("./route/posts")) // require route
+app.use("/api/user1", require("./route/newEmployee")) // require route
+app.use("/api/tasks", require("./route/tasks")) // require route
+app.use("/api/employee",require("./route/employee"))
+app.use("/api/state",require("./route/state"))
 
 app.get('/', function (req, res) {
     res.send('Hello from server');

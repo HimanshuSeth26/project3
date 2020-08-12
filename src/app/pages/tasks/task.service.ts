@@ -10,7 +10,6 @@ import { environment } from '../../../environments/environment';
 export class TaskService{
   url = environment.baseUrl + '/tasks';
   emp = environment.baseUrl + '/user1';
-  wrk = environment.baseUrl + '/assign/task';
 
   constructor(private http: HttpClient) { }
 
@@ -36,6 +35,6 @@ export class TaskService{
 
 wrkgeti(obj){
 
-  return this.http.post<any>(this.wrk,obj);}
+  return this.http.post<any>(this.url,obj);}
 
 }

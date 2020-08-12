@@ -16,10 +16,10 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
   constructor(private zone: NgZone, private _reportService: ReportService) {}
   private chart: am4charts.XYChart;
   employee = [ {name: 'Alex'}, {name: 'Martin'}];
-  userModel=new User('', '');
+  userModel=new User('');
   user=[]
   users=[]
-  tasks = [{task: 'sorting of arrays'}, {task: 'Implementing Graphs'}, {task: 'Add Description in home page'}];
+  tasks = [];
   report(data) {
     this.zone.runOutsideAngular(() => {
       const chart = am4core.create('chartdiv', am4charts.XYChart);
@@ -65,7 +65,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
 
   }
   tasklist(event) {
-    this.userModel.employeename=event._id
+    this.userModel.task=event._id
    console.log(event._id)
     this._reportService.tList(event._id)
        .subscribe(

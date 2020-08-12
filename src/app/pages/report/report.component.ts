@@ -65,7 +65,7 @@ export class ReportComponent implements   OnInit, OnDestroy  { isDisplay=false;
 
   }
   tasklist(event) {
-    this.userModel.task=event._id
+    this.userModel.employeename=event._id
    console.log(event._id)
     this._reportService.tList(event._id)
        .subscribe(

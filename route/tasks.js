@@ -4,8 +4,7 @@ const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { ObjectId } = require('mongodb');
 
-  const post = new Assign();
-  router.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
     try {
         const post = await New.find({})
 
@@ -27,7 +26,7 @@ router.post("/", async (req, res) => {
         await post.save();
         res.send(post)
         const pst = await New.find({})
-        // console.log(pst[pst.length-1]._id)    
+        // console.log(pst[pst.length-1]._id)
         const assign= new Assign();
         //console.log(req.body.employeename)
         assign.employeename=req.body.employeename,
@@ -46,7 +45,7 @@ router.post("/:postId", async (req, res) => {
         post.task = req.body.task;
 
         await post.save();
-     
+
         res.send(post)
     } catch (error) {
         res.status(500)

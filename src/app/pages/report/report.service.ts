@@ -16,13 +16,13 @@ export class ReportService {obj={}
   constructor(private http: HttpClient) {
   }
   tList(userId){
-        return this.http.get<any>(this.tsks+'/'+userId);}
+        return this.http.get<any>(this.tsks + '/' + userId);}
   oWnt(user:User){
 //    return this.http.post<any>(this.th,user);
-//let params=new HttpParams().set('empId',userId)
-//console.log("user"+userId)
+// let params=new HttpParams().set('empId',userId)
+// console.log("user"+userId)
 console.log(user)
-    return this.http.post<any>(this.tsk,user);
+    return this.http.post<any>(this.tsk, user);
   }
 
   task(taskid,userId){

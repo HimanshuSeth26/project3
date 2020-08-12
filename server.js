@@ -10,7 +10,7 @@ mongoose.connect("mongodb://localhost:27017/MyDb",
 });
 //MONGO_DATABASE=mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority/PM
 // const databaseUrl='mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority';
-
+//
 // mongoose.connect(url,
 //   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
 //   console.log('mongodb connected');

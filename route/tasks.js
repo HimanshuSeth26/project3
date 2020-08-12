@@ -5,7 +5,6 @@ const Assign = require("../model/assigntask");
 const { ObjectId } = require('mongodb');
 
 
-  const post = new Assign();
   router.get("/taskOngoing", async (req, res) => {
     try {
         const post = await New.find({})
@@ -52,8 +51,8 @@ router.post("/selfAssign", async (req, res) => {
         post.status = obj.status;
         await post.save();
         const pst = await New.find({})
-       //  console.log(pst)    
-      
+       //  console.log(pst)
+
             b = pst.filter(item => (
                 item.status === true
             ))
@@ -110,22 +109,20 @@ router.get("/task", async (req, res) => {
 });
 router.post("/task", async (req, res) => {
     try {
-        //   console.log(req.body)
-
-     const user = await New.findByIdAndUpdate({
+          console.log(req.body)
+          const user = await New.findByIdAndUpdate({
             _id: req.body.task
         }, { assign: true }, {
             new: true,
             runValidators: true
         });
-        // console.log("ghssfdagd" + user)
-        const post = new Assign();
-
-        post.employeename = req.body.employeename;
-        post.task = req.body.task;
-
-        await post.save();
-        res.send(post)
+        const assign = new Assign();
+        assign.employeename = req.body.employeename;
+        assign.task = req.body.task;
+        await assign.save();
+      console.log("assign")
+      console.log(assign)
+        res.send(assign)
 
     } catch (error) {
         res.status(500)

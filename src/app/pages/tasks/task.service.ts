@@ -10,12 +10,11 @@ import { environment } from '../../../environments/environment';
 export class TaskService{
     url = environment.baseUrl + '/tasks';
      emp = environment.baseUrl + '/user1';
-  em='http://localhost:4002/api/user1'   
-  ur = 'http://localhost:4002/api/tasks';
+  em='http://localhost:4002/api/user1'
   constructor(private http: HttpClient) { }
 
   enroll(user:User){
-    return this.http.post<any>(this.ur+'/newTask', user);
+    return this.http.post<any>(this.url+'/newTask', user);
   }
   getEmp(){
     return this.http.get<any>(this.em);
@@ -23,19 +22,19 @@ export class TaskService{
 
   delete(userId)
   {
-    return this.http.delete<any>(this.ur+'/'+userId) ;
+    return this.http.delete<any>(this.url+'/'+userId) ;
   }
 
   assignTo(userModel: User, id: any) {
 
   }
   geti(){
-    return this.http.get<any>(this.ur);}
+    return this.http.get<any>(this.url);}
 
 
 
 wrkgeti(obj){
-
-  return this.http.post<any>(this.ur,obj);}
+  console.log(obj)
+  return this.http.post<any>(this.url+'/task',obj);}
 
 }

@@ -46,6 +46,7 @@ require("./model/state");
 
 const PORT = process.env.PORT || 4002;
 const app = express();
+app.use(express.static(path.join(__dirname, './dist/material-admin')));
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/api/user", require("./route/posts")) // require route

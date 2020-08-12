@@ -8,7 +8,8 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class ViewregistrationService {
-  url = 'http://localhost:4001/user';
+  url = environment.baseUrl + '/user';
+
   constructor(private http: HttpClient) { }
 
   get() {

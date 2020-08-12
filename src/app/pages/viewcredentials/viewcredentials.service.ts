@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from "./user";
+import { environment } from "../../../environments/environment";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ViewcredentialsService{
-  url = 'http://localhost:4002/user1';
+  url = environment.baseUrl + '/user1';
+
   constructor(private http: HttpClient) { }
 
   get(){

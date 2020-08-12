@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {User} from "./user";
+import { environment } from '../../../environments/environment';
 
 
 
@@ -8,9 +9,11 @@ import {User} from "./user";
   providedIn: 'root'
 })
 export class ProjectService{
-  url = 'http://localhost:4002/user1'
-  url1= 'http://localhost:4002/employee';
-  url2 = 'http://localhost:4002/state';
+
+  url = environment.baseUrl + '/user1';
+  url1 = environment.baseUrl + '/employee';
+  url2 = environment.baseUrl + '/state';
+
   constructor(private http: HttpClient) { }
 
   post(user: User) {

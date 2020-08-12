@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from "../../../environments/environment";
 
 import {User} from './user';
 
@@ -7,7 +8,7 @@ import {User} from './user';
   providedIn: 'root'
 })
 export class RegistrationService {
-  url = 'http://localhost:4001/user';
+  url = environment.baseUrl + '/user';
 
   constructor(private http: HttpClient) {
   }

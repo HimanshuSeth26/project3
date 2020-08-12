@@ -6,7 +6,7 @@ const User1 = require("../model/newEmployee");     // require model of user1 and
 // Post operation (require in server.js)
 
 router.post("/", async (req, res) => {
-
+    console.log(req.body);
     const user1 = new User1();  // creating an object of an class User1
     user1.employeename = req.body.employeename;
     await user1.save();

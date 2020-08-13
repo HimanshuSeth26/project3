@@ -16,6 +16,17 @@
 
           </ng-select >
         </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+        <td>
+          <label> Employee Name of Selected Project</label>
+          <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"#name="ngModel"name ="employeename"[(ngModel)]="userModel.employeename"></textarea>
+        </td>
+        </div>
+          </div>
+        </div>
+
           <div *ngIf="Boolean">
 
           <td style="width: 100px">
@@ -23,7 +34,6 @@
               AddTask
             </button>
           </td>
-
         </div>
       </div>
         </div>

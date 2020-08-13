@@ -4,9 +4,7 @@ const User = require("../model/user");
 
 
 router.post("/", async (req, res) => {
-
     console.log(req.body)
-
     const user = new User();  // creating an object of an class User
     user.name = req.body.name
     user.email = req.body.email
@@ -21,39 +19,30 @@ router.post("/", async (req, res) => {
 
 
 router.get("/", async (req, res) => {
-
-
     const user = await User.find({})
     res.send(user)
-
 });
 
 router.delete("/:userId", async (req, res) => {
-
     const user = await User.findByIdAndRemove({
         _id: req.params.userId
     });
     res.send(user)
-
 })
 
 
 router.get("/:userId", async (req, res) => {
-
     const user = await User.findOne({ _id: req.params.userId })
     res.send(user)
-
 });
 
 router.put("/:userId", async (req, res) => {
-
     const user = await User.findByIdAndUpdate({
         _id: req.params.userId
     }, req.body, {
         new: true,
         runValidators: true
     });
-
     res.send(user)
 }
 );

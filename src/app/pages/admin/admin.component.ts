@@ -11,7 +11,7 @@ export class AdminComponent implements OnInit {
 
   constructor() { }
 
-  @ViewChild(DataTableDirective, { static: false })
+  @ViewChild(DataTableDirective, { static: false })  
   dtElement: DataTableDirective;
   options: any = {};
   user: Array<any> = [];

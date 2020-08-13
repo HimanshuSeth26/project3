@@ -5,42 +5,39 @@
       <div class="col-md-6">
         <div class="form-group">
           <ng-select [items]="employee" bindLabel="employeename" [clearable]=false (change)="tasklist($event)"
-            placeholder="Select your name">
+                     placeholder="Select your name">
           </ng-select>
         </div>
       </div>
     </div>
     <div class="row">
-      <table class="col-md-12">
-        <tr>
           <div class="form-group">
-          <td>
 
-            <textarea style="border: #00BCD4 1px solid" class="form-control" rows="2"#name="ngModel"name ="task"[(ngModel)]="userModel.task"></textarea>
-          </td>
-          <td>
-            <button type="submit" class="btn btn-success"(click)=oWntask()>
-              Start
-            </button>
-          </td>
-        </div>
-        </tr>
+              <textarea style="border: #00BCD4 1px solid" class="form-control" rows="5" cols="100" #name="ngModel"name ="task"[(ngModel)]="userModel.task"></textarea>
+              <br>
+              <button type="submit" class="btn btn-info"(click)=oWntask()>
+                Start
+              </button>
+
+
+          </div>
+      <table class="col-md-12"style="   border-collapse: separate;border-spacing: 0 1em;">
 
         <tr *ngFor="let row of tasks">
 
           <td *ngIf="!(row.task==null)"class="list-group-item list-group-item-primary" bindLabel="task">{{ row.task.task }}</td>
 
           <td *ngIf="row.task.status"><button type="submit" class="btn btn-danger">
-              Ongoing
-            </button></td>
+            Ongoing
+          </button></td>
 
-            <td *ngIf="!row.task.status">
+          <td *ngIf="!row.task.status">
             <button type="submit" class="btn btn-success" (click)=task(row.task._id)>
               Start
             </button>
           </td>
-
         </tr>
+
       </table>
     </div>
 

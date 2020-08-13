@@ -8,16 +8,16 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class TaskService{
-  url = environment.baseUrl + '/tasks';
-  emp = environment.baseUrl + '/user1';
-
+    url = environment.baseUrl + '/tasks';
+     emp = environment.baseUrl + '/user1';
+  em='http://localhost:4002/api/user1'
   constructor(private http: HttpClient) { }
 
   enroll(user:User){
-    return this.http.post<any>(this.url, user);
+    return this.http.post<any>(this.url+'/newTask', user);
   }
   getEmp(){
-    return this.http.get<any>(this.emp);
+    return this.http.get<any>(this.em);
   }
 
   delete(userId)
@@ -34,7 +34,7 @@ export class TaskService{
 
 
 wrkgeti(obj){
-
-  return this.http.post<any>(this.url,obj);}
+  console.log(obj)
+  return this.http.post<any>(this.url+'/task',obj);}
 
 }

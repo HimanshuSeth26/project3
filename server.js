@@ -6,24 +6,6 @@ const morgan = require("morgan");
 
 const path = require('path');
 
-
-//
-// mongoose.connect("mongodb://localhost:27017/MyDb",
-//   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
-//   console.log('mongodb connected')
-// });
-//MONGO_DATABASE=mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority/PM
-// const databaseUrl='mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority';
-//
-// mongoose.connect(url,
-//   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
-//   console.log('mongodb connected');
-// })
-//mongodb+srv://sawan:sawan@cluster0-c4esz.mongodb.net/test?retryWrites=true&w=majority
-// mongoose.connect('mongodb+srv://sawan:sawan@cluster0-c4esz.mongodb.net/test?retryWrites=true&w=majority',
-//   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
-//   console.log('mongodb connected');
-// })
 const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.set('useCreateIndex', true);
 

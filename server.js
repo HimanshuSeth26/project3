@@ -3,25 +3,12 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require("morgan");
-const path = require('path');
-
 //
+// const path = require('path');
 // mongoose.connect("mongodb://localhost:27017/MyDb",
 //   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 //   console.log('mongodb connected')
 // });
-//MONGO_DATABASE=mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority/PM
-// const databaseUrl='mongodb+srv://sawan:sawan@cluster0-nxos0.mongodb.net/test?retryWrites=true&w=majority';
-
-// mongoose.connect(url,
-//   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
-//   console.log('mongodb connected');
-// })
-//mongodb+srv://sawan:sawan@cluster0-c4esz.mongodb.net/test?retryWrites=true&w=majority
-// mongoose.connect('mongodb+srv://sawan:sawan@cluster0-c4esz.mongodb.net/test?retryWrites=true&w=majority',
-//   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false }).then(() => {
-//   console.log('mongodb connected');
-// })
 const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.set('useCreateIndex', true);
 
@@ -51,6 +38,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, './dist/material-admin')));
 app.use(bodyParser.json());
 app.use(cors());
+
 app.use("/api/user", require("./route/posts")) // require route
 app.use("/api/user1", require("./route/newEmployee")) // require route
 app.use("/api/tasks", require("./route/tasks")) // require route

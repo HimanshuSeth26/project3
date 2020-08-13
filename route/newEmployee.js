@@ -1,9 +1,7 @@
-const express = require("express");                         //
-const router = express.Router();                           //   same
-const User1 = require("../model/newEmployee");     // require model of user1 and User1 is a class
+const express = require("express");
+const router = express.Router();
+const User1 = require("../model/newEmployee");
 
-
-// Post operation (require in server.js)
 
 router.post("/", async (req, res) => {
     console.log(req.body);
@@ -13,30 +11,22 @@ router.post("/", async (req, res) => {
     res.send(user1);
 });
 
-// Get operation (require Schema in server.js)
-
 router.get("/", async (req, res) => {
-
-
     const user1 = await User1.find({})
     res.send(user1)
-
 });
 // Delete Operation
 
 router.delete("/:user1Id", async (req, res) => {
-
     const user1 = await User1.findByIdAndRemove({
         _id: req.params.user1Id
     });
     res.send(user1)
-
 })
 
 //GetElementById
 
 router.get("/:user1Id", async (req, res) => {
-
     const user1 = await User1.findOne({ _id: req.params.user1Id })
     res.send(user1)
 });
@@ -44,14 +34,12 @@ router.get("/:user1Id", async (req, res) => {
 //Edit or put Operation
 
 router.put("/:user1Id", async (req, res) => {
-
     const user1 = await User1.findByIdAndUpdate({
         _id: req.params.user1Id
     }, req.body, {
         new: true,
         runValidators: true
     });
-
     res.send(user1)
 });
 router.get("/graph/result", async (req, res) => {
@@ -100,8 +88,6 @@ router.get("/graph/result", async (req, res) => {
   catch (error) {
     res.sendStatus(500);
   }
-
 });
-
 
 module.exports = router

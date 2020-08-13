@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 const cors = require('cors');
 const morgan = require("morgan");
+const path = require('path');
+
 //
 // mongoose.connect("mongodb://localhost:27017/MyDb",
 //   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
@@ -44,6 +46,7 @@ require("./model/assigntask");
 require("./model/employee");
 require("./model/state");
 
+app.use(express.static(path.join(__dirname, './dist/material-admin')));
 const PORT = process.env.PORT || 4002;
 const app = express();
 app.use(bodyParser.json());

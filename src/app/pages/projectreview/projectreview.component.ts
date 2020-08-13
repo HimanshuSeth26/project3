@@ -14,6 +14,7 @@ import {Subject} from "rxjs";
 export class ProjectreviewComponent implements OnInit {
   private startTime: string;
   private endTime: string;
+  private allTasks: any;
 
   constructor(private _projectService: ProjectService) {
   }
@@ -39,6 +40,9 @@ export class ProjectreviewComponent implements OnInit {
   event: {}
 
   columns: Array<any> = [
+    {
+      title: 'Created At',
+    },
     {
       title: 'Task',
     },
@@ -76,7 +80,7 @@ export class ProjectreviewComponent implements OnInit {
     this._projectService.getElementById($event._id)
       .subscribe(
         data => {
-          this.user = data
+          this.allTasks = data
           //console.log('success!', data)
           this.rerender();
 
@@ -177,13 +181,22 @@ export class ProjectreviewComponent implements OnInit {
     this.Boolean = !this.Boolean;
   }
 
+
   ngDate() {
     this.startTime = JSON.stringify(this.bsValueRange[0]);
     this.endTime = JSON.stringify(this.bsValueRange[1]) ;
     console.log(this.startTime)
     console.log(this.endTime)
+    this._projectService.getTaskByDate(this.projectId,this.startTime,this.endTime)
+      .subscribe(
+        data => {
+          this.allTasks = data
+          //console.log('success!', data)
+          this.rerender();
 
-  }
+
+        }
+      )  }
 }
 
 

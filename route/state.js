@@ -1,3 +1,5 @@
+import {from} from "rxjs";
+import {to} from "rxjs";
 const express = require("express");
 const router = express.Router();
 const Emp = require("../model/state");
@@ -7,8 +9,23 @@ router.post("/", async (req, res) => {
   user1.project = req.body.project._id;
   user1.task = req.body.tasks;
   user1.state= req.body.status;
+  user1.created_at = new Date();
   await user1.save();
   res.send(user1);
+});
+
+router.post("/daterange", async (req, res) => {
+
+  let start= req.body.start;
+  let end = req.body.end;
+  let project= req.body.project;
+  console.log(start)
+  console.log(end)
+  console.log(project)
+  const user1 = await Emp.find({project: project})
+  // const filter = { created_at:{$gte:from||start,$lte:to|| end}}
+
+  res.send({"employeename":"rahul"});
 });
 
 router.get("/", async (req, res) => {

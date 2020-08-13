@@ -26,10 +26,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   dtElement: DataTableDirective;
   options: any = {};
   dtTrigger: Subject<any> = new Subject();
-
   id = {};
-
-
   constructor(private _taskService: TaskService) { }
   onSubmit(){
    this._taskService.enroll(this.userModel)
@@ -38,7 +35,6 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
         this.ngOnInit()},
       error => console.error('Error!', error)
     )
-
   };
   columns: Array<any> = [
     {
@@ -50,10 +46,7 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
     {
       title: ' Delete',
     },
-
   ];
-
-
   ngOnInit() {
     this. _taskService.geti()
     .subscribe(
@@ -78,7 +71,6 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
   ngAfterViewInit() {
     this.dtTrigger.next();
   }
-
   ngOnDestroy() {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
@@ -107,10 +99,6 @@ export class TasksComponent implements  OnInit, OnDestroy, AfterViewInit {
      .subscribe(
       data=>{console.log('data sucsess ');this.modal.hide();this.ngOnInit();},
       error=>console.error('Error!',error)
-
      )
-
-
-
   }
 }

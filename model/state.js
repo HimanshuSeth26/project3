@@ -16,6 +16,10 @@ const state_schema = new mongoose.Schema({
   state: {
     type: String,
     required: "state is Required"
+  },
+  created_at: {
+    type:Date,
+    required: true
   }
 });
 module.exports = mongoose.model("state", state_schema)

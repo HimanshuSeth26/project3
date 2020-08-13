@@ -100,7 +100,8 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let user of user">
+      <tr *ngFor="let user of allTasks">
+        <td>{{user.created_at}}</td>
         <td>{{ user.task}}
         </td>
         <td>{{user.state}}</td>

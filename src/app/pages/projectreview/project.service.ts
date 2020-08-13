@@ -48,6 +48,14 @@ get1(){
   }
 
 
+  getTaskByDate(userId,startTime,endTime)
+  {
+    let obj={start:startTime,end:endTime, project: userId}
+    console.log("user1Id"+userId)
+    return this.http.post<any>(this.url2+'/daterange',obj) ;
+  }
+
+
   edit(user1Id,user: User) {
     return this.http.put<any>(this.url2+'/'+user1Id,user);
   }

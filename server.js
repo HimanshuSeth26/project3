@@ -48,7 +48,6 @@ require("./model/assigntask");
 require("./model/employee");
 require("./model/state");
 
-app.use(express.static(path.join(__dirname, './dist/material-admin')));
 const PORT = process.env.PORT || 4002;
 const app = express();
 app.use(express.static(path.join(__dirname, './dist/material-admin')));

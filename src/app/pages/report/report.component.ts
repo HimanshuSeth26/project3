@@ -25,7 +25,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
   user = [];
   users = [];
   tasks = [];
-
+  obj={}
   report(data) {
     this.zone.runOutsideAngular(() => {
       const chart = am4core.create('chartdiv', am4charts.XYChart);

@@ -57,9 +57,9 @@ app.use(cors());
 
 app.use("/api/user", require("./route/posts")) // require route
 app.use("/api/user1", require("./route/newEmployee")) // require route
-// app.use("/api/tasks", require("./route/tasks")) // require route
-// app.use("/api/employee",require("./route/employee"))
-// app.use("/api/state",require("./route/state"))
+app.use("/api/tasks", require("./route/tasks")) // require route
+app.use("/api/employee",require("./route/employee"))
+app.use("/api/state",require("./route/state"))
 
 app.get('/', function (req, res) {
     res.send('Hello from server');

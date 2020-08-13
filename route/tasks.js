@@ -4,19 +4,21 @@ const New = require("../model/task");
 const Assign = require("../model/assigntask");
 
 
-  router.get("/taskOngoing", async (req, res) => {
-    try {
-        const post = await New.find({})
-      // console.log("post")
-      let a = post.filter(item => (
-        item.status === true
+router.get("/taskOngoing", async (req, res) => {
+  try {
+    const posts= await Assign.find({}).populate('employeename task'
+    ).exec();
+    //  console.log(posts)
+    let a = posts.filter(item => (
+      item.task.status === true
     ))
-    // console.log(a)
-        res.send(a)
+    console.log(a)
 
-    } catch (error) {
-        res.status(500)
-    }})
+    res.send(a)
+
+  } catch (error) {
+    res.status(500)
+  }})
   router.get("/", async (req, res) => {
     try {
         const post = await New.find({})

@@ -57,13 +57,13 @@ export class SidebarComponent implements OnInit {
       },
 
 
-
-      {
-
-        title: 'Managers portal',
-        icon: 'widgets',
-        route: '/tasks'
-      },
+      //
+      // {
+      //
+      //   title: 'Managers portal',
+      //   icon: 'widgets',
+      //   route: '/tasks'
+      // },
       // {
       //
       //   title: 'Registration',

@@ -5,24 +5,27 @@ const cors = require('cors');
 const morgan = require("morgan");
 
 const path = require('path');
-
-const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
-mongoose.set('useCreateIndex', true);
-
-mongoose.connect(databaseUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false
+mongoose.connect("mongodb://localhost:27017/MyDb",
+  { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+  console.log('mongodb connected')
 });
-
-mongoose.connection.on('connected', () => {
-  console.log('Connected to Database')
-});
-mongoose.connection.on('error', (err) => {
-  if (err) {
-    console.log('err', err);
-  }
-});
+// const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
+// mongoose.set('useCreateIndex', true);
+//
+// mongoose.connect(databaseUrl, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false
+// });
+//
+// mongoose.connection.on('connected', () => {
+//   console.log('Connected to Database')
+// });
+// mongoose.connection.on('error', (err) => {
+//   if (err) {
+//     console.log('err', err);
+//   }
+// });
 require("./model/user"); // require user.js (model)
 require("./model/newEmployee"); // require newEmployee.js (model)
 require("./model/task"); // require newEmployee.js (model)

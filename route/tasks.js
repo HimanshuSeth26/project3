@@ -52,28 +52,54 @@ router.post("/newTask", async (req, res) => {
 
 router.post("/selfAssign", async (req, res) => {
     try {
-     console.log(req.body)
-      
-  const posts= await Assign.find({}).populate('employeename task'
+      console.log(req.body)
+      const posts= await Assign.find({employeename:req.body.employeename}).populate('employeename task'
       ).exec();
       console.log(posts)
-      console.log("hsgfshfgshfg")
-       console.log(posts. employeename. _id)
-      let b = posts.filter(item => (
-       item.employeename._id === req.body.employeename
+      let b = posts.filter(item=>(
+        item.task.status===true
       ))
-      console.log(b)
-      //console.log(b[0].task._id)
-    //   if (b.length > 0) {
-    //     objOld = { "finish": new Date(), status: false };
-    //     const updateOld = await New.findByIdAndUpdate({
-    //       _id: b[0]._id
-    //     }, objOld, {
-    //       new: true,
-    //       runValidators: true
-    //     });
-    //     console.log("old updated")
-      
+      if (posts.length > 0) {
+        objOld = {"finish": new Date(), status: false};
+        const updateOld = await New.findByIdAndUpdate({
+          _id: b[0].task._id
+        }, objOld, {
+          new: true,
+          runValidators: true
+        });
+        console.log("old updated")
+
+        const task = new New();
+        task.task = req.body.task;
+        task.assign=true;
+        task.status=true;
+        task.start=new Date();
+        await task.save();
+
+        const assign= new Assign();
+        assign.employeename=req.body.employeename
+        assign.task=task._id
+        await assign.save();
+
+        res.send({ result:"old updated , new task started" })
+
+      }
+      if(posts.length===0){
+        const task = new New();
+        task.task = req.body.task;
+        task.assign=true;
+        task.status=true;
+        task.start=new Date();
+        await task.save();
+
+        const assign= new Assign();
+        assign.employeename=req.body.employeename
+        assign.task=task._id
+        await assign.save();
+        res.send({ result:" new task started" })
+
+      }
+
     } catch (error) {
         res.status(500)
     }

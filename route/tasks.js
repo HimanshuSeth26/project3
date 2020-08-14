@@ -8,7 +8,7 @@ router.get("/taskOngoing", async (req, res) => {
   try {
     const posts= await Assign.find({}).populate('employeename task'
     ).exec();
-    //  console.log(posts)
+     console.log(posts)
     let a = posts.filter(item => (
       item.task.status === true
     ))
@@ -52,46 +52,28 @@ router.post("/newTask", async (req, res) => {
 
 router.post("/selfAssign", async (req, res) => {
     try {
-
-      const pst = await New.find({}).lean().exec();
-      b = pst.filter(item => (
-        item.status === true
+     console.log(req.body)
+      
+  const posts= await Assign.find({}).populate('employeename task'
+      ).exec();
+      console.log(posts)
+      console.log("hsgfshfgshfg")
+       console.log(posts. employeename. _id)
+      let b = posts.filter(item => (
+       item.employeename._id === req.body.employeename
       ))
-      // console.log(b)
-      if (b.length > 0) {
-        objOld = { "finish": new Date(), status: false };
-        const updateOld = await New.findByIdAndUpdate({
-          _id: b[0]._id
-        }, objOld, {
-          new: true,
-          runValidators: true
-        });
-        console.log("old updated")
-        console.log(updateOld)
-      }
-
-
-        // console.log(req.body)
-        const post = new New();
-        obj = { "task": req.body.task, "start": new Date(), status: true };
-        post.task = obj.task;
-        post.start = obj.start;
-        post.status = obj.status;
-        await post.save();
-        console.log("new saved")
-        console.log(post)
-
-
-
-        const assign = new Assign();
-        assign.employeename = req.body.employeename;
-        assign.task = post._id
-        await assign.save();
-        console.log("new assign")
-        console.log(assign)
-
-      res.status(200).json({ status: 200, message: "success" });
-
+      console.log(b)
+      //console.log(b[0].task._id)
+    //   if (b.length > 0) {
+    //     objOld = { "finish": new Date(), status: false };
+    //     const updateOld = await New.findByIdAndUpdate({
+    //       _id: b[0]._id
+    //     }, objOld, {
+    //       new: true,
+    //       runValidators: true
+    //     });
+    //     console.log("old updated")
+      
     } catch (error) {
         res.status(500)
     }

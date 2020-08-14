@@ -13,7 +13,7 @@ am4core.useTheme(am4themes_animated);
 })
 export class ReportComponent implements   OnInit, OnDestroy {
   isDisplay = false;
-  private employeeId: any;
+   employeeId: [];
 
   constructor(private zone: NgZone, private _reportService: ReportService) {
   }

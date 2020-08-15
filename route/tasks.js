@@ -56,7 +56,7 @@ router.post("/selfAssign", async (req, res) => {
       const pst = await New.find({}).lean().exec();
       b = pst.filter(item => (
         item.status === true
-      ))
+      )) 
       // console.log(b)
       if (b.length > 0) {
         objOld = { "finish": new Date(), status: false };
@@ -66,8 +66,8 @@ router.post("/selfAssign", async (req, res) => {
           new: true,
           runValidators: true
         });
-        console.log("old updated")
-        console.log(updateOld)
+     //   console.log("old updated")
+       // console.log(updateOld)
       }
 
 
@@ -78,8 +78,8 @@ router.post("/selfAssign", async (req, res) => {
         post.start = obj.start;
         post.status = obj.status;
         await post.save();
-        console.log("new saved")
-        console.log(post)
+        //console.log("new saved")
+      //  console.log(post)
 
 
 
@@ -87,8 +87,8 @@ router.post("/selfAssign", async (req, res) => {
         assign.employeename = req.body.employeename;
         assign.task = post._id
         await assign.save();
-        console.log("new assign")
-        console.log(assign)
+       // console.log("new assign")
+       // console.log(assign)
 
       res.status(200).json({ status: 200, message: "success" });
 
@@ -159,32 +159,40 @@ router.get("/task/:empId", async (req, res) => {
         res.status(500);
     }
 });
-router.get("/:taskId", async (req, res) => {
+
+router.put("/:taskId", async (req, res) => {
     try {
+        console.log(req.query);
+        console.log(req.params.taskId);
+        // const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
+        // ).exec();
+        // // console.log(post)
+        // let a = post.filter(item => (
+        //     item.task.status === true
+        // ))
+        // if (a.length > 0) {
+        //     objOld = { "finish": new Date(), status: false };
+        //     const updateOld = await New.findByIdAndUpdate({
+        //         _id: a[0].task._id
+        //     }, objOld, {
+        //         new: true,
+        //         runValidators: true
+        //     });
+        // }
+        // // console.log(post)
+        // obj = { "start": new Date(), status: true };
+        // const update = await New.findByIdAndUpdate({
+        //     _id: req.params.taskId
 
-        // console.log(req.query.empId);
-        // console.log(req.params.taskId);
-        const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
-        ).exec();
-        // console.log(post)
-        let a = post.filter(item => (
-            item.task.status === true
-        ))
-        if (a.length > 0) {
-            objOld = { "finish": new Date(), status: false };
-            const updateOld = await New.findByIdAndUpdate({
-                _id: a[0].task._id
-            }, objOld, {
-                new: true,
-                runValidators: true
-            });
-        }
-        // console.log(post)
-        obj = { "start": new Date(), status: true };
-        const update = await New.findByIdAndUpdate({
-            _id: req.params.taskId
-
-        }, obj, {
+        // }, obj, {
+        //     new: true,
+        //     runValidators: true
+        // });
+        const user = await New.findByIdAndUpdate({
+        //     _id: req.params.taskId,
+            
+        //    obj = { "break": new Date(), status: false };
+        }, { bj }, {
             new: true,
             runValidators: true
         });

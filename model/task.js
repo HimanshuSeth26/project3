@@ -20,6 +20,9 @@ const schema = new mongoose.Schema({
         type: Date,
 
     },
+    trk: [{starttime:Date, pausetime:Date}],
+     
+
     status: {
         type: Boolean,
     }

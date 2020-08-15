@@ -29,13 +29,20 @@
 
           <td *ngIf="row.task.status"><button type="submit" class="btn btn-danger">
             Ongoing
-          </button></td>
+          </button>
+          <button type="submit" class="btn btn-warning"  (click)=pause(row.task._id)>
+            pause
+          
+          </button>
+        </td>
 
           <td *ngIf="!row.task.status">
             <button type="submit" class="btn btn-success" (click)=task(row.task._id)>
               Start
+            
             </button>
           </td>
+       
         </tr>
 
       </table>

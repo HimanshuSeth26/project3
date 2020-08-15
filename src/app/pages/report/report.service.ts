@@ -30,6 +30,11 @@ export class ReportService {obj={}
     console.log(params)
     return this.http.get<any>(this.tsk + '/' +taskid, {params});
   }
+  pause(taskid, userId){
+    let params =new HttpParams().set('empId', userId)
+    console.log(params)
+    return this.http.put<any>(this.tsk + '/' +taskid, {params});
+  }
 
   geti(){
     return this.http.get<any>(this.emp);

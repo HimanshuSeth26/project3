@@ -97,6 +97,16 @@ export class ReportComponent implements   OnInit, OnDestroy {
       );
 
   }
+  pause(pauseid){
+    console.log("user"+this.user);
+    this._reportService.pause(pauseid, this.user)
+      .subscribe(
+        data => {
+          console.log('data is updated');
+          this.tasklist(this.taskList);
+        }
+      );
+  }
 
   oWntask() {
     // this.user=event._id

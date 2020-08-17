@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const New = require("../model/task");
 const Assign = require("../model/assigntask");
+const { time } = require("console");
 
 
 router.get("/taskOngoing", async (req, res) => {
@@ -213,5 +214,19 @@ router.put("/:taskId", async (req, res) => {
         res.send(500)
     }
 });
+router.get("/asp/:taskId",async(req,res)=>{
+    try{
+const user=await New.findOne({
+    id:req.params.taskId,})
+    console.log(user.start)
+  epochtime=new Date(user.start).getTime()
+ // epochtime2=new Date(user.finish).getTime()
+  //console.log(epochtime)
+ // console.log("epoche2"+epochtime2)
+  res.send("user")
 
+    }catch(error){
+        res.send(500)
+    }
+})
 module.exports = router;

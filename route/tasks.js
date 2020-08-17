@@ -50,67 +50,64 @@ router.post("/newTask", async (req, res) => {
     }
 })
 
+
 router.post("/selfAssign", async (req, res) => {
     try {
-
-      const pst = await New.find({}).lean().exec();
-      b = pst.filter(item => (
-        item.status === true
-      )) 
-      // console.log(b)
-      if (b.length > 0) {
-        objOld = { "finish": new Date(), status: false };
+      console.log(req.body)
+      const posts= await Assign.find({employeename:req.body.employeename}).populate('employeename task'
+      ).exec();
+      console.log(posts)
+      let b = posts.filter(item=>(
+        item.task.status===true
+      ))
+      if (posts.length > 0) {
+        objOld = {"finish": new Date(), status: false};
         const updateOld = await New.findByIdAndUpdate({
-          _id: b[0]._id
+          _id: b[0].task._id
         }, objOld, {
           new: true,
           runValidators: true
         });
-     //   console.log("old updated")
-       // console.log(updateOld)
-      }
+        console.log("old updated")
 
+        const task = new New();
+        task.task = req.body.task;
+        task.assign=true;
+        task.status=true;
+        task.start=new Date();
+        await task.save();
 
-        // console.log(req.body)
-        const post = new New();
-        obj = { "task": req.body.task, "start": new Date(), status: true };
-        post.task = obj.task;
-        post.start = obj.start;
-        post.status = obj.status;
-        await post.save();
-        //console.log("new saved")
-      //  console.log(post)
-
-
-
-        const assign = new Assign();
-        assign.employeename = req.body.employeename;
-        assign.task = post._id
+        const assign= new Assign();
+        assign.employeename=req.body.employeename
+        assign.task=task._id
         await assign.save();
-       // console.log("new assign")
-       // console.log(assign)
 
-      res.status(200).json({ status: 200, message: "success" });
+        res.send({ result:"old updated , new task started" })
+
+      }
+      if(posts.length===0){
+        const task = new New();
+        task.task = req.body.task;
+        task.assign=true;
+        task.status=true;
+        task.start=new Date();
+        await task.save();
+
+        const assign= new Assign();
+        assign.employeename=req.body.employeename
+        assign.task=task._id
+        await assign.save();
+        res.send({ result:" new task started" })
+
+      }
 
     } catch (error) {
         res.status(500)
     }
 
 })
-// router.post("/:postId", async (req, res) => {
-//     try {
-//         //    console.log(req.body)
-//         const post = new New();
-//         post.task = req.body.task;
 
-//         await post.save();
 
-//         res.send(post)
-//     } catch (error) {
-//         res.status(500)
-//     }
-
-// })
 router.delete("/:newId", async (req, res) => {
     try {
         const post = await New.findByIdAndRemove({
@@ -159,44 +156,59 @@ router.get("/task/:empId", async (req, res) => {
         res.status(500);
     }
 });
+router.get("/:taskId", async (req, res) => {
+  try {
 
+      // console.log(req.query.empId);
+      // console.log(req.params.taskId);
+      const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
+      ).exec();
+      // console.log(post)
+      let a = post.filter(item => (
+          item.task.status === true
+      ))
+      if (a.length > 0) {
+          objOld = { "finish": new Date(), status: false };
+          const updateOld = await New.findByIdAndUpdate({
+              _id: a[0].task._id
+          }, objOld, {
+              new: true,
+              runValidators: true
+          });
+      }
+      // console.log(post)
+      obj = { "start": new Date(), status: true };
+      const update = await New.findByIdAndUpdate({
+          _id: req.params.taskId
+
+      }, obj, {
+          new: true,
+          runValidators: true
+      });
+      res.send({ result:"task started" })
+  } catch (error) {
+      res.send(500)
+  }
+});
 router.put("/:taskId", async (req, res) => {
     try {
-        console.log(req.query);
+      //  console.log(req.query);
         console.log(req.params.taskId);
         // const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
         // ).exec();
-        // // console.log(post)
-        // let a = post.filter(item => (
-        //     item.task.status === true
-        // ))
-        // if (a.length > 0) {
-        //     objOld = { "finish": new Date(), status: false };
-        //     const updateOld = await New.findByIdAndUpdate({
-        //         _id: a[0].task._id
-        //     }, objOld, {
-        //         new: true,
-        //         runValidators: true
-        //     });
-        // }
-        // // console.log(post)
-        // obj = { "start": new Date(), status: true };
-        // const update = await New.findByIdAndUpdate({
-        //     _id: req.params.taskId
-
-        // }, obj, {
-        //     new: true,
-        //     runValidators: true
-        // });
-        const user = await New.findByIdAndUpdate({
-        //     _id: req.params.taskId,
+       
+       const user = await New.findOne({
+            _id: req.params.taskId,})
             
-        //    obj = { "break": new Date(), status: false };
-        }, { bj }, {
-            new: true,
-            runValidators: true
-        });
-        res.send({ result:"task started" })
+        user.status=false  
+        trks={starttime:user.start, pausetime:new Date()},
+        
+        user.trk.push( trks)
+        await user.save();
+      
+           //safe:true,upsert:true
+      
+         res.send({ result:"task started" })
     } catch (error) {
         res.send(500)
     }

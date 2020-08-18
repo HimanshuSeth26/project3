@@ -3,6 +3,7 @@ const router = express.Router();
 const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { time } = require("console");
+const task = require("../model/task");
 
 
 router.get("/taskOngoing", async (req, res) => {
@@ -194,7 +195,7 @@ router.get("/:taskId", async (req, res) => {
 router.put("/:taskId", async (req, res) => {
     try {
       //  console.log(req.query);
-        console.log(req.params.taskId);
+        
         // const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
         // ).exec();
        
@@ -202,8 +203,9 @@ router.put("/:taskId", async (req, res) => {
             _id: req.params.taskId,})
             
         user.status=false  
+      //  pause=new Date()
         trks={starttime:user.start, pausetime:new Date()},
-        
+        console.log(pausetime)
         user.trk.push( trks)
         await user.save();
       
@@ -214,17 +216,20 @@ router.put("/:taskId", async (req, res) => {
         res.send(500)
     }
 });
-router.get("/asp/:taskId",async(req,res)=>{
+router.get("/asp/:empId",async(req,res)=>{
     try{
-const user=await New.findOne({
-    id:req.params.taskId,})
-    console.log(user.start)
-  epochtime=new Date(user.start).getTime()
- // epochtime2=new Date(user.finish).getTime()
-  //console.log(epochtime)
- // console.log("epoche2"+epochtime2)
-  res.send("user")
-
+        const post = await Assign.find({ employeename:req.params.empId }).populate(' task'
+         ).exec();
+       
+    post.forEach(item =>
+    // for(j=0;j<trk.length;j++){
+    console.log(post[item].task.trk[0].starttime)})
+  //  epochtime=new Date(post[i].task.trk.slice(0,).starttime).getTime();
+    //console.log(epochtime)
+    //epochtim=new Date(post[i].task.trk[0].pausetime).getTime();
+    //console.log(epochtim)
+    res.send("abc")
+    
     }catch(error){
         res.send(500)
     }

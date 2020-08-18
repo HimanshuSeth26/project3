@@ -195,18 +195,18 @@ router.get("/:taskId", async (req, res) => {
 });
 router.put("/:taskId", async (req, res) => {
     try {
-      //  console.log(req.query);
+      console.log(" req.params.taskId"+ req.params.taskId);
         
         // const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
-        // ).exec();
+         //).exec();
        
        const user = await New.findOne({
             _id: req.params.taskId,})
-            
+      //   console.log("ram aam khata ha========="+user.status)   
         user.status=false  
       //  pause=new Date()
         trks={starttime:user.start, pausetime:new Date()},
-        console.log(pausetime)
+      //  console.log(trks)
         user.trk.push( trks)
         await user.save();
       
@@ -218,42 +218,71 @@ router.put("/:taskId", async (req, res) => {
     }
 });
 router.get("/asp/:empId",async(req,res)=>{
-    try{a=[];
-        
+    try{console.log("dss")
+      a=[];
+        H=[];
+        M=[];
+        t=[];
+        b=[];
         const post = await Assign.find({ employeename:req.params.empId }).populate(' task'
          ).exec();
        
     post.forEach((item)=>{
     // for(j=0;j<trk.length;j++){
      if(item.length!=0)   {
+         //console.log(item.task.task)
+         s=item.task.task
+         t.push(s)
+         ///console.log(s)
+         
             item.task.trk.forEach((element)=>{
-                console.log(element.starttime)
+        //        console.log(element.starttime)
            epochtime=new Date(element.starttime).getTime();
-        console.log(epochtime)
+      //  console.log(epochtime)
         
     epochtim=new Date(element.pausetime).getTime();
-    console.log(epochtim)    
+    //console.log(epochtim)    
     graphtime=   epochtim-  epochtime;
-    console.log(graphtime)
+    //console.log(graphtime)
     a.push(graphtime)
     sec=graphtime/1000;
-    console.log("sec=>"+sec)
+    //console.log("sec=>"+sec)
     hour=sec/3600
-    console.log("hour"+Math.floor(hour))
-    
+    h=Math.floor(hour)
+    H.push(h)
     phours=hour-Math.floor(hour)
     min=phours*60;
 
-    console.log("min"+Math.floor(min))
-    console.log(a)    })
+    m=Math.floor(min)
+    M.push(m)
+ //  console.log(H)
+//console.log(M)
+ let obj={"task":item.task.task,"time":h}
+     b.push(obj)
+     console.log(b)
+    //       })
+    })
         }
    
     })
   
-    res.send("graphtime==========================>"+a)
+    res.send(b)
     
     }catch(error){
         res.send(500)
     }
 })
+// router.get("/graph/result", async (req, res) => {
+//     try {
+//       let a=[]
+//       arrayify.map((item)=>{
+//       let obj={"task":,"time":}
+//       a.push(obj)
+//       })
+//       res.send(a);
+//     }
+//     catch (error) {
+//       res.sendStatus(500);
+//     }
+//   });
 module.exports = router;

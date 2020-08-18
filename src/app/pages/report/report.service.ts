@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ReportService {obj={}
 
-  url = environment.baseUrl + '/user1/graph/result';
+  url = environment.baseUrl + '/tasks/asp';
   emp = environment.baseUrl + '/user1';
   tsk = environment.baseUrl + '/tasks';
 
@@ -40,7 +40,9 @@ export class ReportService {obj={}
     return this.http.get<any>(this.emp);
   }
 
-   get() {
-     return this.http.get<any>(this.url);
+   get(empId,body) {
+     console.log("empId"+empId)
+     let params =new HttpParams().set('isDisplay', body)
+     return this.http.get<any>(this.url+empId,{params});
    }
 }

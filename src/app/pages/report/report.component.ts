@@ -44,8 +44,8 @@ export class ReportComponent implements   OnInit, OnDestroy {
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
       const series = chart.series.push(new am4charts.CurvedColumnSeries());
-      series.dataFields.categoryX = 'country';
-      series.dataFields.valueY = 'value';
+      series.dataFields.categoryX = 'task';
+      series.dataFields.valueY = 'time';
       series.tooltipText = '{valueY.value}';
       series.columns.template.strokeOpacity = 0;
       series.columns.template.tension = 1;
@@ -134,15 +134,16 @@ export class ReportComponent implements   OnInit, OnDestroy {
 
   onChangeName(event) {
     console.log(event);
+    this._reportService.get(this.employeeId,this.isDisplay)
+    .subscribe(
+      data => {
+        this.report(data);console.log(data)
+      }
+    );
   }
 
   ngOnInit() {
-    this._reportService.get()
-      .subscribe(
-        data => {
-          this.report(data);
-        }
-      );
+   
     this._reportService.geti()
       .subscribe(
         data => {

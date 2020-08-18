@@ -42,52 +42,18 @@ router.put("/:user1Id", async (req, res) => {
     });
     res.send(user1)
 });
-router.get("/graph/result", async (req, res) => {
-  try {
-    let arr = [{
-        'country': 'One',
-        'value': 3025
-      }, {
-        'country': 'Two',
-        'value': 1882
-      }, {
-        'country': 'Three',
-        'value': 1809
-      }, {
-        'country': 'Four',
-        'value': 1322
-      }, {
-        'country': 'Five',
-        'value': 1122
-      }, {
-        'country': 'Six',
-        'value': -1114
-      }, {
-        'country': 'Seven',
-        'value': -984
-      }, {
-        'country': 'Eight',
-        'value': 711
-      }, {
-        'country': 'Nine',
-        'value': 665
-      }, {
-        'country': 'Ten',
-        'value': -580
-      }, {
-        'country': 'Eleven',
-        'value': 443
-      }, {
-        'country': 'Twelve',
-        'value': 441
-      }];
-
-
-    res.send(arr);
-  }
-  catch (error) {
-    res.sendStatus(500);
-  }
-});
+// router.get("/graph/result", async (req, res) => {
+//   try {
+//     let a=[]
+//     arrayify.map((item)=>{
+//     let obj={"task":,"time":}
+//     a.push(obj)
+//     })
+//     res.send(a);
+//   }
+//   catch (error) {
+//     res.sendStatus(500);
+//   }
+// });
 
 module.exports = router

@@ -218,7 +218,8 @@ router.put("/:taskId", async (req, res) => {
     }
 });
 router.get("/asp/:empId",async(req,res)=>{
-    try{a=[]
+    try{a=[];
+        
         const post = await Assign.find({ employeename:req.params.empId }).populate(' task'
          ).exec();
        
@@ -235,7 +236,16 @@ router.get("/asp/:empId",async(req,res)=>{
     graphtime=   epochtim-  epochtime;
     console.log(graphtime)
     a.push(graphtime)
-console.log(a)    })
+    sec=graphtime/1000;
+    console.log("sec=>"+sec)
+    hour=sec/3600
+    console.log("hour"+Math.floor(hour))
+    
+    phours=hour-Math.floor(hour)
+    min=phours*60;
+
+    console.log("min"+Math.floor(min))
+    console.log(a)    })
         }
    
     })

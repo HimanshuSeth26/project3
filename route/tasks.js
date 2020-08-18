@@ -4,6 +4,7 @@ const New = require("../model/task");
 const Assign = require("../model/assigntask");
 const { time } = require("console");
 const task = require("../model/task");
+const { NULL } = require("node-sass");
 
 
 router.get("/taskOngoing", async (req, res) => {
@@ -217,18 +218,29 @@ router.put("/:taskId", async (req, res) => {
     }
 });
 router.get("/asp/:empId",async(req,res)=>{
-    try{
+    try{a=[]
         const post = await Assign.find({ employeename:req.params.empId }).populate(' task'
          ).exec();
        
-    post.forEach(item =>
+    post.forEach((item)=>{
     // for(j=0;j<trk.length;j++){
-    console.log(post[item].task.trk[0].starttime)})
-  //  epochtime=new Date(post[i].task.trk.slice(0,).starttime).getTime();
-    //console.log(epochtime)
-    //epochtim=new Date(post[i].task.trk[0].pausetime).getTime();
-    //console.log(epochtim)
-    res.send("abc")
+     if(item.length!=0)   {
+            item.task.trk.forEach((element)=>{
+                console.log(element.starttime)
+           epochtime=new Date(element.starttime).getTime();
+        console.log(epochtime)
+        
+    epochtim=new Date(element.pausetime).getTime();
+    console.log(epochtim)    
+    graphtime=   epochtim-  epochtime;
+    console.log(graphtime)
+    a.push(graphtime)
+console.log(a)    })
+        }
+   
+    })
+  
+    res.send("graphtime==========================>"+a)
     
     }catch(error){
         res.send(500)

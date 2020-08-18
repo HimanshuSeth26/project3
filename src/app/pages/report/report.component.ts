@@ -38,7 +38,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
 
       const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxis.renderer.grid.template.location = 0;
-      categoryAxis.dataFields.category = 'country';
+      categoryAxis.dataFields.category = 'task';
       categoryAxis.renderer.minGridDistance = 40;
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
@@ -46,7 +46,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
       const series = chart.series.push(new am4charts.CurvedColumnSeries());
       series.dataFields.categoryX = 'task';
       series.dataFields.valueY = 'time';
-      series.tooltipText = '{valueY.value}';
+      series.tooltipText = '{valueY.time}';
       series.columns.template.strokeOpacity = 0;
       series.columns.template.tension = 1;
 
@@ -94,8 +94,14 @@ export class ReportComponent implements   OnInit, OnDestroy {
           this.tasks = data;
           this.users = data;
         }
-      );
 
+      );
+      this._reportService.get(this.employeeId)
+      .subscribe(
+        data => {
+        this.isDisplay=true;this.report(data);console.log(data);
+        }
+      );
   }
   pause(pauseid){
     console.log("user"+this.user);
@@ -132,15 +138,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
     });
   }
 
-  onChangeName(event) {
-    console.log(event);
-    this._reportService.get(this.employeeId,this.isDisplay)
-    .subscribe(
-      data => {
-        this.report(data);console.log(data)
-      }
-    );
-  }
+  
 
   ngOnInit() {
    

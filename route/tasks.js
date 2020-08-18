@@ -247,7 +247,7 @@ router.get("/asp/:empId",async(req,res)=>{
     a.push(graphtime)
     sec=graphtime/1000;
     //console.log("sec=>"+sec)
-    hour=sec/3600
+    hour=sec/60
     h=Math.floor(hour)
     H.push(h)
     phours=hour-Math.floor(hour)

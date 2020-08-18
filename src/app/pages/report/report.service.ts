@@ -40,9 +40,9 @@ export class ReportService {obj={}
     return this.http.get<any>(this.emp);
   }
 
-   get(empId,body) {
+   get(empId) {
      console.log("empId"+empId)
-     let params =new HttpParams().set('isDisplay', body)
-     return this.http.get<any>(this.url+empId,{params});
+    // let params =new HttpParams().set('isDisplay', body)
+     return this.http.get<any>(this.url+'/'+empId);
    }
 }

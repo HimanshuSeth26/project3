@@ -5,6 +5,7 @@ const Assign = require("../model/assigntask");
 const { time } = require("console");
 const task = require("../model/task");
 const { NULL } = require("node-sass");
+const { sum } = require("chartist");
 
 
 router.get("/taskOngoing", async (req, res) => {
@@ -234,7 +235,7 @@ router.get("/asp/:empId",async(req,res)=>{
          s=item.task.task
          t.push(s)
          ///console.log(s)
-         
+          var sum=0; 
             item.task.trk.forEach((element)=>{
         //        console.log(element.starttime)
            epochtime=new Date(element.starttime).getTime();
@@ -243,13 +244,16 @@ router.get("/asp/:empId",async(req,res)=>{
     epochtim=new Date(element.pausetime).getTime();
     //console.log(epochtim)    
     graphtime=   epochtim-  epochtime;
-    //console.log(graphtime)
+   
+   
     a.push(graphtime)
     sec=graphtime/1000;
     //console.log("sec=>"+sec)
     hour=sec/60
     h=Math.floor(hour)
-    H.push(h)
+    
+    sum=sum+h;
+    //console.log(sum)
     phours=hour-Math.floor(hour)
     min=phours*60;
 
@@ -257,13 +261,16 @@ router.get("/asp/:empId",async(req,res)=>{
     M.push(m)
  //  console.log(H)
 //console.log(M)
- let obj={"task":item.task.task,"time":h}
-     b.push(obj)
-     console.log(b)
+ 
+    // console.log(b)
     //       })
     })
-        }
-   
+      console.log(sum)
+      H.push(sum)
+        let obj={"task":item.task.task,"time":sum}
+        b.push(obj)
+        console.log(b)
+  }
     })
   
     res.send(b)

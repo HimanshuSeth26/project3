@@ -68,8 +68,24 @@ export class ProjectreviewComponent implements OnInit {
         });
   }
 
+projectList(event){
+  console.log(event._id)
+  this.event = event
+  this.projectId = event._id
+  this.employee = event.employeeName.employeename;
+  this._projectService.getElementById(event._id)
+    .subscribe(
+      data => {
+        this.user = data
+        console.log('success!', data)
+        this.rerender();
+
+
+      }
+    )
+}
   onChangeName($event) {
-    //console.log($event._id)
+    console.log($event._id)
     this.event = $event
     this.projectId = $event._id
     this.employee = $event.employeeName.employeename;
@@ -77,7 +93,7 @@ export class ProjectreviewComponent implements OnInit {
       .subscribe(
         data => {
           this.user = data
-          //console.log('success!', data)
+          console.log('success!', data)
           this.rerender();
 
 

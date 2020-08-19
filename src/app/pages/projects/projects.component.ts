@@ -39,7 +39,9 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     this._projectsService.get()
       .subscribe(
         data => {
-          this.users = data;
+          console.log('success!', data)
+         // this.emp = data;
+          this.users=data;
 
         });
     this._projectsService.get1()
@@ -54,7 +56,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
         .subscribe(
           data=> {
             console.log('success!', data)
-            this.userModel=new User('','');
+           this.userModel=new User('','');
             this.ngOnInit()
           },
           error=>console.error('Error!',error)

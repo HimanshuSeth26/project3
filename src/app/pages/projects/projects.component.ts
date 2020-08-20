@@ -1,7 +1,5 @@
 import {AfterViewInit, Component,OnDestroy, OnInit,ViewChild } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
-import {ViewcredentialsService} from "../viewcredentials/viewcredentials.service";
-import {Projects} from "@angular/cli/lib/config/schema";
 import {ProjectsService} from "./projects.service";
 import {User} from "./user";
 import {Subject} from 'rxjs';
@@ -63,9 +61,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
 
         )
     }
-  onChangeName(event) {
-    console.log(event);
-  }
+
   ngAfterViewInit() {
     this.dtTrigger.next();
   }

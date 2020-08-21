@@ -2,6 +2,10 @@ const express = require("express");
 const router = express.Router();
 const User1 = require("../model/newEmployee");
 const Assign = require("../model/assigntask");
+<<<<<<< HEAD
+=======
+const Task = require("../model/task");
+>>>>>>> 0a491d42ec55cfd4b7631bdb9bec1d6a7c6869e5
 
 
 router.post("/", async (req, res) => {
@@ -19,6 +23,7 @@ router.get("/", async (req, res) => {
 // Delete Operation
 
 router.delete("/:user1Id", async (req, res) => {
+<<<<<<< HEAD
     
    //const post = await Assign.findByIdAndRemove({employeename:req.params.user1Id }).populate(' task'
    //).exec();
@@ -34,6 +39,26 @@ router.delete("/:user1Id", async (req, res) => {
      
     res.send(posts)
 }) 
+=======
+
+  const assign = await Assign.find({ employeename: req.params.user1Id }).exec();
+  let taskId=[]
+  assign.forEach((item)=>{
+    taskId.push(item.task)
+  })
+  for(i=0;i<taskId.length;i++){
+    await Task.findByIdAndRemove({_id: taskId[i]});
+  }
+  for(i=0;i<assign.length;i++){
+    await Assign.findByIdAndRemove({_id: assign[i]._id});
+  }
+    const user1 = await User1.findByIdAndRemove({
+        _id: req.params.user1Id
+    });
+
+    res.send(user1)
+})
+>>>>>>> 0a491d42ec55cfd4b7631bdb9bec1d6a7c6869e5
 
 //GetElementById
 

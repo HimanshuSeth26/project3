@@ -12,7 +12,7 @@ const routes: Routes = [
       // Home
       {
         path: '',
-        redirectTo: 'home',
+        redirectTo: 'tasks',
         pathMatch: 'full'
       },
       {

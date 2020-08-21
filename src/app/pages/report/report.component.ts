@@ -129,6 +129,12 @@ export class ReportComponent implements   OnInit, OnDestroy {
 // this.ngOnInit()
 
   }
+  Finish(event){
+    this._reportService.finish( event)
+    .subscribe(
+      data => {
+        console.log('data is updated');})
+  }
 
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {

@@ -25,9 +25,9 @@
 
         <tr *ngFor="let row of tasks">
 
-       <td *ngIf="!(row.task==null)"class="list-group-item list-group-item-primary" bindLabel="task">{{ row.task.task }}</td>
-<td *ngIf="row.task.status"><button type="submit" class="btn btn-danger">
-            Ongoing
+       <td *ngIf="row.task.status!==null"class="list-group-item list-group-item-primary" bindLabel="task">{{ row.task.task }}</td>
+<td *ngIf="row.task.status==true"><button type="submit" class="btn btn-danger" (click)=Finish(row.task._id)>
+            Finish
           </button>&nbsp;
           <button type="submit" class="btn btn-warning"  (click)=pause(row.task._id)>
             pause
@@ -35,7 +35,7 @@
           </button>
         </td>
 
-          <td *ngIf="!row.task.status">
+          <td *ngIf="row.task.status!==null||row.task.status==false">
             <button type="submit" class="btn btn-success" (click)=task(row.task._id)>
               Start
             

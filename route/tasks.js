@@ -64,7 +64,8 @@ router.post("/selfAssign", async (req, res) => {
       let b = posts.filter(item=>(
         item.task.status===true
       ))
-      if (posts.length > 0) {
+      console.log(b)
+      if (b.length > 0) {console.log("abc1")
         objOld = {"finish": new Date(), status: false};
         const updateOld = await New.findByIdAndUpdate({
           _id: b[0].task._id
@@ -89,7 +90,7 @@ router.post("/selfAssign", async (req, res) => {
         res.send({ result:"old updated , new task started" })
 
       }
-      if(posts.length===0){
+      if(b.length===0){
         const task = new New();
         task.task = req.body.task;
         task.assign=true;
@@ -160,6 +161,32 @@ router.get("/task/:empId", async (req, res) => {
         res.status(500);
     }
 });
+
+
+
+
+router.get("/:taskId/finish", async (req, res) => {
+  try {
+      //  console.log(req.body)
+      obj={"status":null}
+      const finish = await New.findOneAndUpdate({ _id: req.params.taskId },
+      
+      obj, {
+        new: true,
+        runValidators: true
+    }
+    );
+      res.send(finish)
+  } catch (error) {
+      res.status(500);
+  }
+});
+
+
+
+
+
+
 router.get("/:taskId", async (req, res) => {
   try {
 

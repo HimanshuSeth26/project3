@@ -45,4 +45,7 @@ export class ReportService {obj={}
     // let params =new HttpParams().set('isDisplay', body)
      return this.http.get<any>(this.url+'/'+empId);
    }
+   finish(emp){
+     return this.http.get<any>(this.tsk+'/'+emp+'/finish')
+   }
 }

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User1 = require("../model/newEmployee");
+const Assign = require("../model/assigntask");
 
 
 router.post("/", async (req, res) => {
@@ -18,11 +19,21 @@ router.get("/", async (req, res) => {
 // Delete Operation
 
 router.delete("/:user1Id", async (req, res) => {
-    const user1 = await User1.findByIdAndRemove({
-        _id: req.params.user1Id
-    });
-    res.send(user1)
-})
+    
+   //const post = await Assign.findByIdAndRemove({employeename:req.params.user1Id }).populate(' task'
+   //).exec();
+    
+      const post = await Assign.find({}).populate('employeename task'
+      ).exec();
+     console.log("post"+post.employeename)
+     const posts = await Assign.findByIdAndRemove({employeename:post._id}).populate(' task'
+   ).exec();
+   const user1 = await User1.findByIdAndRemove({
+    _id: req.params.user1Id
+});
+     
+    res.send(posts)
+}) 
 
 //GetElementById
 

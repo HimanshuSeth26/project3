@@ -29,6 +29,11 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     {
       title: ' Employee Name',
+    },
+    {
+      title: ' DELETE',
+    } , {
+      title: ' EDIT',
     }
   ];
 

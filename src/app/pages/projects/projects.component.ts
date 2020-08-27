@@ -1,4 +1,5 @@
 import {AfterViewInit, Component,OnDestroy, OnInit,ViewChild } from '@angular/core';
+
 import { DataTableDirective } from 'angular-datatables';
 import {ProjectsService} from "./projects.service";
 import {User} from "./user";
@@ -15,8 +16,11 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   @ViewChild(DataTableDirective, { static: false })
+ 
   dtElement: DataTableDirective;
   options: any = {};
+  @ViewChild('modal', {static: false})
+  modal: any;
   dtTrigger: Subject<any> = new Subject();
   userModel=new User('','');
   users: Array<any> = [];
@@ -38,6 +42,8 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
   value = [];
   id = {};
 
+
+
   ngOnInit() {
     this._projectsService.get()
       .subscribe(
@@ -53,8 +59,23 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
           this.emp = data;
           this.rerender();
         });
-  }
+  }  delete(userId) {
+    this._projectsService.delete(userId)
+  .subscribe(
+        data => {
+          console.log('data deleted ',data)
+          this.ngOnInit();}
+        
+      );
+        }
+        
     onSubmit() {
+      this._projectsService.edit( this.userModel, this.id)
+      .subscribe(
+        data => {
+          console.log('Success', data); this.modal.hide(), this.ngOnInit();
+        },
+        error => console.error('Error', error));
       this._projectsService.enroll(this.userModel)
         .subscribe(
           data=> {
@@ -74,6 +95,14 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnDestroy() {
     // Do not forget to unsubscribe the event
     this.dtTrigger.unsubscribe();
+  }
+  put(userId) {
+    this.modal.show();
+    this.id = userId;
+    this._projectsService.getElementById(userId).subscribe(data => {
+      this. userModel = data;console.log(this.userModel)
+    });
+
   }
 
   rerender() {

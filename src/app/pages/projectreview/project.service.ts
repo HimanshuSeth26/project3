@@ -52,7 +52,10 @@ get1(){
     return this.http.put<any>(this.url2+'/'+user1Id,user);
   }
 
-
+ngdt(obj){
+  console.log("obj"+obj)
+  return this.http.put<any>(this.url1 + '/self', obj);
+}
 
 
 

@@ -7,7 +7,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Enter Your Project</label>
-          <input type="text" class="form-control" placeholder="Enter Your Project" #project="ngModel" name="project"[(ngModel)]="userModel.project">
+          <input type="text" class="form-control"  #project="ngModel" name="projectName"[(ngModel)]=" userModel.projectname">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -15,7 +15,7 @@
         <div class="form-group">
           <label>Select Employees</label>
           <ng-select [items]="users" bindLabel="employeename"  [clearable]=false
-                     placeholder="Select Employee" #employee="ngModel" name="employee"[(ngModel)]="userModel.employee">
+                      #employee="ngModel" name="employeeName"[(ngModel)]=" userModel.employeeName">
             <i class="form-group__bar"></i>
           </ng-select>
         </div>
@@ -38,9 +38,47 @@
 
 
         <td >{{user.employeeName.employeename}}</td>
+        <td>  <button class="btn btn-primary btn-sm btn--icon-text" (click)="delete(user._id)">
+          <i class="zmdi zmdi-delete"></i> Delete
+        </button></td>
+        <td>
+          <button class="btn btn-primary btn-sm btn--icon-text" (click)="put(user._id)">
+            <i class="zmdi zmdi-edit"></i> Edit
+          </button>
       </tr>
       </tbody>
 </table>
+  </div>
+</div>
+
+<div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-static-name">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Details</h4>
+      </div>
+      <form #userForm="ngForm"  (ngSubmit)="onSubmit()" novalidate>
+        <div class="modal-body">
+
+          <div class="content__inner">
+            <div class="form-group">
+              <label>Enter Your Project</label>
+              <input type="text" class="form-control" placeholder="Enter Your Project" #projectname="ngModel" name="projectname" [(ngModel)]="userModel. projectname">
+              <i class="form-group__bar"></i>
+              <label>Select Employees</label>
+              <ng-select [items]="users" bindLabel="employeename"  [clearable]=false
+                         placeholder="Select Employee" #employeename="ngModel" name="employee"[(ngModel)]="userModel.employeeName">
+                <i class="form-group__bar"></i>
+              </ng-select>
+            </div>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-link"
+                    >Save changes</button>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
 

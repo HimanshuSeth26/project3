@@ -12,11 +12,11 @@ router.get("/taskOngoing", async (req, res) => {
   try {
     const posts= await Assign.find({}).populate('employeename task'
     ).exec();
-    console.log("posts")
+   // console.log("posts")
     let a = posts.filter(item => (
       item.task.status === true
     ))
-    console.log(a)
+   
 
     res.send(a)
 
@@ -57,23 +57,23 @@ router.post("/newTask", async (req, res) => {
 
 router.post("/selfAssign", async (req, res) => {
     try {
-      console.log(req.body)
+    
       const posts= await Assign.find({employeename:req.body.employeename}).populate('employeename task'
       ).exec();
-      console.log(posts)
+     
       let b = posts.filter(item=>(
         item.task.status===true
       ))
-      console.log(b)
+     
       if (b.length > 0) {console.log("abc1")
-        objOld = {"finish": new Date(), status: false};
+        objOld = {"finish": new Date()};
         const updateOld = await New.findByIdAndUpdate({
           _id: b[0].task._id
         }, objOld, {
           new: true,
           runValidators: true
         });
-        console.log("old updated")
+       // console.log("old updated")
 
         const task = new New();
         task.task = req.body.task;
@@ -162,7 +162,16 @@ router.get("/task/:empId", async (req, res) => {
     }
 });
 
-
+router.get("/finishtask/:empId", async (req, res) => {
+  try {
+      //  console.log(req.body)
+      const post = await Assign.find({ employeename: req.params.empId }).populate(' task'
+      ).exec();
+      res.send(post)
+  } catch (error) {
+      res.status(500);
+  }
+});
 
 
 router.get("/:taskId/finish", async (req, res) => {
@@ -199,7 +208,7 @@ router.get("/:taskId", async (req, res) => {
           item.task.status === true
       ))
       if (a.length > 0) {
-          objOld = { "finish": new Date(), status: false };
+          objOld = { "finish": new Date() };
           const updateOld = await New.findByIdAndUpdate({
               _id: a[0].task._id
           }, objOld, {
@@ -246,7 +255,7 @@ router.put("/:taskId", async (req, res) => {
     }
 });
 router.get("/asp/:empId",async(req,res)=>{
-    try{console.log("dss")
+    try{
       a=[];
         H=[];
         M=[];
@@ -292,11 +301,11 @@ router.get("/asp/:empId",async(req,res)=>{
     // console.log(b)
     //       })
     })
-      console.log(sum)
+    //  console.log(sum)
       H.push(sum)
         let obj={"task":item.task.task,"time":sum}
         b.push(obj)
-        console.log(b)
+      //  console.log(b)
   }
     })
   

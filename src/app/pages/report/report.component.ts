@@ -13,6 +13,7 @@ am4core.useTheme(am4themes_animated);
 })
 export class ReportComponent implements   OnInit, OnDestroy {
   isDisplay = false;
+  isdisplay=false;
   private employeeId: any;
 
   constructor(private zone: NgZone, private _reportService: ReportService) {
@@ -84,6 +85,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
   }
 
   tasklist(event) {
+    
     this.taskList = event;
     this.employeeId = event._id;
     console.log(event._id);
@@ -113,8 +115,23 @@ export class ReportComponent implements   OnInit, OnDestroy {
         }
       );
   }
+  finishtasklist(){
+    this.isDisplay=!this.isDisplay
+    // this._reportService.flist(this.employeeId)
+    // .subscribe(
+    //   data => {
+      //   console.log('data is updated');
+      //this.tasklist(this.taskList);
+     // });
 
+  }
+   pausetasklist(){
+     this.isdisplay=!this.isdisplay
+ }
   oWntask() {
+    if(this.employeeId===undefined){
+      alert("Hey User!!!please Select employeename")
+    }
     // this.user=event._id
     this.obj = {'employeename': this.employeeId, 'task': this.userModel.task};
     this._reportService.oWnt(  this.obj)
@@ -133,7 +150,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
     this._reportService.finish( event)
     .subscribe(
       data => {
-        console.log('data is updated');})
+        console.log('data is updated'); this.tasklist(this.taskList);})
   }
 
   ngOnDestroy() {

@@ -24,7 +24,9 @@ export class ReportService {obj={}
     console.log(obj)
     return this.http.post<any>(this.tsk + '/selfAssign', obj);
   }
-
+flist(userId){
+  return this.http.get<any>(this.tsk + '/finishtask/' + userId);
+}
   task(taskid, userId){
     let params =new HttpParams().set('empId', userId)
     console.log(params)

@@ -39,7 +39,7 @@ console.log(task)*/
 
 router.get("/id/:user1Id/:task", async (req, res) => {
   let task = decodeURIComponent(req.params.task);
-  console.log(task)
+ // console.log(task)
   const user1 = await Emp.find({ project: req.params.user1Id,task:task})
   res.send(user1)
 });

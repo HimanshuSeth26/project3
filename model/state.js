@@ -16,6 +16,19 @@ const state_schema = new mongoose.Schema({
   state: {
     type: String,
     required: "state is Required"
-  }
+  },
+   created_at    : { type: Date }
+  , updated_at    : { type: Date }
+  
+
 });
+state_schema.pre('save', function(next){
+  now = new Date();
+  this.updated_at = now;
+  if ( !this.created_at ) {
+    this.created_at = now;
+  }
+  next();
+});
+
 module.exports = mongoose.model("state", state_schema)

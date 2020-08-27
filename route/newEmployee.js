@@ -6,7 +6,7 @@ const Task = require("../model/task");
 const Emp = require("../model/employee");
 
 router.post("/", async (req, res) => {
-    console.log(req.body);
+   // console.log(req.body);
     const user1 = new User1();  // creating an object of an class User1
     user1.employeename = req.body.employeename;
     user1.dummy=false
@@ -18,7 +18,8 @@ router.get("/", async (req, res) => {
     const user1 = await User1.find({})
     res.send(user1)
 });
-// Delete Operation
+// Delete Operatio
+
 
 router.delete("/:user1Id", async (req, res) => {
   const user = await User1.findById({ _id: req.params.user1Id}).exec();
@@ -40,7 +41,7 @@ router.delete("/:user1Id", async (req, res) => {
     empId.push(item._id)
   })
   obj={"employeeName":'5f3f59d5d832a537cc8f7529'}
-  console.log(empId[0])
+ // console.log(empId[0])
   const use = await Emp.findByIdAndUpdate({
     _id: empId[0]
 },
@@ -50,12 +51,12 @@ obj, {
     new: true,
     runValidators: true
 });
-  console.log(empId)
+  //console.log(empId)
   
-  const user2 = await User1.findByIdAndRemove({
+  const user2 = await Emp.findByIdAndRemove({
       _id: req.params.user1Id
     });
-  console.log("ABCDEFGH")
+  //console.log("ABCDEFGH")
     res.send(user2)
 }
 // else
@@ -66,16 +67,38 @@ obj, {
 //GetElementById
 
 router.get("/:user1Id", async (req, res) => {
+ // console.log("himan")
     const user1 = await User1.findOne({ _id: req.params.user1Id })
     res.send(user1)
 });
-
+router.get("/:user1Id/upadteproject", async (req, res) => {
+  //console.log("himan")
+    const user1 = await Emp.findOne({ _id: req.params.user1Id }).populate('employeeName'
+    ).exec();
+    res.send(user1)
+});
+router.delete("/:user1Id/project", async (req, res) => {
+  const user1 = await Emp.findByIdAndRemove({ _id: req.params.user1Id })
+  res.send(user1)
+ // console.log("abcdfhjk")
+});
 //Edit or put Operation
+router.put("/:user1Id/upadteproject", async (req, res) => {
+  //console.log("put is runing"+req.params)
+    const user1 = await Emp.findByIdAndUpdate({
+        _id: req.params.user1Id
+    }, req.body, {
+        new: true,
+        runValidators: true
+    });
+    res.send(user1)
+});
 
 router.put("/:user1Id", async (req, res) => {
+ // console.log("put is runing"+req.params)
     const user1 = await User1.findByIdAndUpdate({
         _id: req.params.user1Id
-    }.exec(), req.body, {
+    }, req.body, {
         new: true,
         runValidators: true
     });

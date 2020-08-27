@@ -37,8 +37,11 @@ export class ProjectreviewComponent implements OnInit {
   users: Array<any> = [];
   employee=''
   event: {}
-
+  obj={}
   columns: Array<any> = [
+    {
+      title: 'Created_At'
+    },
     {
       title: 'Task',
     },
@@ -59,25 +62,60 @@ export class ProjectreviewComponent implements OnInit {
 
 
   ngOnInit() {
+    // this._projectService.get()
+    // .subscribe(
+    //   data => {
+    //     data.forEach(data=>{
+    //       data.date = new Date(data.date).toDateString();
+    //     })
+    //     console.log('data is coming from backend', data)
+    //     this.users = data;
+    //     //this.rerender();
+    //   });
 
     this._projectService.get1()
       .subscribe(
         data => {
+        
           this.projects = data;
+          
           this.rerender();
         });
+
+    
   }
 
+projectList(event){
+  console.log(event._id)
+  this.event = event
+  this.projectId = event._id
+  this.employee = event.employeeName.employeename;
+  this._projectService.getElementById(event._id)
+    .subscribe(
+      data => {
+        this.user = data
+        console.log('data is coming from backend', data)
+        console.log('success!', data)
+        this.rerender();
+
+
+      }
+    )
+}
   onChangeName($event) {
-    //console.log($event._id)
+    console.log($event._id)
     this.event = $event
     this.projectId = $event._id
     this.employee = $event.employeeName.employeename;
     this._projectService.getElementById($event._id)
       .subscribe(
-        data => {
+        data => {  data.forEach(data=>{
+          data.created_at = new Date(data.created_at).toDateString();
+         })
+          //  data.created_at = new Date(data.created_at).toDateString();
           this.user = data
-          //console.log('success!', data)
+          console.log('data is coming from backend', data)
+          console.log('success!', data)
           this.rerender();
 
 
@@ -180,11 +218,23 @@ export class ProjectreviewComponent implements OnInit {
   ngDate() {
     this.startTime = JSON.stringify(this.bsValueRange[0]);
     this.endTime = JSON.stringify(this.bsValueRange[1]) ;
-    console.log(this.startTime)
-    console.log(this.endTime)
-
+    console.log(this.startTime);
+    console.log(this.endTime);
+   
+      // this.user=event._id
+      this.obj = {'startTime': this.startTime, 'endTime': this.endTime};
+      this._projectService.ngdt(this.obj)
+        .subscribe(
+          data => {
+            this.user = data
+            console.log('data is updated');
+            //this.tasklist(this.taskList);
+           // this.userModel = new User('');
+  
+          }
+        );
   }
+
+
+
 }
-
-
-

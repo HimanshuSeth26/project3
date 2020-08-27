@@ -101,6 +101,9 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of user">
+        <td>
+          {{user.created_at}}
+        </td>
         <td>{{ user.task}}
         </td>
         <td>{{user.state}}</td>

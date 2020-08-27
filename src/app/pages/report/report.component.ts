@@ -13,6 +13,7 @@ am4core.useTheme(am4themes_animated);
 })
 export class ReportComponent implements   OnInit, OnDestroy {
   isDisplay = false;
+  isdisplay=false;
   private employeeId: any;
 
   constructor(private zone: NgZone, private _reportService: ReportService) {
@@ -38,15 +39,15 @@ export class ReportComponent implements   OnInit, OnDestroy {
 
       const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
       categoryAxis.renderer.grid.template.location = 0;
-      categoryAxis.dataFields.category = 'country';
+      categoryAxis.dataFields.category = 'task';
       categoryAxis.renderer.minGridDistance = 40;
 
       const valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
 
       const series = chart.series.push(new am4charts.CurvedColumnSeries());
-      series.dataFields.categoryX = 'country';
-      series.dataFields.valueY = 'value';
-      series.tooltipText = '{valueY.value}';
+      series.dataFields.categoryX = 'task';
+      series.dataFields.valueY = 'time';
+      series.tooltipText = '{valueY.time}';
       series.columns.template.strokeOpacity = 0;
       series.columns.template.tension = 1;
 
@@ -84,6 +85,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
   }
 
   tasklist(event) {
+    
     this.taskList = event;
     this.employeeId = event._id;
     console.log(event._id);
@@ -94,11 +96,42 @@ export class ReportComponent implements   OnInit, OnDestroy {
           this.tasks = data;
           this.users = data;
         }
+
       );
+      this._reportService.get(this.employeeId)
+      .subscribe(
+        data => {
+        this.isDisplay=true;this.report(data);console.log(data);
+        }
+      );
+  }
+  pause(pauseid){
+    console.log("user"+this.user);
+    this._reportService.pause(pauseid, this.user)
+      .subscribe(
+        data => {
+          console.log('data is updated');
+          this.tasklist(this.taskList);
+        }
+      );
+  }
+  finishtasklist(){
+    this.isDisplay=!this.isDisplay
+    // this._reportService.flist(this.employeeId)
+    // .subscribe(
+    //   data => {
+      //   console.log('data is updated');
+      //this.tasklist(this.taskList);
+     // });
 
   }
-
+   pausetasklist(){
+     this.isdisplay=!this.isdisplay
+ }
   oWntask() {
+    if(this.employeeId===undefined){
+      alert("Hey User!!!please Select employeename")
+    }
     // this.user=event._id
     this.obj = {'employeename': this.employeeId, 'task': this.userModel.task};
     this._reportService.oWnt(  this.obj)
@@ -113,6 +146,12 @@ export class ReportComponent implements   OnInit, OnDestroy {
 // this.ngOnInit()
 
   }
+  Finish(event){
+    this._reportService.finish( event)
+    .subscribe(
+      data => {
+        console.log('data is updated'); this.tasklist(this.taskList);})
+  }
 
   ngOnDestroy() {
     this.zone.runOutsideAngular(() => {
@@ -122,17 +161,10 @@ export class ReportComponent implements   OnInit, OnDestroy {
     });
   }
 
-  onChangeName(event) {
-    console.log(event);
-  }
+  
 
   ngOnInit() {
-    this._reportService.get()
-      .subscribe(
-        data => {
-          this.report(data);
-        }
-      );
+   
     this._reportService.geti()
       .subscribe(
         data => {

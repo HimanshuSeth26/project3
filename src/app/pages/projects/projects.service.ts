@@ -23,5 +23,15 @@ export class ProjectsService{
 get1(){
   return this.http.get<any>(this.url1);
 }
+delete(userId){
+  return this.http.delete<any>(this.url+'/'+userId+'/project');
+}
+edit(user1: User, userId) {
+  return this.http.put<any>(this.url+'/'+userId+'/upadteproject',user1);
+}
+
+getElementById(userId){
+  return this.http.get<any>(this.url+'/'+userId+'/upadteproject');
+}
 
 }

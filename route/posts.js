@@ -4,7 +4,7 @@ const User = require("../model/user");
 
 
 router.post("/", async (req, res) => {
-    console.log(req.body)
+    //console.log(req.body)
     const user = new User();  // creating an object of an class User
     user.name = req.body.name
     user.email = req.body.email

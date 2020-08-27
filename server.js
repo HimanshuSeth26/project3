@@ -5,7 +5,7 @@ const cors = require('cors');
 const morgan = require("morgan");
 
 const path = require('path');
-
+//
 // mongoose.connect("mongodb://localhost:27017/MyDb",
 //   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 //   console.log('mongodb connected')
@@ -26,7 +26,7 @@ mongoose.connection.on('error', (err) => {
   if (err) {
     console.log('err', err);
   }
-// });
+});
 require("./model/user"); // require user.js (model)
 require("./model/newEmployee"); // require newEmployee.js (model)
 require("./model/task"); // require newEmployee.js (model)
@@ -45,20 +45,18 @@ app.use("/api/employee",require("./route/employee"))
 app.use("/api/state",require("./route/state"))
 
 app.get('/', function (req, res) {
-    res.send('Hello from server');
- })
+  res.send('Hello from server');
+})
 
- app.post('/enroll', function (req, res) {
-    console.log(req.body);
-    res.status(200).send({"message": "Data received"})
- })
+app.post('/enroll', function (req, res) {
+  console.log(req.body);
+  res.status(200).send({"message": "Data received"})
+})
 
- app.listen(PORT, function(){
+app.listen(PORT, function(){
   console.log("Server running on localhost:" + PORT);
 });
 
-
-});
 
 
 

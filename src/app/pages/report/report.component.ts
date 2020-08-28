@@ -13,7 +13,7 @@ am4core.useTheme(am4themes_animated);
 })
 export class ReportComponent implements   OnInit, OnDestroy {
   isDisplay = false;
-  isdisplay=false;
+  isdisplay=true;
   private employeeId: any;
 
   constructor(private zone: NgZone, private _reportService: ReportService) {
@@ -117,6 +117,8 @@ export class ReportComponent implements   OnInit, OnDestroy {
   }
   finishtasklist(){
     this.isDisplay=!this.isDisplay
+  //  this.isdisplay=!this.isdisplay
+  //  this.pausetasklist()
     // this._reportService.flist(this.employeeId)
     // .subscribe(
     //   data => {
@@ -127,6 +129,8 @@ export class ReportComponent implements   OnInit, OnDestroy {
   }
    pausetasklist(){
      this.isdisplay=!this.isdisplay
+    // this.isDisplay=!this.isDisplay
+    // this.finishtasklist()
  }
   oWntask() {
     if(this.employeeId===undefined){

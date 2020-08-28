@@ -12,12 +12,14 @@ router.get("/taskOngoing", async (req, res) => {
   try {
     const posts= await Assign.find({}).populate('employeename task'
     ).exec();
-   // console.log("posts")
+ 
     let a = posts.filter(item => (
+      console.log( item.task.status),
       item.task.status === true
+      
     ))
    
-
+    console.log(a)
     res.send(a)
 
   } catch (error) {

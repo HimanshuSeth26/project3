@@ -68,14 +68,19 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
         
       );
         }
+
+
+        edit(){
+          this._projectsService.edit( this.userModel, this.id)
+          .subscribe(
+            data => {
+              console.log('Success', data); this.modal.hide(), this.ngOnInit();
+            },
+            error => console.error('Error', error));
+        }
         
     onSubmit() {
-      this._projectsService.edit( this.userModel, this.id)
-      .subscribe(
-        data => {
-          console.log('Success', data); this.modal.hide(), this.ngOnInit();
-        },
-        error => console.error('Error', error));
+     
       this._projectsService.enroll(this.userModel)
         .subscribe(
           data=> {

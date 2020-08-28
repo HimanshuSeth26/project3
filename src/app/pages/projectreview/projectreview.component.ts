@@ -226,6 +226,9 @@ projectList(event){
       this._projectService.ngdt(this.obj)
         .subscribe(
           data => {
+            data.forEach(data=>{
+              data.created_at = new Date(data.created_at).toDateString();
+             })
             this.user = data
             console.log('data is updated');
             //this.tasklist(this.taskList);

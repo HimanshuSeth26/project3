@@ -39,12 +39,13 @@ const PORT = process.env.PORT || 4003;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, './dist/material-admin')));
+
 app.use("/api/user", require("./route/posts")) // require route
 app.use("/api/user1", require("./route/newEmployee")) // require route
 app.use("/api/tasks", require("./route/tasks")) // require route
 app.use("/api/employee",require("./route/employee"))
 app.use("/api/state",require("./route/state"))
-app.use(express.static(path.join(__dirname, './dist/material-admin')));
 
 app.get('/', function (req, res) {
   res.send('Hello from server');
@@ -54,7 +55,6 @@ app.post('/enroll', function (req, res) {
   console.log(req.body);
   res.status(200).send({"message": "Data received"})
 })
-
 
 app.listen(PORT, function(){
   console.log("Server running on localhost:" + PORT);

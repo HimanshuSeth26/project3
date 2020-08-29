@@ -22,7 +22,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('modal', {static: false})
   modal: any;
   dtTrigger: Subject<any> = new Subject();
-  userModel=new User('','');
+  userModel=new User('','','','');
   users: Array<any> = [];
   emp: Array<any>=[];
   columns: Array<any> = [
@@ -85,7 +85,7 @@ export class ProjectsComponent implements OnInit, OnDestroy, AfterViewInit {
         .subscribe(
           data=> {
             console.log('success!', data)
-           this.userModel=new User('','');
+           this.userModel=new User('','','','');
             this.ngOnInit()
           },
           error=>console.error('Error!',error)

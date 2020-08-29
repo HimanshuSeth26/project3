@@ -3,7 +3,7 @@ export class User {
     public employee: string,
     public project: string,
     public projectname:string,
-    public empolyeeName:string,
+    public employeeName:string,
 
   ) {}
 }

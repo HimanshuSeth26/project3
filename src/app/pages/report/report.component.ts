@@ -85,7 +85,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
   }
 
   tasklist(event) {
-    
+
     this.taskList = event;
     this.employeeId = event._id;
     console.log(event._id);
@@ -94,7 +94,7 @@ export class ReportComponent implements   OnInit, OnDestroy {
       .subscribe(
         data => {
           this.tasks = data;
-          this.users = data;
+          // this.users = data;
         }
 
       );
@@ -133,22 +133,22 @@ export class ReportComponent implements   OnInit, OnDestroy {
     // this.finishtasklist()
  }
   oWntask() {
-    if(this.employeeId===undefined){
-      alert("Hey User!!!please Select employeename")
-    }
-    // this.user=event._id
-    this.obj = {'employeename': this.employeeId, 'task': this.userModel.task};
-    this._reportService.oWnt(  this.obj)
-      .subscribe(
-        data => {
-          console.log('data is updated');
-          this.tasklist(this.taskList);
-          this.userModel = new User('');
+if(this.employeeId===undefined || this.userModel.task ===""){
+  console.log("undefined")
+  alert('Enter appropriate data')
 
-        }
-      );
-// this.ngOnInit()
+}else{
+  this.obj = {'employeename': this.employeeId, 'task': this.userModel.task};
+  this._reportService.oWnt(  this.obj)
+    .subscribe(
+      data => {
+        console.log('data is updated');
+        this.tasklist(this.taskList);
+        this.userModel = new User('');
 
+      }
+    );
+}
   }
   Finish(event){
     this._reportService.finish( event)
@@ -165,10 +165,10 @@ export class ReportComponent implements   OnInit, OnDestroy {
     });
   }
 
-  
+
 
   ngOnInit() {
-   
+
     this._reportService.geti()
       .subscribe(
         data => {

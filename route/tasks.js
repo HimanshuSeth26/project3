@@ -12,14 +12,16 @@ router.get("/taskOngoing", async (req, res) => {
   try {
     const posts= await Assign.find({}).populate('employeename task'
     ).exec();
- 
-    let a = posts.filter(item => (
-      console.log( item.task.status),
-      item.task.status === true
-      
-    ))
-   
-    console.log(a)
+ console.log(posts);
+ let a=[];
+    posts.forEach(item => {
+      if (!(item.task === null)) {
+        if(item.task.status){
+          a.push(item)
+        }
+      }
+    })
+
     res.send(a)
 
   } catch (error) {
@@ -59,14 +61,14 @@ router.post("/newTask", async (req, res) => {
 
 router.post("/selfAssign", async (req, res) => {
     try {
-    
+
       const posts= await Assign.find({employeename:req.body.employeename}).populate('employeename task'
       ).exec();
-     
+
       let b = posts.filter(item=>(
         item.task.status===true
       ))
-     
+
       if (b.length > 0) {console.log("abc1")
         objOld = {"finish": new Date()};
         const updateOld = await New.findByIdAndUpdate({
@@ -181,7 +183,7 @@ router.get("/:taskId/finish", async (req, res) => {
       //  console.log(req.body)
       obj={"status":null}
       const finish = await New.findOneAndUpdate({ _id: req.params.taskId },
-      
+
       obj, {
         new: true,
         runValidators: true
@@ -235,22 +237,22 @@ router.get("/:taskId", async (req, res) => {
 router.put("/:taskId", async (req, res) => {
     try {
       console.log(" req.params.taskId"+ req.params.taskId);
-        
+
         // const post = await Assign.find({ employeename: req.query.empId }).populate(' task'
          //).exec();
-       
+
        const user = await New.findOne({
             _id: req.params.taskId,})
-      //   console.log("ram aam khata ha========="+user.status)   
-        user.status=false  
+      //   console.log("ram aam khata ha========="+user.status)
+        user.status=false
       //  pause=new Date()
         trks={starttime:user.start, pausetime:new Date()},
       //  console.log(trks)
         user.trk.push( trks)
         await user.save();
-      
+
            //safe:true,upsert:true
-      
+
          res.send({ result:"task started" })
     } catch (error) {
         res.send(500)
@@ -265,7 +267,7 @@ router.get("/asp/:empId",async(req,res)=>{
         b=[];
         const post = await Assign.find({ employeename:req.params.empId }).populate(' task'
          ).exec();
-       
+
     post.forEach((item)=>{
     // for(j=0;j<trk.length;j++){
      if(item.length!=0)   {
@@ -273,23 +275,23 @@ router.get("/asp/:empId",async(req,res)=>{
          s=item.task.task
          t.push(s)
          ///console.log(s)
-          var sum=0; 
+          var sum=0;
             item.task.trk.forEach((element)=>{
         //        console.log(element.starttime)
            epochtime=new Date(element.starttime).getTime();
       //  console.log(epochtime)
-        
+
     epochtim=new Date(element.pausetime).getTime();
-    //console.log(epochtim)    
+    //console.log(epochtim)
     graphtime=   epochtim-  epochtime;
-   
-   
+
+
     a.push(graphtime)
     sec=graphtime/1000;
     //console.log("sec=>"+sec)
     hour=sec/60
     h=Math.floor(hour)
-    
+
     sum=sum+h;
     //console.log(sum)
     phours=hour-Math.floor(hour)
@@ -299,7 +301,7 @@ router.get("/asp/:empId",async(req,res)=>{
     M.push(m)
  //  console.log(H)
 //console.log(M)
- 
+
     // console.log(b)
     //       })
     })
@@ -310,9 +312,9 @@ router.get("/asp/:empId",async(req,res)=>{
       //  console.log(b)
   }
     })
-  
+
     res.send(b)
-    
+
     }catch(error){
         res.send(500)
     }

@@ -7,11 +7,13 @@ const assignschema = new mongoose.Schema({
     employeename:{
         type :mongoose.Schema.Types.ObjectId,
         ref:"NewEmployee",
-        //required:"name is required"
+        required:true
     },
     task: {
         type: mongoose.Schema.Types.ObjectId,
         ref:"task",
+        required:true
+
     },
 
 })

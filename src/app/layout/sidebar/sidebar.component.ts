@@ -6,7 +6,6 @@ import {AppService} from '../../app.service';
     selector: 'app-sidebar',
     templateUrl: 'sidebar.component.html',
     styleUrls: ['sidebar.component.scss'],
-  // tslint:disable-next-line:use-host-property-decorator
     host: {
         'class': 'sidebar'
     },

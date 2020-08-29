@@ -10,7 +10,8 @@ const path = require('path');
 //   { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 //   console.log('mongodb connected')
 // });
-const databaseUrl='mongodb+srv://mishra11:2911mishra@mycloustor0.gaadp.mongodb.net/test?retryWrites=true&w=majority';
+// mongodb+srv://shivam:shivam@cluster0.ditbp.mongodb.net/test?retryWrites=true&w=majority
+const databaseUrl='mongodb+srv://shivam:shivam@cluster0.ditbp.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.set('useCreateIndex', true);
 
 mongoose.connect(databaseUrl, {
@@ -34,7 +35,7 @@ require("./model/assigntask");
 require("./model/employee");
 require("./model/state");
 
-const PORT = process.env.PORT || 4002;
+const PORT = process.env.PORT || 4003;
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());

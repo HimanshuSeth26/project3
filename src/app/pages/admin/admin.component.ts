@@ -38,7 +38,8 @@ export class AdminComponent implements OnInit, OnDestroy, AfterViewInit {
     this. _taskService.geti()
       .subscribe(
         data =>{
-          this.users=data;console.log(this.users)
+          this.users=data;
+          console.log(this.users)
           this.rerender();
 
         }

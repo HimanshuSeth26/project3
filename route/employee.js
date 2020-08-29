@@ -8,8 +8,8 @@ const State = require("../model/state");
 router.post("/", async (req, res) => {
   console.log(req.body)
   const user1 = new Emp();  // creating an object of an class User1
-  user1.projectname = req.body.projectname;
-  user1.employeeName=req.body.employeeName._id;
+  user1.projectname = req.body.project;
+  user1.employeeName=req.body.employee._id;
   await user1.save();
   res.send(user1);
 });

@@ -7,7 +7,7 @@
       <div class="col-md-6">
         <div class="form-group">
           <label>Enter Your Project</label>
-          <input type="text" class="form-control"  #project="ngModel" name="projectName"[(ngModel)]=" userModel.projectname">
+          <input type="text" class="form-control"  #project="ngModel" name="project"[(ngModel)]=" userModel.project">
           <i class="form-group__bar"></i>
         </div>
       </div>
@@ -63,11 +63,11 @@
           <div class="content__inner">
             <div class="form-group">
               <label>Enter Your Project</label>
-              <input type="text" class="form-control" placeholder="Enter Your Project" #projectname="ngModel" name="projectname" [(ngModel)]="userModel. projectname">
+              <input type="text" class="form-control" placeholder="Enter Your Project" #project="ngModel" name="project" [(ngModel)]="userModel. projectname">
               <i class="form-group__bar"></i>
               <label>Select Employees</label>
-              <ng-select [items]="users" bindLabel="employeename"  [clearable]=false
-                         placeholder="Select Employee" #employeename="ngModel" name="employee"[(ngModel)]="userModel.employeeName">
+              <ng-select [items]="users" bindLabel="employee"  [clearable]=false
+                         placeholder="Select Employee" #employeeName="ngModel" name="employee"[(ngModel)]="userModel.employeename">
                 <i class="form-group__bar"></i>
               </ng-select>
             </div>

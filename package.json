@@ -46,7 +46,7 @@
     "datatables.net-dt": "^1.10.19",
     "express": "^4.17.1",
     "i": "^0.3.6",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "jqvmap": "^1.5.1",
     "material-design-iconic-font": "^2.2.0",
     "mongoose": "^5.9.28",
